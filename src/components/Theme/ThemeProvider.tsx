@@ -2,7 +2,7 @@
 import React, { PropsWithChildren } from "react";
 import rtlPlugin from "stylis-plugin-rtl";
 import { prefixer } from "stylis";
-import { ThemeProvider as MuiThemProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider as MuiThemProvider } from "@mui/material";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import theme from "./theme";
@@ -15,7 +15,10 @@ const cacheRtl = createCache({
 function ThemeProvider({ children }: PropsWithChildren) {
   return (
     <CacheProvider value={cacheRtl}>
-      <MuiThemProvider theme={theme}>{children}</MuiThemProvider>
+      <MuiThemProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MuiThemProvider>
     </CacheProvider>
   );
 }
