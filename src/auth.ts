@@ -2,16 +2,20 @@ import { AUTH_BASE_URL } from "@/config.server";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-export default NextAuth({
+export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
-    jwt({ token, user, account, profile, session, trigger }) {
-      console.log({ token, account, profile, session, trigger });
+    session({ session, user, token }) {
+      console.log("token", token);
+      return session;
+    },
+    jwt({ account, token, user, profile, session, trigger }) {
+      console.log("account", { account });
+      console.log("user", { user });
+      console.log("===========");
+      console.log("token", { token });
+      console.log("===========");
       return {
-        token: user.tokens,
-        account: user.user,
-        profile: user.profile,
-        session,
-        trigger,
+        ...token,
       };
     },
   },
@@ -43,7 +47,7 @@ export default NextAuth({
         const user = await res.json();
         // If no error and we have user data, return it
         if (res.ok && user) {
-          return user;
+          return user.user;
         }
         // Return null if user data could not be retrieved
         return null;

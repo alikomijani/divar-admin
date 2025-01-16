@@ -1,23 +1,12 @@
 "use client";
 import { Box, Button, Stack, TextField } from "@mui/material";
-import { signIn } from "next-auth/react";
+import { useActionState } from "react";
+import { login } from "./login";
 
 export default function LoginForm() {
-  const state = {};
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const email = data.get("email");
-    const password = data.get("password");
-    const result = await signIn("credentials", {
-      redirect: false, // Prevent automatic redirect
-      email,
-      password,
-    });
-    console.log(result);
-  };
+  const [state, action, pending] = useActionState(login, undefined);
   return (
-    <form onSubmit={handleSubmit}>
+    <form action={action}>
       <Stack gap={3}>
         <Stack
           mt={2}
@@ -27,8 +16,8 @@ export default function LoginForm() {
           gap={1}
         ></Stack>
         <TextField
-          // error={!!state?.errors?.email}
-          // helperText={state?.errors?.email}
+          error={!!state?.errors?.email}
+          helperText={state?.errors?.email}
           size="small"
           fullWidth
           name="email"
@@ -37,12 +26,12 @@ export default function LoginForm() {
           type="email"
         />
         <TextField
-          // error={!!state?.errors?.password}
-          // helperText={state?.errors?.password?.map((e: string) => (
-          //   <Box component="span" display="block" key={e}>
-          //     {e}
-          //   </Box>
-          // ))}
+          error={!!state?.errors?.password}
+          helperText={state?.errors?.password?.map((e: string) => (
+            <Box component="span" display="block" key={e}>
+              {e}
+            </Box>
+          ))}
           size="small"
           fullWidth
           name="password"
@@ -52,7 +41,7 @@ export default function LoginForm() {
         />
         <Button
           type="submit"
-          disabled={false}
+          disabled={pending}
           disableElevation
           variant="contained"
         >

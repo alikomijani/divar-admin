@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 
-export default function Login() {
+export default async function Login() {
   return (
     <Card sx={{ width: 500 }} elevation={8}>
       <CardContent
