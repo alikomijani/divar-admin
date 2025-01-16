@@ -1,13 +1,23 @@
 "use client";
-import { login } from "@/actions/login";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import React, { useActionState } from "react";
+import { Box, Button, Stack, TextField } from "@mui/material";
+import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
-  const [state, action, pending] = useActionState(login, undefined);
-  console.log(state);
+  const state = {};
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const email = data.get("email");
+    const password = data.get("password");
+    const result = await signIn("credentials", {
+      redirect: false, // Prevent automatic redirect
+      email,
+      password,
+    });
+    console.log(result);
+  };
   return (
-    <form action={action}>
+    <form onSubmit={handleSubmit}>
       <Stack gap={3}>
         <Stack
           mt={2}
@@ -17,8 +27,8 @@ export default function LoginForm() {
           gap={1}
         ></Stack>
         <TextField
-          error={!!state?.errors?.email}
-          helperText={state?.errors?.email}
+          // error={!!state?.errors?.email}
+          // helperText={state?.errors?.email}
           size="small"
           fullWidth
           name="email"
@@ -27,12 +37,12 @@ export default function LoginForm() {
           type="email"
         />
         <TextField
-          error={!!state?.errors?.password}
-          helperText={state?.errors?.password?.map((e: string) => (
-            <Box component="span" display="block" key={e}>
-              {e}
-            </Box>
-          ))}
+          // error={!!state?.errors?.password}
+          // helperText={state?.errors?.password?.map((e: string) => (
+          //   <Box component="span" display="block" key={e}>
+          //     {e}
+          //   </Box>
+          // ))}
           size="small"
           fullWidth
           name="password"
@@ -42,7 +52,7 @@ export default function LoginForm() {
         />
         <Button
           type="submit"
-          disabled={pending}
+          disabled={false}
           disableElevation
           variant="contained"
         >
