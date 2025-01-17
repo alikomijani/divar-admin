@@ -1,13 +1,13 @@
 import { BASE_URL } from "@/config.server";
-import { ICity, PaginatedResultApi } from "./types";
+import { IProperty, PaginatedResultApi } from "./types";
 import { auth } from "@/lib/session";
 
-export const getCities = async (
+export const getProperties = async (
   params: any
-): Promise<PaginatedResultApi<ICity>> => {
+): Promise<PaginatedResultApi<IProperty>> => {
   const { accessToken } = await auth();
   const search = new URLSearchParams(params);
-  const data = await fetch(`${BASE_URL}/cities?${search.toString()}`, {
+  const data = await fetch(`${BASE_URL}/properties?${search.toString()}`, {
     headers: {
       authorization: `Bearer ${accessToken}`,
     },

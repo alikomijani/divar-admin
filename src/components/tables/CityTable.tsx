@@ -1,11 +1,10 @@
 import { getCities } from "@/app/server-api/city";
 import AITable from "./AITable";
+import { ServerPageProps } from "@/app/server-api/types";
 
 export default async function CityTable({
   searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
+}: Pick<ServerPageProps, "searchParams">) {
   const params = await searchParams;
   const cities = await getCities(params);
   return (

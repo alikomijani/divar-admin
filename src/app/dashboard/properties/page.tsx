@@ -1,8 +1,12 @@
-import { PageParams } from "@/app/server-api/types";
+import { ServerPageProps } from "@/app/server-api/types";
+import { TableContainer } from "@/components/tables/TableContainer";
 import React from "react";
+import { PropertiesTable } from "./PropertiesTable";
 
-type Props = {};
-
-export default function Properties({ searchParams }: PageParams) {
-  return <div>page</div>;
+export default function Properties({ searchParams }: ServerPageProps) {
+  return (
+    <TableContainer title="مشخصات" createLink="/dashboard/properties/create">
+      <PropertiesTable searchParams={searchParams} />
+    </TableContainer>
+  );
 }

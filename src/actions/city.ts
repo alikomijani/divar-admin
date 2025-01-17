@@ -4,7 +4,6 @@ import { auth } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { BASE_URL } from "@/config.server";
 import { z } from "zod";
-import { revalidateTag } from "next/cache";
 
 const CityFormSchema = z.object({
   code: z.string().trim(),
@@ -55,6 +54,5 @@ export async function createCityAction(
       errors: data.errors,
     };
   }
-  revalidateTag("cities");
   redirect("/dashboard/cities");
 }
