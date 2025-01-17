@@ -33,6 +33,10 @@ export default function TablePagination({ count }: Props) {
       count={count}
       rowsPerPage={pageSize}
       page={page}
+      labelDisplayedRows={({ count, from, page, to }) =>
+        `نمایش ${from} تا ${to} از ${count} آیتم`
+      }
+      labelRowsPerPage={"تعداد آیتم های هر صفحه"}
       onPageChange={(event, newPage) => {
         router.push(
           pathname + "?" + createQueryString({ page: `${newPage + 1}` })
