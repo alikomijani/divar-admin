@@ -1,65 +1,52 @@
-import { getCities } from "@/app/server-api/city";
-
-import CityTable from "./CityTable";
+import CityTable from "../../../components/tables/CityTable";
 import {
   Box,
+  Button,
   Paper,
   Skeleton,
   Table,
   TableBody,
   TableCell,
-  TableContainer,
-  TableHead,
   TableRow,
+  Toolbar,
+  Typography,
 } from "@mui/material";
 import { Suspense } from "react";
+import Link from "next/link";
+import TableLoading from "@/components/tables/TableLoading";
 
-export default async function Cities() {
-  getCities();
+export default async function Cities({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   return (
     <Box>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>شناسه</TableCell>
-              <TableCell>کد شهر</TableCell>
-              <TableCell>نام فارسی</TableCell>
-              <TableCell>شناسه کد</TableCell>
-              <TableCell>تاریخ ساخت</TableCell>
-              <TableCell>آخرین بروزرسانی</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <Suspense fallback={<CityTableLoading />}>
-              <CityTable />
-            </Suspense>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Paper>
+        <Toolbar>
+          <Typography
+            variant="h5"
+            sx={{
+              flex: "1 1 100%",
+            }}
+          >
+            شهرها
+          </Typography>
+          <Button
+            component={Link}
+            href="cities/create"
+            sx={{
+              flexShrink: 0,
+            }}
+            variant="contained"
+          >
+            شهر جدید
+          </Button>
+        </Toolbar>
+        <Suspense fallback={<TableLoading columnCount={6} />}>
+          <CityTable searchParams={searchParams} />
+        </Suspense>
+      </Paper>
     </Box>
   );
 }
-
-const CityTableLoading = () => (
-  <TableRow>
-    <TableCell sx={{ minHeight: 10 }}>
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-    </TableCell>
-    <TableCell>
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-    </TableCell>
-    <TableCell>
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-    </TableCell>
-    <TableCell>
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-    </TableCell>
-    <TableCell>
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-    </TableCell>
-    <TableCell>
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-    </TableCell>
-  </TableRow>
-);

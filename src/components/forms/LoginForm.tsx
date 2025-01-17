@@ -1,11 +1,10 @@
 "use client";
-import { login } from "@/actions/login";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { login } from "@/actions/auth/login";
+import { Box, Button, Stack, TextField } from "@mui/material";
 import React, { useActionState } from "react";
 
 export default function LoginForm() {
   const [state, action, pending] = useActionState(login, undefined);
-  console.log(state);
   return (
     <form action={action}>
       <Stack gap={3}>

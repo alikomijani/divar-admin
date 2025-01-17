@@ -25,3 +25,17 @@ export async function createSession(token: {
     path: "/",
   });
 }
+export async function deleteSession() {
+  const cookieStore = await cookies();
+  cookieStore.delete("accessToken");
+  cookieStore.delete("refreshToken");
+}
+export async function auth() {
+  const cookieStore = await cookies();
+  const accessToken = await cookieStore.get("accessToken")?.value;
+  const refreshToken = await cookieStore.get("refreshToken")?.value;
+  return {
+    accessToken,
+    refreshToken,
+  };
+}

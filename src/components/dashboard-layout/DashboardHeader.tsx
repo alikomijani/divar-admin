@@ -16,8 +16,9 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import SearchIconWrapper from "./components/SearchIconWrapper";
 import Search from "./components/Search";
 import StyledInputBase from "./components/StyledInputBase";
-import { AppBar } from "./components/HeaderAppBard";
+import { AppBar } from "./components/HeaderAppBar";
 import { DrawerContext } from "./DrawerProvider";
+import { Divider } from "@mui/material";
 
 export default function DashboardHeader() {
   const { isOpen, handleOpen } = React.useContext(DrawerContext);
@@ -62,8 +63,10 @@ export default function DashboardHeader() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>پروفایل</MenuItem>
+      <MenuItem onClick={handleMenuClose}>مشاهده حساب</MenuItem>
+      <Divider />
+      <MenuItem onClick={handleMenuClose}>خروج</MenuItem>
     </Menu>
   );
 

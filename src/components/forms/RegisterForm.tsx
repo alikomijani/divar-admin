@@ -1,5 +1,5 @@
 "use client";
-import { register } from "@/actions/register";
+import { register } from "@/actions/auth/register";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useActionState } from "react";
 
