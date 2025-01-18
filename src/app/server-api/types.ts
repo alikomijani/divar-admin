@@ -40,3 +40,14 @@ export interface Column<T extends { id: string }> {
   title: string;
   render: (row: T) => ReactNode;
 }
+export interface ICategory {
+  titleEn: string;
+  titleFa: string;
+  slug: string;
+  returnReasonAlert: string;
+  properties: IProperty[];
+  createdAt: string;
+  updatedAt: string;
+  parent: ICategory;
+  id: string;
+}
