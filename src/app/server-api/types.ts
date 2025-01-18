@@ -59,3 +59,8 @@ export interface IBrand extends Timestamp {
   logo: string;
   id: string;
 }
+export interface IBadge extends Timestamp {
+  icon: string;
+  title: string;
+  id: string;
+}
