@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import TablePagination from "./TablePagination";
 import React, { ReactNode } from "react";
-import { Column, PaginatedResultApi } from "@/app/server-api/types";
+import { Column, PaginatedResultApi } from "@/api/server-api/types";
 import AITableRow from "./AITableRow";
 
 interface AITableProps<T extends { id: string }, G extends { id: string }> {

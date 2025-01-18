@@ -1,5 +1,5 @@
 "use server";
-import { createBadge, deleteBadge } from "@/app/server-api/badges";
+import { createBadge, deleteBadge } from "@/api/server-api/badges";
 import { auth } from "@/lib/session";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

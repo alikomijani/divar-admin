@@ -1,5 +1,5 @@
 "use client";
-import { IProduct, PaginatedResultApi } from "@/app/server-api/types";
+import { IProduct, PaginatedResultApi } from "@/api/server-api/types";
 import AITable from "@/components/tables/AITable";
 import { Delete, Edit } from "@mui/icons-material";
 import { IconButton, Stack, Tooltip } from "@mui/material";

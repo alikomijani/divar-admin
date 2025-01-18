@@ -2,7 +2,7 @@
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
 import AITable from "../../../components/tables/AITable";
-import { ICity, PaginatedResultApi } from "@/app/server-api/types";
+import { ICity, PaginatedResultApi } from "@/api/server-api/types";
 
 export default function CityTable({
   cities,

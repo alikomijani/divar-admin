@@ -1,6 +1,6 @@
 "use client";
 import { deleteBadgeAction } from "@/actions/badges";
-import { IBadge, PaginatedResultApi } from "@/app/server-api/types";
+import { IBadge, PaginatedResultApi } from "@/api/server-api/types";
 import AlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";

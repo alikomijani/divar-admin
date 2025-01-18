@@ -1,7 +1,7 @@
-import { ServerPageProps } from "@/app/server-api/types";
+import { ServerPageProps } from "@/api/server-api/types";
 import { TableContainer } from "@/components/tables/TableContainer";
 import { BrandsTable } from "./brands-table";
-import { getBrands } from "@/app/server-api/brands";
+import { getBrands } from "@/api/server-api/brands";
 
 export default async function BrandsPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;

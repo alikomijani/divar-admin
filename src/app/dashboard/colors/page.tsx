@@ -1,7 +1,7 @@
-import { ServerPageProps } from "@/app/server-api/types";
+import { ServerPageProps } from "@/api/server-api/types";
 import { TableContainer } from "@/components/tables/TableContainer";
 import { ColorsTable } from "./colors-table";
-import { getColors } from "@/app/server-api/colors";
+import { getColors } from "@/api/server-api/colors";
 
 export default async function ColorsPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;

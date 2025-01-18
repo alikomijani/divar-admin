@@ -1,7 +1,7 @@
 "use server";
-import { getCities } from "@/app/server-api/city";
+import { getCities } from "@/api/server-api/city";
 import CityTable from "./CityTable";
-import { ServerPageProps } from "@/app/server-api/types";
+import { ServerPageProps } from "@/api/server-api/types";
 import { TableContainer } from "@/components/tables/TableContainer";
 
 export default async function Cities({ searchParams }: ServerPageProps) {

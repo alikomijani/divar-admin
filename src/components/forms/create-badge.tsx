@@ -3,19 +3,14 @@ import { Stack, TextField } from "@mui/material";
 import { useActionState } from "react";
 import SubmitButton from "../SubmitButton";
 import { createBadgeAction } from "@/actions/badges";
+import SingleUpload from "../upload/single-upload";
 
 export const CreateBadgeForm = () => {
   const [state, action] = useActionState(createBadgeAction, undefined);
   return (
     <form action={action}>
       <Stack spacing={2} mt={2}>
-        <TextField
-          error={state?.errors?.icon}
-          helperText={state?.errors?.icon}
-          fullWidth
-          name="icon"
-          label="آیکن"
-        />
+        <SingleUpload name="icon" label="آیکون" />
         <TextField
           error={state?.errors.title}
           helperText={state?.errors?.title}

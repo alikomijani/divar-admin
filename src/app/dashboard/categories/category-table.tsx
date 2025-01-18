@@ -3,7 +3,7 @@ import {
   ICategory,
   IProperty,
   PaginatedResultApi,
-} from "@/app/server-api/types";
+} from "@/api/server-api/types";
 import AITable from "@/components/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
