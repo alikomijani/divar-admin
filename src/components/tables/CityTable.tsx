@@ -29,11 +29,11 @@ export default function CityTable({
         },
         {
           title: "تاریخ ساخت",
-          render: (row) => new Date(row.createdAt).toLocaleDateString(),
+          render: (row) => new Date(row.createdAt).toLocaleDateString("fa"),
         },
         {
           title: "آخرین بروزرسانی",
-          render: (row) => new Date(row.updatedAt).toLocaleDateString(),
+          render: (row) => new Date(row.updatedAt).toLocaleDateString("fa"),
         },
       ]}
     />

@@ -13,8 +13,10 @@ import Drawer from "./components/Drawer";
 import { DrawerContext } from "./DrawerProvider";
 import { SIDEBAR_ITEMS } from "./constants";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function MiniDrawer() {
+  const pathname = usePathname();
   const { isOpen, handleClose } = React.useContext(DrawerContext);
   return (
     <Drawer variant="permanent" open={isOpen}>
@@ -28,6 +30,7 @@ export default function MiniDrawer() {
         {SIDEBAR_ITEMS.map(({ text, href, Icon }, index) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <ListItemButton
+              selected={pathname === href}
               component={Link}
               href={href}
               sx={{
