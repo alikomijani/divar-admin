@@ -1,18 +1,20 @@
 import { ReactNode } from "react";
 
+interface Timestamp {
+  createdAt: string;
+  updatedAt: string;
+}
 export interface IPropertyOption {
   id: string;
   value: string;
   label: string;
 }
-export interface IProperty {
+export interface IProperty extends Timestamp {
   id: string;
   name: string;
   type: string;
   label: string;
   options?: IPropertyOption[];
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 export interface ICity {
@@ -40,14 +42,20 @@ export interface Column<T extends { id: string }> {
   title: string;
   render: (row: T) => ReactNode;
 }
-export interface ICategory {
+export interface ICategory extends Timestamp {
   titleEn: string;
   titleFa: string;
   slug: string;
   returnReasonAlert: string;
   properties: IProperty[];
-  createdAt: string;
-  updatedAt: string;
+
   parent: ICategory;
+  id: string;
+}
+export interface IBrand extends Timestamp {
+  titleFa: string;
+  titleEn: string;
+  slug: string;
+  logo: string;
   id: string;
 }
