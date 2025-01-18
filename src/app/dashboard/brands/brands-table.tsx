@@ -1,6 +1,8 @@
 "use client";
 import { IBrand, PaginatedResultApi } from "@/app/server-api/types";
 import AITable from "@/components/tables/AITable";
+import { Edit, Delete } from "@mui/icons-material";
+import { Stack, Tooltip, IconButton } from "@mui/material";
 
 export function BrandsTable({
   brands,
@@ -9,6 +11,20 @@ export function BrandsTable({
 }) {
   return (
     <AITable
+      actions={(p) => (
+        <Stack direction={"row"}>
+          <Tooltip title="ویرایش">
+            <IconButton color="secondary">
+              <Edit />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="حذف">
+            <IconButton color="error">
+              <Delete />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      )}
       data={brands}
       schema={[
         {

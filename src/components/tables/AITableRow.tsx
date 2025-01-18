@@ -2,13 +2,14 @@
 import { Column } from "@/app/server-api/types";
 import { IconButton, TableRow as MuiTableRow, TableCell } from "@mui/material";
 import AISubTable from "./AISubTable";
-import { Fragment, useState } from "react";
+import { Fragment, ReactNode, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 type Props<T extends { id: string }, G extends { id: string }> = {
   schema: Column<T>[];
   data: T;
+  actions?: (row: T) => ReactNode;
   subTable?: {
     header: string;
     schema: Column<G>[];
@@ -19,7 +20,7 @@ type Props<T extends { id: string }, G extends { id: string }> = {
 export default function AITableRow<
   T extends { id: string },
   G extends { id: string }
->({ schema, data, subTable }: Props<T, G>) {
+>({ schema, data, subTable, actions }: Props<T, G>) {
   const [open, setOpen] = useState(false);
   return (
     <Fragment>
@@ -40,6 +41,11 @@ export default function AITableRow<
             {item.render(data)}
           </TableCell>
         ))}
+        {!!actions && (
+          <TableCell key={data.id.toString() + "actions"}>
+            {actions(data)}
+          </TableCell>
+        )}
       </MuiTableRow>
       {!!subTable && (
         <AISubTable

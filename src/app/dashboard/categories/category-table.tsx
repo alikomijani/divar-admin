@@ -5,6 +5,8 @@ import {
   PaginatedResultApi,
 } from "@/app/server-api/types";
 import AITable from "@/components/tables/AITable";
+import { Edit, Delete } from "@mui/icons-material";
+import { Stack, Tooltip, IconButton } from "@mui/material";
 
 export function CategoriesTable({
   categories,
@@ -13,6 +15,20 @@ export function CategoriesTable({
 }) {
   return (
     <AITable
+      actions={(p) => (
+        <Stack direction={"row"}>
+          <Tooltip title="ویرایش">
+            <IconButton color="secondary">
+              <Edit />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="حذف">
+            <IconButton color="error">
+              <Delete />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      )}
       subTable={{
         header: "ویژگی ها",
         key: "properties",

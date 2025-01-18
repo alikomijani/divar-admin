@@ -1,4 +1,6 @@
 "use client";
+import { Edit, Delete } from "@mui/icons-material";
+import { Stack, Tooltip, IconButton } from "@mui/material";
 import AITable from "../../../components/tables/AITable";
 import { ICity, PaginatedResultApi } from "@/app/server-api/types";
 
@@ -9,6 +11,20 @@ export default function CityTable({
 }) {
   return (
     <AITable
+      actions={(p) => (
+        <Stack direction={"row"}>
+          <Tooltip title="ویرایش">
+            <IconButton color="secondary">
+              <Edit />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="حذف">
+            <IconButton color="error">
+              <Delete />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      )}
       data={cities}
       schema={[
         {

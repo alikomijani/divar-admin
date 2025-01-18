@@ -1,7 +1,8 @@
 "use client";
 import { IColor, PaginatedResultApi } from "@/app/server-api/types";
 import AITable from "@/components/tables/AITable";
-import { Box } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
+import { Box, IconButton, Stack, Tooltip } from "@mui/material";
 
 export function ColorsTable({
   colors,
@@ -10,6 +11,20 @@ export function ColorsTable({
 }) {
   return (
     <AITable
+      actions={(p) => (
+        <Stack direction={"row"}>
+          <Tooltip title="ویرایش">
+            <IconButton color="secondary">
+              <Edit />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="حذف">
+            <IconButton color="error">
+              <Delete />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      )}
       data={colors}
       schema={[
         {
