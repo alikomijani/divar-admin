@@ -2,7 +2,6 @@
 import {
   ICategory,
   IProperty,
-  IPropertyOption,
   PaginatedResultApi,
 } from "@/app/server-api/types";
 import AITable from "@/components/tables/AITable";

@@ -70,3 +70,27 @@ export interface IColor extends Timestamp {
   hexCode: string;
   id: string;
 }
+
+interface IPropertyValue {
+  name: string;
+  title: string;
+  value: string;
+  id: string;
+}
+export interface IProduct extends Timestamp {
+  images: {
+    main: string;
+    list: string[];
+  };
+  code: number;
+  titleFa: string;
+  titleEn: string;
+  status: "marketable" | "unmarketable";
+  badges: [];
+  category: ICategory;
+  brand: IBrand;
+  review: IPropertyValue[];
+  specifications: IPropertyValue[];
+  expert_reviews: string;
+  id: string;
+}
