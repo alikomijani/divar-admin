@@ -1,5 +1,5 @@
 "use client";
-import AITable from "./AITable";
+import AITable from "../../../components/tables/AITable";
 import { ICity, PaginatedResultApi } from "@/app/server-api/types";
 
 export default function CityTable({
