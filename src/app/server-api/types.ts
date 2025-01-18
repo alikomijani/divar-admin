@@ -64,3 +64,9 @@ export interface IBadge extends Timestamp {
   title: string;
   id: string;
 }
+
+export interface IColor extends Timestamp {
+  title: string;
+  hexCode: string;
+  id: string;
+}
