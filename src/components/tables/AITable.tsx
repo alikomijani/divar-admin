@@ -1,3 +1,4 @@
+"use client";
 import {
   Paper,
   Table,
@@ -8,26 +9,26 @@ import {
   TableRow,
 } from "@mui/material";
 import TablePagination from "./TablePagination";
-import { ReactNode } from "react";
-import { PaginatedResultApi } from "@/app/server-api/types";
-interface Column<T extends { id: string }> {
-  title: string;
-  render: (row: T) => ReactNode;
-}
-interface AITableProps<T extends { id: string }> {
+import React from "react";
+import { Column, PaginatedResultApi } from "@/app/server-api/types";
+import AITableRow from "./AITableRow";
+
+interface AITableProps<T extends { id: string }, G extends { id: string }> {
   schema: Column<T>[];
   data: PaginatedResultApi<T>;
+  subTable?: { header: string; schema: Column<G>[]; key: keyof T };
 }
 
-export default function AITable<T extends { id: string }>({
-  schema,
-  data,
-}: AITableProps<T>) {
+export default function AITable<
+  T extends { id: string },
+  G extends { id: string }
+>({ schema, data, subTable }: AITableProps<T, G>) {
   return (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
+            {!!subTable && <TableCell></TableCell>}
             {schema.map((item) => (
               <TableCell key={item.title}>{item.title}</TableCell>
             ))}
@@ -35,13 +36,12 @@ export default function AITable<T extends { id: string }>({
         </TableHead>
         <TableBody>
           {data.results.map((row) => (
-            <TableRow key={row.id}>
-              {schema.map((item, index) => (
-                <TableCell key={row.id.toString() + item.title}>
-                  {item.render(row)}
-                </TableCell>
-              ))}
-            </TableRow>
+            <AITableRow
+              key={row.id}
+              schema={schema}
+              data={row}
+              subTable={subTable}
+            />
           ))}
         </TableBody>
       </Table>

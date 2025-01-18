@@ -8,7 +8,7 @@ export type TableContainerProps = {
   createLink: string;
   children: ReactNode;
 };
-export function TableContainer({
+export async function TableContainer({
   title,
   createLink,
   children,

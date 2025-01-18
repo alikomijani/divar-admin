@@ -1,14 +1,36 @@
-import { getProperties } from "@/app/server-api/property";
-import { ServerPageProps } from "@/app/server-api/types";
+"use client";
+import {
+  IProperty,
+  IPropertyOption,
+  PaginatedResultApi,
+} from "@/app/server-api/types";
 import AITable from "@/components/tables/AITable";
 
-export async function PropertiesTable({
-  searchParams,
-}: Pick<ServerPageProps, "searchParams">) {
-  const params = await searchParams;
-  const properties = await getProperties(params);
+export function PropertiesTable({
+  properties,
+}: {
+  properties: PaginatedResultApi<IProperty>;
+}) {
   return (
     <AITable
+      subTable={{
+        header: "مقادیر پیشنهادی",
+        key: "options",
+        schema: [
+          {
+            title: "شماره",
+            render: (row: IPropertyOption) => row.id,
+          },
+          {
+            title: "برچسب",
+            render: (row) => row.label,
+          },
+          {
+            title: "مقدار",
+            render: (row) => row.value,
+          },
+        ],
+      }}
       data={properties}
       schema={[
         {

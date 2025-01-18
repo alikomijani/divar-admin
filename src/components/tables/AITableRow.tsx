@@ -1,0 +1,54 @@
+"use client";
+import { Column } from "@/app/server-api/types";
+import { IconButton, TableRow as MuiTableRow, TableCell } from "@mui/material";
+import AISubTable from "./AISubTable";
+import { Fragment, useState } from "react";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
+type Props<T extends { id: string }, G extends { id: string }> = {
+  schema: Column<T>[];
+  data: T;
+  subTable?: {
+    header: string;
+    schema: Column<G>[];
+    key: keyof T;
+  };
+};
+
+export default function AITableRow<
+  T extends { id: string },
+  G extends { id: string }
+>({ schema, data, subTable }: Props<T, G>) {
+  const [open, setOpen] = useState(false);
+  return (
+    <Fragment>
+      <MuiTableRow>
+        {!!subTable && (
+          <TableCell>
+            <IconButton
+              aria-label="expand row"
+              size="small"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            </IconButton>
+          </TableCell>
+        )}
+        {schema.map((item) => (
+          <TableCell key={data.id.toString() + item.title}>
+            {item.render(data)}
+          </TableCell>
+        ))}
+      </MuiTableRow>
+      {!!subTable && (
+        <AISubTable
+          header={subTable.header}
+          data={data[subTable.key] as G[]}
+          open={open}
+          subTitleSchema={subTable.schema}
+        />
+      )}
+    </Fragment>
+  );
+}

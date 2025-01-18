@@ -1,14 +1,16 @@
+import { ReactNode } from "react";
+
+export interface IPropertyOption {
+  id: string;
+  value: string;
+  label: string;
+}
 export interface IProperty {
   id: string;
   name: string;
   type: string;
   label: string;
-  options?:
-    | {
-        value: string;
-        label: string;
-      }[]
-    | undefined;
+  options?: IPropertyOption[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -33,3 +35,8 @@ export type ServerPageProps = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+export interface Column<T extends { id: string }> {
+  title: string;
+  render: (row: T) => ReactNode;
+}

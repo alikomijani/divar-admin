@@ -1,12 +1,12 @@
-import { getCities } from "@/app/server-api/city";
+"use client";
 import AITable from "./AITable";
-import { ServerPageProps } from "@/app/server-api/types";
+import { ICity, PaginatedResultApi } from "@/app/server-api/types";
 
-export default async function CityTable({
-  searchParams,
-}: Pick<ServerPageProps, "searchParams">) {
-  const params = await searchParams;
-  const cities = await getCities(params);
+export default function CityTable({
+  cities,
+}: {
+  cities: PaginatedResultApi<ICity>;
+}) {
   return (
     <AITable
       data={cities}
