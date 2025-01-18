@@ -4,6 +4,22 @@ import { BASE_URL } from "@/config.server";
 import { IBadge, PaginatedResultApi } from "./types";
 import { auth } from "@/lib/session";
 
+export const createBadge = async (body: any, accessToken: string) => {
+  const res = await fetch(`${BASE_URL}/cities`, {
+    method: "post",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+  });
+  const data = await res.json();
+  return {
+    res,
+    data,
+  };
+};
+
 export const getBadges = async (
   params?: any
 ): Promise<PaginatedResultApi<IBadge>> => {
