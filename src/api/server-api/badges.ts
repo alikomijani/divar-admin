@@ -5,7 +5,7 @@ import { IBadge, PaginatedResultApi } from "./types";
 import { auth } from "@/lib/session";
 
 export const createBadge = async (body: any, accessToken: string) => {
-  const res = await fetch(`${BASE_URL}/cities`, {
+  const res = await fetch(`${BASE_URL}/badges`, {
     method: "post",
     body: JSON.stringify(body),
     headers: {
