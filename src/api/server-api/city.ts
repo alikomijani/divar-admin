@@ -1,28 +1,58 @@
+"use server";
+import "server-only";
+
 import { BASE_URL } from "@/config.server";
 import { ICity, PaginatedResultApi } from "./types";
-import { auth } from "@/lib/session";
+import { revalidateTag } from "next/cache";
+import { apiFetch } from "./base";
 
-export const getCities = async (
-  params: any
-): Promise<PaginatedResultApi<ICity>> => {
-  const { accessToken } = await auth();
-  const search = new URLSearchParams(params);
-  const data = await fetch(`${BASE_URL}/cities?${search.toString()}`, {
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
-    cache: "no-store",
-  }).then((res) => res.json());
+// Create a new city
+export const createCity = async (body: Partial<ICity>): Promise<ICity> => {
+  return apiFetch<ICity>(`${BASE_URL}/cities`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+};
+
+// Update an existing city
+export const updateCity = async (
+  id: string,
+  body: Partial<ICity>
+): Promise<ICity> => {
+  const data = await apiFetch<ICity>(`${BASE_URL}/cities/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+  revalidateTag(`cities-${id}`);
   return data;
 };
 
-export const deleteCity = async (id: string): Promise<Response> => {
-  const { accessToken } = await auth();
-  const res = await fetch(`${BASE_URL}/cities/${id}`, {
-    method: "delete",
-    headers: {
-      authorization: `Bearer ${accessToken}`,
+// Get a paginated list of cities
+export const getCities = async (
+  params?: Record<string, string | number>
+): Promise<PaginatedResultApi<ICity>> => {
+  const search = new URLSearchParams(params as Record<string, string>);
+  return apiFetch<PaginatedResultApi<ICity>>(
+    `${BASE_URL}/cities?${search.toString()}`,
+    {
+      cache: "no-store",
+    }
+  );
+};
+
+// Delete a city
+export const deleteCity = async (id: string): Promise<{ message: string }> => {
+  return apiFetch<{ message: string }>(`${BASE_URL}/cities/${id}`, {
+    method: "DELETE",
+  });
+};
+
+// Get a city by its ID
+export const getCityById = async (id: string): Promise<ICity> => {
+  return apiFetch<ICity>(`${BASE_URL}/cities/${id}`, {
+    cache: "force-cache",
+    next: {
+      tags: ["allSingleCity", `cities-${id}`],
     },
   });
-  return res;
 };

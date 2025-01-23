@@ -3,12 +3,14 @@ import { IBrand, PaginatedResultApi } from "@/api/server-api/types";
 import AITable from "@/components/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
+import { use } from "react";
 
 export function BrandsTable({
   brands,
 }: {
-  brands: PaginatedResultApi<IBrand>;
+  brands: Promise<PaginatedResultApi<IBrand>>;
 }) {
+  const brandsList = use(brands);
   return (
     <AITable
       actions={(p) => (
@@ -25,7 +27,7 @@ export function BrandsTable({
           </Tooltip>
         </Stack>
       )}
-      data={brands}
+      data={brandsList}
       schema={[
         {
           title: "نشانک",

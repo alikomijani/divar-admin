@@ -5,7 +5,7 @@ import { getBrands } from "@/api/server-api/brands";
 
 export default async function BrandsPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;
-  const brands = await getBrands(params);
+  const brands = getBrands(params);
   return (
     <TableContainer title="برند" createLink="/dashboard/brands/create">
       <BrandsTable brands={brands} />
