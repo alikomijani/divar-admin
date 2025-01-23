@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,13 +11,18 @@ import { Box } from "@mui/material";
 interface AlertDialogProps {
   children?: React.ReactNode;
   onConfirm: () => void;
-  isLoading?: boolean;
 }
 export default function DeleteAlertDialog({
   children,
   onConfirm,
-  isLoading,
 }: AlertDialogProps) {
+  const [isLoading, setTransitioning] = React.useTransition();
+  const handleConfirm = () => {
+    setTransitioning(async () => {
+      await onConfirm();
+      handleClose();
+    });
+  };
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -55,7 +60,7 @@ export default function DeleteAlertDialog({
             disabled={isLoading}
             variant="outlined"
             color="error"
-            onClick={onConfirm}
+            onClick={handleConfirm}
           >
             حذف
           </Button>

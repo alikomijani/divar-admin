@@ -1,24 +1,11 @@
 "use server";
 import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
+import { ApiError } from "@/api/server-api/base";
 import { auth } from "@/lib/session";
+import { BadgeFormSchema, BadgeFormState } from "@/validations/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
-const BadgeFormSchema = z.object({
-  icon: z.string().url().trim(),
-  title: z.string().min(1, "Title is required").trim(),
-});
-
-type BadgeFormState =
-  | {
-      errors?: {
-        icon?: string[];
-        title?: string[];
-      };
-      message?: string;
-    }
-  | undefined;
 export async function createOrUpdateBadgeAction(
   state: BadgeFormState,
   formData: FormData
@@ -37,44 +24,39 @@ export async function createOrUpdateBadgeAction(
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
-  if (id) {
-    const { res, data } = await updateBadge(
-      id.toString(),
-      validatedFields.data,
-      accessToken
-    );
-
-    if (!res.ok) {
-      return {
-        message: data.message,
-        errors: data.errors,
-      };
+  try {
+    if (id) {
+      await updateBadge(id.toString(), validatedFields.data);
+    } else {
+      await createBadge(validatedFields.data);
     }
-  } else {
-    const { res, data } = await createBadge(validatedFields.data, accessToken);
-    if (!res.ok) {
+  } catch (e) {
+    console.log(e);
+    if (e instanceof ApiError) {
       return {
-        message: data.message,
-        errors: data.errors,
+        message: e.message,
+        errors: e.body?.errors,
+      };
+    } else {
+      return {
+        message: "failed with call api",
+        success: false,
       };
     }
   }
-
   redirect("/dashboard/badges");
 }
 
 export async function deleteBadgeAction(id: string) {
-  const res = await deleteBadge(id);
-  if (res.ok) {
-    revalidatePath("/dashboard/badges");
-    return {
-      success: true,
-      message: "ok",
-    };
+  try {
+    const res = await deleteBadge(id);
+  } catch (e) {
+    if (e instanceof ApiError) {
+      return {
+        success: false,
+        message: e.message,
+      };
+    }
   }
-  const data = await res.json();
-  return {
-    success: false,
-    message: data.message as string,
-  };
+  revalidatePath("/dashboard/badges");
 }

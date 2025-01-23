@@ -6,12 +6,14 @@ import AITable from "@/components/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
 import Link from "next/link";
+import { use } from "react";
 
 export function BadgesTable({
   badges,
 }: {
-  badges: PaginatedResultApi<IBadge>;
+  badges: Promise<PaginatedResultApi<IBadge>>;
 }) {
+  const allBadges = use(badges);
   return (
     <>
       <AITable
@@ -35,7 +37,7 @@ export function BadgesTable({
             </Tooltip>
           </Stack>
         )}
-        data={badges}
+        data={allBadges}
         schema={[
           {
             title: "شناسه",

@@ -1,6 +1,6 @@
 "use client";
 import { Stack, TextField } from "@mui/material";
-import { useActionState, useState } from "react";
+import { useActionState } from "react";
 import SubmitButton from "../SubmitButton";
 import { createOrUpdateBadgeAction } from "@/actions/badges";
 import SingleUpload from "../upload/single-upload";
@@ -14,6 +14,7 @@ export const CreateBadgeForm = ({ defaultValue }: CreateBadgeFormProps) => {
     undefined,
     "/dashboard/badges"
   );
+  console.log(state);
   return (
     <Stack spacing={2}>
       <form action={action}>
@@ -23,7 +24,7 @@ export const CreateBadgeForm = ({ defaultValue }: CreateBadgeFormProps) => {
         <Stack spacing={2}>
           <SingleUpload name="icon" defaultValue={defaultValue?.icon} />
           <TextField
-            error={state?.errors.title}
+            error={state?.errors?.title}
             helperText={state?.errors?.title}
             fullWidth
             defaultValue={defaultValue?.title}
