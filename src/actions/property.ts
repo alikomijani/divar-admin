@@ -43,7 +43,6 @@ export async function createPropertyAction(
   const validatedFields = PropertySchemaZod.safeParse(
     formDataToObject(formData)
   );
-  console.log(validatedFields.data);
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,

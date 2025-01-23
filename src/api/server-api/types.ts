@@ -34,7 +34,7 @@ export interface PaginatedResultApi<T> {
   pageSize: number;
 }
 export type ServerPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ [key: string]: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 

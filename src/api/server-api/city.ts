@@ -15,3 +15,14 @@ export const getCities = async (
   }).then((res) => res.json());
   return data;
 };
+
+export const deleteCity = async (id: string): Promise<Response> => {
+  const { accessToken } = await auth();
+  const res = await fetch(`${BASE_URL}/cities/${id}`, {
+    method: "delete",
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return res;
+};

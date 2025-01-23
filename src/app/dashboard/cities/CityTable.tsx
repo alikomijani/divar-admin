@@ -3,12 +3,15 @@ import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
 import AITable from "../../../components/tables/AITable";
 import { ICity, PaginatedResultApi } from "@/api/server-api/types";
+import { use } from "react";
+import { deleteCityAction } from "@/actions/city";
 
 export default function CityTable({
   cities,
 }: {
-  cities: PaginatedResultApi<ICity>;
+  cities: Promise<PaginatedResultApi<ICity>>;
 }) {
+  const allCity = use(cities);
   return (
     <AITable
       actions={(p) => (
@@ -19,13 +22,18 @@ export default function CityTable({
             </IconButton>
           </Tooltip>
           <Tooltip title="حذف">
-            <IconButton color="error">
+            <IconButton
+              color="error"
+              onClick={async () => {
+                await deleteCityAction(p.id);
+              }}
+            >
               <Delete />
             </IconButton>
           </Tooltip>
         </Stack>
       )}
-      data={cities}
+      data={allCity}
       schema={[
         {
           title: "شناسه",

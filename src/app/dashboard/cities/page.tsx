@@ -6,7 +6,7 @@ import { TableContainer } from "@/components/tables/TableContainer";
 
 export default async function Cities({ searchParams }: ServerPageProps) {
   const params = await searchParams;
-  const cities = await getCities(params);
+  const cities = getCities(params);
   return (
     <TableContainer title="شهر" createLink="/dashboard/cities/create">
       <CityTable cities={cities} />

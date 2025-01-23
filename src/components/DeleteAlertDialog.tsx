@@ -7,20 +7,16 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box } from "@mui/material";
-import SubmitButton from "./SubmitButton";
-import { deleteBadgeAction } from "@/actions/badges";
 
 interface AlertDialogProps {
   children?: React.ReactNode;
-  name: string;
-  value: string;
-  action: (payload: FormData) => void;
+  onConfirm: () => void;
+  isLoading?: boolean;
 }
 export default function DeleteAlertDialog({
   children,
-  name,
-  value,
-  action,
+  onConfirm,
+  isLoading,
 }: AlertDialogProps) {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -54,12 +50,15 @@ export default function DeleteAlertDialog({
           <Button variant="contained" onClick={handleClose} autoFocus>
             بازگشت
           </Button>
-          <form action={action}>
-            <input name={name} defaultValue={value} hidden />
-            <SubmitButton variant="outlined" color="error">
-              حذف
-            </SubmitButton>
-          </form>
+
+          <Button
+            disabled={isLoading}
+            variant="outlined"
+            color="error"
+            onClick={onConfirm}
+          >
+            حذف
+          </Button>
         </DialogActions>
       </Dialog>
     </>

@@ -5,28 +5,29 @@ import AlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
-import { useActionState } from "react";
+import Link from "next/link";
 
 export function BadgesTable({
   badges,
 }: {
   badges: PaginatedResultApi<IBadge>;
 }) {
-  const [state, action] = useActionState(deleteBadgeAction, {
-    message: "",
-  });
   return (
     <>
       <AITable
         actions={(p) => (
           <Stack direction={"row"}>
             <Tooltip title="ویرایش">
-              <IconButton color="secondary">
+              <IconButton
+                color="secondary"
+                component={Link}
+                href={"/dashboard/badges/update/" + p.id}
+              >
                 <Edit />
               </IconButton>
             </Tooltip>
             <Tooltip title="حذف">
-              <AlertDialog name="id" value={p.id} action={action}>
+              <AlertDialog onConfirm={async () => deleteBadgeAction(p.id)}>
                 <IconButton color="error">
                   <Delete />
                 </IconButton>

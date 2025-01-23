@@ -4,6 +4,8 @@ import { auth } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { BASE_URL } from "@/config.server";
 import { z } from "zod";
+import { deleteCity } from "@/api/server-api/city";
+import { revalidatePath } from "next/cache";
 
 const CityFormSchema = z.object({
   code: z.string().trim(),
@@ -55,4 +57,9 @@ export async function createCityAction(
     };
   }
   redirect("/dashboard/cities");
+}
+
+export async function deleteCityAction(id: string) {
+  const res = await deleteCity(id);
+  revalidatePath("/dashboard/cities");
 }
