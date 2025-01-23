@@ -15,13 +15,16 @@ export const apiFetch = async <T>(
   options?: RequestInit
 ): Promise<T> => {
   const { accessToken } = await auth().catch(() => ({ accessToken: "" }));
+
   const headers = {
     "Content-Type": "application/json",
-    Authorization: accessToken ? `Bearer ${accessToken}` : "",
+    ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+    ...options?.headers,
   };
+
   const res = await fetch(url, {
     ...options,
-    headers: { ...options?.headers, ...headers },
+    headers,
   });
   if (!res.ok) {
     const errorBody = await res.json().catch(() => null);

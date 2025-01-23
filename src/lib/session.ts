@@ -1,5 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function createSession(token: {
   accessToken: string;
@@ -38,4 +39,11 @@ export async function auth() {
     accessToken,
     refreshToken,
   };
+}
+
+export async function ensureAuthenticated() {
+  const { accessToken } = await auth();
+  if (!accessToken) {
+    redirect("/auth/login");
+  }
 }

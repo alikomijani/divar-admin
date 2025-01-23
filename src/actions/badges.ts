@@ -1,7 +1,7 @@
 "use server";
 import { createBadge, deleteBadge, updateBadge } from "@/api/server-api/badges";
 import { ApiError } from "@/api/server-api/base";
-import { auth } from "@/lib/session";
+import { ensureAuthenticated } from "@/lib/session";
 import { BadgeFormSchema, BadgeFormState } from "@/validations/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -11,10 +11,7 @@ export async function createOrUpdateBadgeAction(
   formData: FormData
 ) {
   /// validate input
-  const { accessToken } = await auth();
-  if (!accessToken) {
-    redirect("/auth/login");
-  }
+  await ensureAuthenticated();
   const id = formData.get("id");
   const validatedFields = BadgeFormSchema.safeParse(
     Object.fromEntries(formData.entries())
@@ -48,6 +45,7 @@ export async function createOrUpdateBadgeAction(
 }
 
 export async function deleteBadgeAction(id: string) {
+  await ensureAuthenticated();
   try {
     const res = await deleteBadge(id);
   } catch (e) {
