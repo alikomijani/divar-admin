@@ -1,61 +1,87 @@
 "use client";
-import { Box, Button, Stack } from "@mui/material";
-import React, { FormEvent, useRef, useState } from "react";
+import { Box, CircularProgress, IconButton } from "@mui/material";
+import React, { useState } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { upload } from "@/api/client-api/upload";
-import Image from "next/image";
+import { useAuth } from "../AuthProvider";
 type Props = {
-  setUrl: (url: string) => void;
-  url: string;
+  name: string;
+  defaultValue?: string;
 };
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ODhhZTI0MGY4Zjk0Y2E2MjhkNmJhMiIsInJvbGUiOjMsImlhdCI6MTczNzA0ODIwMCwiZXhwIjoxNzM3NjUzMDAwfQ.vEyAAgxKOc_4zRUPoc1LWxEQZsXRASzAEzmVRPYx6JM";
 
-export default function SingleUpload({ setUrl, url }: Props) {
-  const formRef = useRef<HTMLFormElement>(null);
+export default function SingleUpload({ name, defaultValue = "" }: Props) {
+  const accessToken = useAuth();
+  const [url, setUrl] = useState(defaultValue);
   const [progress, setProgress] = useState(0);
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const res = await upload(data, {
-      onUploadProgress: (event) =>
-        setProgress(Math.round((event.loaded / (event.total || 1)) * 100)),
-      headers: {
-        Authorization: "bearer " + token,
-      },
-    });
-    console.log(res);
-    setUrl(res.data.url);
+  const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUrl("");
+    const image = e.target.files?.[0];
+    const formData = new FormData();
+    if (image) {
+      formData.set("image", image);
+      const res = await upload(formData, {
+        onUploadProgress: (event) =>
+          setProgress(Math.round((event.loaded / (event.total || 1)) * 100)),
+        headers: {
+          Authorization: "bearer " + accessToken,
+        },
+      });
+      setUrl(res.data.url);
+    }
   };
+
   return (
-    <Stack direction={"row"} spacing={2}>
-      <Button
-        component="label"
-        role={undefined}
-        variant="contained"
-        tabIndex={-1}
-        startIcon={<CloudUploadIcon />}
+    <>
+      <input type="hidden" name={name} defaultValue={url} />
+      <Box
+        sx={{
+          width: "100%",
+          minHeight: 200,
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundImage: `url(${url})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+        }}
       >
-        بارگزاری
-        <form onSubmit={handleSubmit} ref={formRef}>
-          <input
-            type="file"
-            name="image"
-            onChange={(e) => {
-              if (formRef.current) {
-                formRef.current.requestSubmit();
-              }
+        <Box sx={{ position: "relative", display: "inline-flex" }}>
+          <Box
+            sx={{
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              position: "absolute",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            hidden
-            accept="image/png, image/gif, image/jpeg"
-          />
-        </form>
-      </Button>
-      {url && (
-        <Box>
-          <Image alt="image" width={60} height={60} src={url} />
+          >
+            <IconButton
+              size="large"
+              component="label"
+              color="primary"
+              tabIndex={-1}
+              sx={{
+                zIndex: 10,
+              }}
+            >
+              <CloudUploadIcon />
+              <input
+                type="file"
+                name="image"
+                onChange={handleFileSelected}
+                hidden
+                accept="image/png, image/gif, image/jpeg"
+              />
+            </IconButton>
+          </Box>
+          <CircularProgress size={40} value={progress} variant="determinate" />
         </Box>
-      )}
-    </Stack>
+      </Box>
+    </>
   );
 }

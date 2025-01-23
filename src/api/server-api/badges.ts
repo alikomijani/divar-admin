@@ -76,7 +76,7 @@ export const getBadgeById = async (id: string): Promise<IBadge> => {
     },
     cache: "force-cache",
     next: {
-      tags: [`badges-${id}`],
+      tags: ["allSingleBadge", `badges-${id}`],
     },
   }).then((res) => res.json());
   return data;

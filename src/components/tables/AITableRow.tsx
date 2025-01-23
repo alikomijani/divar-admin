@@ -49,6 +49,7 @@ export default function AITableRow<
       </MuiTableRow>
       {!!subTable && (
         <AISubTable
+          colSpan={schema.length + 2}
           header={subTable.header}
           data={data[subTable.key] as G[]}
           open={open}

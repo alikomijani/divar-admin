@@ -14,6 +14,7 @@ type Props<T> = {
   open: boolean;
   header: string;
   data: T[];
+  colSpan: number;
   subTitleSchema: {
     title: string;
     render: (row: T) => ReactNode;
@@ -25,10 +26,11 @@ export default function AISubTable<T>({
   header,
   data,
   subTitleSchema,
+  colSpan,
 }: Props<T>) {
   return (
     <TableRow>
-      <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+      <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={colSpan}>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <Box sx={{ margin: 1 }}>
             <Typography variant="h6" gutterBottom component="div">

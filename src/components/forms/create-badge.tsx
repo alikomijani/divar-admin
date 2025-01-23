@@ -14,16 +14,14 @@ export const CreateBadgeForm = ({ defaultValue }: CreateBadgeFormProps) => {
     undefined,
     "/dashboard/badges"
   );
-  const [url, setUrl] = useState(defaultValue?.icon || "");
   return (
     <Stack spacing={2}>
-      <SingleUpload url={url} setUrl={setUrl} />
       <form action={action}>
-        <input type="hidden" name="icon" defaultValue={url} />
         {defaultValue?.id && (
           <input type="hidden" name="id" defaultValue={defaultValue?.id} />
         )}
         <Stack spacing={2}>
+          <SingleUpload name="icon" defaultValue={defaultValue?.icon} />
           <TextField
             error={state?.errors.title}
             helperText={state?.errors?.title}

@@ -26,7 +26,7 @@ export default function AITable<
 >({ schema, data, subTable, actions }: AITableProps<T, G>) {
   return (
     <TableContainer component={Paper}>
-      <Table>
+      <Table size="small">
         <TableHead>
           <TableRow>
             {!!subTable && <TableCell></TableCell>}
