@@ -7,7 +7,7 @@ type Props<T extends { id: string }> = {
   defaultValue?: T;
   isLoading: boolean;
   options: T[];
-  groupBy: (option: T) => string;
+  groupBy?: (option: T) => string;
   getOptionLabel: (option: T) => string;
   label: string;
   setQuery: (q: string) => void;
@@ -45,6 +45,7 @@ export default function AsyncListField<T extends { id: string }>({
         defaultValue={value?.id || ""}
       />
       <Autocomplete
+        fullWidth
         disablePortal
         inputValue={inputValue}
         value={value}

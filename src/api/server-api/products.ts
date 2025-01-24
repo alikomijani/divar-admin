@@ -22,12 +22,16 @@ export const updateProduct = async (
   id: string,
   body: Partial<ProductType>
 ): Promise<IProduct> => {
-  const data = await apiFetch<IProduct>(`${BASE_URL}/products/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(body),
-  });
-  revalidateTag(`products-${id}`);
-  return data;
+  try {
+    const data = await apiFetch<IProduct>(`${BASE_URL}/products/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    });
+    revalidateTag(`products-${id}`);
+    return data;
+  } catch (e) {
+    throw e;
+  }
 };
 
 // Get a paginated list of products

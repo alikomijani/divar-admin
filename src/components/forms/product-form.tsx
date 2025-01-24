@@ -6,8 +6,11 @@ import { Stack } from "@mui/material";
 import React, { useActionState } from "react";
 import AIForm from "./AIForm";
 import SubmitButton from "../SubmitButton";
-import CategoryField from "../fileds/category-filed";
+import CategoryField from "../fields/category-field";
 import SingleUpload from "../upload/single-upload";
+import BrandField from "../fields/brand-field";
+import BadgeField from "../fields/badges-fields";
+import ColorsField from "../fields/colors-field";
 
 type ProductFormProps = {
   defaultValue?: IProduct;
@@ -20,20 +23,33 @@ function ProductForm({ defaultValue }: ProductFormProps) {
   });
   return (
     <form action={action}>
-      {defaultValue?.id && (
-        <input hidden name="id" defaultValue={defaultValue.id} />
+      {defaultValue?.code && (
+        <input hidden name="code" defaultValue={defaultValue.code} />
       )}
       <Stack spacing={2} mt={2}>
-        <SingleUpload
-          name="images.main"
-          defaultValue={defaultValue?.images.main}
-        />
-        <SingleUpload
-          multi
-          name="images.list"
-          defaultValue={defaultValue?.images.list}
-        />
-        <CategoryField name="category" defaultValue={defaultValue?.category} />
+        <Stack gap={2} direction="row">
+          <SingleUpload
+            name="images.main"
+            defaultValue={defaultValue?.images.main}
+          />
+          <SingleUpload
+            multi
+            name="images.list"
+            defaultValue={defaultValue?.images.list}
+          />
+        </Stack>
+
+        <Stack direction="row" gap={2}>
+          <CategoryField
+            name="category"
+            defaultValue={defaultValue?.category}
+          />
+          <BrandField name="brand" defaultValue={defaultValue?.brand} />
+        </Stack>
+        <Stack direction="row" gap={2}>
+          <BadgeField name="badges" defaultValue={defaultValue?.badges} />
+          <ColorsField name="colors" defaultValue={defaultValue?.colors} />
+        </Stack>
         <AIForm
           schema={[
             {

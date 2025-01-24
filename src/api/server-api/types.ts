@@ -82,6 +82,7 @@ export interface IProduct extends Timestamp {
     main: string;
     list: string[];
   };
+  colors: IColor[];
   code: number;
   titleFa: string;
   titleEn: string;

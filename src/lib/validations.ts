@@ -110,6 +110,7 @@ export const ProductSchemaZod = z.object({
   titleEn: z.string().min(1, "Title (EN) is required").trim(),
   status: z.enum(["marketable", "unmarketable"]).default("marketable"),
   images: ImageSchemaZod,
+  colors: z.array(z.string()).optional(),
   badges: z.array(z.string()).optional(),
   category: z.string(),
   brand: z.string(),

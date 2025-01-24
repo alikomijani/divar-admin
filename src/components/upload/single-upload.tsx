@@ -50,11 +50,12 @@ export default function SingleUpload({
     }
   }, [defaultValue]);
   return (
-    <Box
-      component={Paper}
+    <Paper
       variant="outlined"
       sx={{
         p: 1,
+        width: "100%",
+        display: "block",
       }}
     >
       {urls.map((url, index) => (
@@ -133,6 +134,6 @@ export default function SingleUpload({
           </Box>
         </Box>
       </Stack>
-    </Box>
+    </Paper>
   );
 }

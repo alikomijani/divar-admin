@@ -5,8 +5,8 @@ import React, { useActionState } from "react";
 import AIForm from "./AIForm";
 import { createOrUpdateCategoryAction } from "@/actions/categories";
 import SubmitButton from "../SubmitButton";
-import CategoryField from "../fileds/category-filed";
-import PropertiesField from "../fileds/properties-field";
+import CategoryField from "../fields/category-field";
+import PropertiesField from "../fields/properties-field";
 
 type CategoryFormProps = {
   defaultValue?: ICategory;
