@@ -1,11 +1,14 @@
 "use client";
-import { createCityAction } from "@/actions/city";
+import { createOrUpdateCityAction } from "@/actions/city";
 import { Stack, TextField } from "@mui/material";
 import { useActionState } from "react";
 import SubmitButton from "../SubmitButton";
 
 export const CreateCityForm = () => {
-  const [state, action] = useActionState(createCityAction, undefined);
+  const [state, action] = useActionState(createOrUpdateCityAction, {
+    message: "",
+    success: false,
+  });
   return (
     <form action={action}>
       <Stack spacing={2} mt={2}>

@@ -48,9 +48,9 @@ export interface ICategory extends Timestamp {
   slug: string;
   returnReasonAlert: string;
   properties: IProperty[];
-
-  parent: ICategory;
+  parent?: ICategory;
   id: string;
+  icon?: string;
 }
 export interface IBrand extends Timestamp {
   titleFa: string;

@@ -1,5 +1,6 @@
 "use client";
-import React, { createContext, ReactNode, useContext } from "react";
+import Axios from "@/api/client-api/base";
+import React, { createContext, ReactNode, useContext, useEffect } from "react";
 
 type Props = {
   children: ReactNode;
@@ -11,6 +12,9 @@ export const AuthContext = createContext({
 });
 
 export default function AuthProvider({ children, accessToken }: Props) {
+  if (accessToken) {
+    Axios.defaults.headers.common["Authorization"] = "bearer " + accessToken;
+  }
   return (
     <AuthContext.Provider
       value={{

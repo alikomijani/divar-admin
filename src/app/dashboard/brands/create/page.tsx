@@ -1,4 +1,4 @@
-import { CreateCityForm } from "@/components/forms/create-city";
+import { BrandForm } from "@/components/forms/brand-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function CreateCity() {
@@ -6,8 +6,8 @@ export default async function CreateCity() {
     <Box maxWidth={500}>
       <Card>
         <CardContent>
-          <Typography variant="h5">ایجاد شهر جدید</Typography>
-          <CreateCityForm />
+          <Typography variant="h5">ایجاد برند جدید</Typography>
+          <BrandForm />
         </CardContent>
       </Card>
     </Box>

@@ -31,7 +31,7 @@ export const BrandSchemaZod = z.object({
   logo: z.string().url().optional(), // Optional logo
 });
 export type BrandType = z.infer<typeof BrandSchemaZod>;
-export type BrandFormState = FormState<RegisterType>;
+export type BrandFormState = FormState<BrandType>;
 
 export const CategorySchemaZod = z.object({
   titleEn: z.string().min(1, "Name is required").trim(),

@@ -2,12 +2,15 @@
 import { Button, IconButton, Stack, TextField } from "@mui/material";
 import React, { useActionState, useState } from "react";
 import SubmitButton from "../SubmitButton";
-import { createPropertyAction } from "@/actions/property";
+import { createOrUpdatePropertyAction } from "@/actions/property";
 import { Remove } from "@mui/icons-material";
 type Props = {};
 
 export default function CreatePropertyForm({}: Props) {
-  const [state, action] = useActionState(createPropertyAction, undefined);
+  const [state, action] = useActionState(createOrUpdatePropertyAction, {
+    message: "",
+    success: false,
+  });
   const [options, setOptions] = useState([new Date().toISOString()]);
   const addOption = () => {
     const t = new Date().toISOString();

@@ -1,12 +1,15 @@
 "use client";
+import { deleteCategoryAction } from "@/actions/categories";
 import {
   ICategory,
   IProperty,
   PaginatedResultApi,
 } from "@/api/server-api/types";
+import DeleteAlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
+import Link from "next/link";
 
 export function CategoriesTable({
   categories,
@@ -18,14 +21,22 @@ export function CategoriesTable({
       actions={(p) => (
         <Stack direction={"row"}>
           <Tooltip title="ویرایش">
-            <IconButton color="secondary">
+            <IconButton
+              color="secondary"
+              component={Link}
+              href={"/dashboard/categories/update/" + p.id}
+            >
               <Edit />
             </IconButton>
           </Tooltip>
           <Tooltip title="حذف">
-            <IconButton color="error">
-              <Delete />
-            </IconButton>
+            <DeleteAlertDialog
+              onConfirm={async () => deleteCategoryAction(p.id)}
+            >
+              <IconButton color="error">
+                <Delete />
+              </IconButton>
+            </DeleteAlertDialog>
           </Tooltip>
         </Stack>
       )}
