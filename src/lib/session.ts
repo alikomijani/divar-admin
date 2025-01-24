@@ -33,8 +33,8 @@ export async function deleteSession() {
 }
 export async function auth() {
   const cookieStore = await cookies();
-  const accessToken = await cookieStore.get("accessToken")?.value;
-  const refreshToken = await cookieStore.get("refreshToken")?.value;
+  const accessToken = cookieStore.get("accessToken")?.value;
+  const refreshToken = cookieStore.get("refreshToken")?.value;
   return {
     accessToken,
     refreshToken,
