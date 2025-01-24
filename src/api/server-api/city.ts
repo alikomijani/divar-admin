@@ -5,9 +5,10 @@ import { BASE_URL } from "@/config.server";
 import { ICity, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
+import { CityType } from "@/lib/validations";
 
 // Create a new city
-export const createCity = async (body: Partial<ICity>): Promise<ICity> => {
+export const createCity = async (body: Partial<CityType>): Promise<ICity> => {
   return apiFetch<ICity>(`${BASE_URL}/cities`, {
     method: "POST",
     body: JSON.stringify(body),
@@ -17,7 +18,7 @@ export const createCity = async (body: Partial<ICity>): Promise<ICity> => {
 // Update an existing city
 export const updateCity = async (
   id: string,
-  body: Partial<ICity>
+  body: Partial<CityType>
 ): Promise<ICity> => {
   const data = await apiFetch<ICity>(`${BASE_URL}/cities/${id}`, {
     method: "PUT",

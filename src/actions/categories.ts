@@ -1,24 +1,24 @@
 "use server";
 import {
-  createProperties,
-  deleteProperties,
-  updateProperties,
-} from "@/api/server-api/property";
+  createCategory,
+  updateCategory,
+  deleteCategory,
+} from "@/api/server-api/categories";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { PropertyFormState, PropertySchemaZod } from "@/lib/validations";
+import { CategoryFormState, CategorySchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 
-export async function createOrUpdatePropertyAction(
-  state: PropertyFormState,
+export async function createOrUpdateCategoryAction(
+  state: CategoryFormState,
   formData: FormData
 ) {
   /// validate input
   await ensureAuthenticated();
   const id = formData.get("id");
-  const validatedFields = PropertySchemaZod.safeParse(
+  const validatedFields = CategorySchemaZod.safeParse(
     formDataToObject(formData)
   );
   if (!validatedFields.success) {
@@ -28,9 +28,9 @@ export async function createOrUpdatePropertyAction(
   }
   try {
     if (id) {
-      await updateProperties(id.toString(), validatedFields.data);
+      await updateCategory(id.toString(), validatedFields.data);
     } else {
-      await createProperties(validatedFields.data);
+      await createCategory(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -46,13 +46,13 @@ export async function createOrUpdatePropertyAction(
       };
     }
   }
-  redirect("/dashboard/properties");
+  redirect("/dashboard/categories");
 }
 
-export async function deletePropertyAction(id: string) {
+export async function deleteCategoryAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteProperties(id);
+    const res = await deleteCategory(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -61,5 +61,5 @@ export async function deletePropertyAction(id: string) {
       };
     }
   }
-  revalidatePath("/dashboard/properties");
+  revalidatePath("/dashboard/categories");
 }

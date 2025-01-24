@@ -5,10 +5,11 @@ import { BASE_URL } from "@/config.server";
 import { ICategory, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
+import { CategoryType } from "@/lib/validations";
 
 // Create a new category
 export const createCategory = async (
-  body: Partial<ICategory>
+  body: Partial<CategoryType>
 ): Promise<ICategory> => {
   return apiFetch<ICategory>(`${BASE_URL}/categories`, {
     method: "POST",
@@ -19,7 +20,7 @@ export const createCategory = async (
 // Update an existing category
 export const updateCategory = async (
   id: string,
-  body: Partial<ICategory>
+  body: Partial<CategoryType>
 ): Promise<ICategory> => {
   const data = await apiFetch<ICategory>(`${BASE_URL}/categories/${id}`, {
     method: "PUT",

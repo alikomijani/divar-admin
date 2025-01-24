@@ -1,26 +1,20 @@
 "use server";
-import {
-  createProperties,
-  deleteProperties,
-  updateProperties,
-} from "@/api/server-api/property";
+import { createColor, updateColor, deleteColor } from "@/api/server-api/colors";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { PropertyFormState, PropertySchemaZod } from "@/lib/validations";
+import { ColorFormState, ColorSchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 
-export async function createOrUpdatePropertyAction(
-  state: PropertyFormState,
+export async function createOrUpdateColorAction(
+  state: ColorFormState,
   formData: FormData
 ) {
   /// validate input
   await ensureAuthenticated();
   const id = formData.get("id");
-  const validatedFields = PropertySchemaZod.safeParse(
-    formDataToObject(formData)
-  );
+  const validatedFields = ColorSchemaZod.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
@@ -28,9 +22,9 @@ export async function createOrUpdatePropertyAction(
   }
   try {
     if (id) {
-      await updateProperties(id.toString(), validatedFields.data);
+      await updateColor(id.toString(), validatedFields.data);
     } else {
-      await createProperties(validatedFields.data);
+      await createColor(validatedFields.data);
     }
   } catch (e) {
     console.log(e);
@@ -46,13 +40,13 @@ export async function createOrUpdatePropertyAction(
       };
     }
   }
-  redirect("/dashboard/properties");
+  redirect("/dashboard/colors");
 }
 
-export async function deletePropertyAction(id: string) {
+export async function deleteColorAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteProperties(id);
+    const res = await deleteColor(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {
@@ -61,5 +55,5 @@ export async function deletePropertyAction(id: string) {
       };
     }
   }
-  revalidatePath("/dashboard/properties");
+  revalidatePath("/dashboard/colors");
 }

@@ -5,10 +5,11 @@ import { BASE_URL } from "@/config.server";
 import { IProduct, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
+import { ProductType } from "@/lib/validations";
 
 // Create a new Product
 export const createProduct = async (
-  body: Partial<IProduct>
+  body: Partial<ProductType>
 ): Promise<IProduct> => {
   return apiFetch<IProduct>(`${BASE_URL}/products`, {
     method: "POST",
@@ -19,7 +20,7 @@ export const createProduct = async (
 // Update an existing city
 export const updateProduct = async (
   id: string,
-  body: Partial<IProduct>
+  body: Partial<ProductType>
 ): Promise<IProduct> => {
   const data = await apiFetch<IProduct>(`${BASE_URL}/products/${id}`, {
     method: "PUT",

@@ -1,65 +1,59 @@
 "use server";
-import "server-only";
-import { auth } from "@/lib/session";
-import { redirect } from "next/navigation";
-import { BASE_URL } from "@/config.server";
-import { z } from "zod";
-import { deleteCity } from "@/api/server-api/city";
+import { createCity, deleteCity, updateCity } from "@/api/server-api/city";
+import { ApiError } from "@/api/server-api/base";
+import { ensureAuthenticated } from "@/lib/session";
+import { CityFormState, CitySchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { formDataToObject } from "@/lib/utils";
 
-const CityFormSchema = z.object({
-  code: z.string().trim(),
-  slug: z.string().trim(),
-  name: z.string().trim(),
-});
-
-type CityFormState =
-  | {
-      errors?: {
-        code?: string[];
-        slug?: string[];
-        name?: string[];
-      };
-      message?: string;
-    }
-  | undefined;
-
-export async function createCityAction(
+export async function createOrUpdateCityAction(
   state: CityFormState,
   formData: FormData
 ) {
   /// validate input
-  const { accessToken } = await auth();
-  if (!accessToken) {
-    redirect("/auth/login");
-  }
-  const validatedFields = CityFormSchema.safeParse(
-    Object.fromEntries(formData.entries())
-  );
+  await ensureAuthenticated();
+  const id = formData.get("id");
+  const validatedFields = CitySchemaZod.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
-  const res = await fetch(`${BASE_URL}/cities`, {
-    method: "post",
-    body: JSON.stringify(validatedFields.data),
-    headers: {
-      "Content-type": "application/json",
-      Authorization: "Bearer " + accessToken,
-    },
-  });
-  const data = await res.json();
-  if (!res.ok) {
-    return {
-      message: data.message,
-      errors: data.errors,
-    };
+  try {
+    if (id) {
+      await updateCity(id.toString(), validatedFields.data);
+    } else {
+      await createCity(validatedFields.data);
+    }
+  } catch (e) {
+    console.log(e);
+    if (e instanceof ApiError) {
+      return {
+        message: e.message,
+        errors: e.body?.errors,
+      };
+    } else {
+      return {
+        message: "failed with call api",
+        success: false,
+      };
+    }
   }
   redirect("/dashboard/cities");
 }
 
 export async function deleteCityAction(id: string) {
-  const res = await deleteCity(id);
+  await ensureAuthenticated();
+  try {
+    const res = await deleteCity(id);
+  } catch (e) {
+    if (e instanceof ApiError) {
+      return {
+        success: false,
+        message: e.message,
+      };
+    }
+  }
   revalidatePath("/dashboard/cities");
 }

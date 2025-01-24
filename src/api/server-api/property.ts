@@ -5,10 +5,11 @@ import { BASE_URL } from "@/config.server";
 import { IProperty, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
+import { PropertyType } from "@/lib/validations";
 
 // Create a new Properties
 export const createProperties = async (
-  body: Partial<IProperty>
+  body: Partial<PropertyType>
 ): Promise<IProperty> => {
   return apiFetch<IProperty>(`${BASE_URL}/properties`, {
     method: "POST",
@@ -19,7 +20,7 @@ export const createProperties = async (
 // Update an existing city
 export const updateProperties = async (
   id: string,
-  body: Partial<IProperty>
+  body: Partial<PropertyType>
 ): Promise<IProperty> => {
   const data = await apiFetch<IProperty>(`${BASE_URL}/properties/${id}`, {
     method: "PUT",
