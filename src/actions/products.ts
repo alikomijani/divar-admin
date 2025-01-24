@@ -21,6 +21,7 @@ export async function createOrUpdateProductAction(
   const validatedFields = ProductSchemaZod.safeParse(
     formDataToObject(formData)
   );
+
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,

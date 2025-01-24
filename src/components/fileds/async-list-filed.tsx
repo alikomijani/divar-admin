@@ -31,17 +31,12 @@ export default function AsyncListField<T extends { id: string }>({
     }
   }, [defaultValue]);
   const updateQuery = useCallback(
-    debounce(
-      (value: T | null, inputValue: string) =>
-        setQuery(value ? "" : inputValue),
-      500
-    ),
+    debounce((inputValue: string, value) => {
+      setQuery(value ? "" : inputValue);
+    }, 500),
     []
   );
 
-  useEffect(() => {
-    updateQuery(value, inputValue);
-  }, [inputValue, value]);
   return (
     <>
       <input
@@ -58,6 +53,7 @@ export default function AsyncListField<T extends { id: string }>({
         }}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
+          updateQuery(newInputValue, value);
         }}
         options={options}
         groupBy={groupBy}

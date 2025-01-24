@@ -1,8 +1,11 @@
 "use client";
+import { deleteProductAction } from "@/actions/products";
 import { IProduct, PaginatedResultApi } from "@/api/server-api/types";
+import DeleteAlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
 import { Delete, Edit } from "@mui/icons-material";
 import { IconButton, Stack, Tooltip } from "@mui/material";
+import Link from "next/link";
 
 export function ProductTable({
   products,
@@ -14,14 +17,22 @@ export function ProductTable({
       actions={(p) => (
         <Stack direction={"row"}>
           <Tooltip title="ویرایش">
-            <IconButton color="secondary">
+            <IconButton
+              color="secondary"
+              component={Link}
+              href={"/dashboard/products/update/" + p.code}
+            >
               <Edit />
             </IconButton>
           </Tooltip>
           <Tooltip title="حذف">
-            <IconButton color="error">
-              <Delete />
-            </IconButton>
+            <DeleteAlertDialog
+              onConfirm={async () => deleteProductAction(p.id)}
+            >
+              <IconButton color="error">
+                <Delete />
+              </IconButton>
+            </DeleteAlertDialog>
           </Tooltip>
         </Stack>
       )}

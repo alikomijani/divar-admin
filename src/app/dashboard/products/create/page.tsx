@@ -1,13 +1,13 @@
-import { CreateCityForm } from "@/components/forms/city-form";
+import ProductForm from "@/components/forms/product-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
-export default async function CreateCity() {
+export default async function CreateProductPage() {
   return (
-    <Box maxWidth={500}>
+    <Box>
       <Card>
         <CardContent>
-          <Typography variant="h5">ایجاد شهر جدید</Typography>
-          <CreateCityForm />
+          <Typography variant="h5">ایجاد محصول جدید</Typography>
+          <ProductForm />
         </CardContent>
       </Card>
     </Box>

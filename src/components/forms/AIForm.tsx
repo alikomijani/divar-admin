@@ -1,4 +1,4 @@
-import { Stack, TextField } from "@mui/material";
+import { Grid2, Stack, TextField } from "@mui/material";
 import React, { ReactNode } from "react";
 import SingleUpload from "../upload/single-upload";
 
@@ -7,9 +7,10 @@ type FormField = {
   name: string;
   placeholder?: string;
   label?: string;
-  defaultValue?: string;
+  defaultValue?: unknown;
   error?: boolean;
   helperText?: ReactNode;
+  size?: number;
 };
 
 type AIFormProps = {
@@ -18,24 +19,31 @@ type AIFormProps = {
 
 export default function AIForm({ schema }: AIFormProps) {
   return (
-    <Stack spacing={2}>
-      {schema.map((item) =>
-        item.type === "image" ? (
-          <SingleUpload
-            key={item.name}
-            name={item.name}
-            defaultValue={item.defaultValue}
-          />
-        ) : (
-          <TextField
-            key={item.name}
-            rows={5}
-            multiline={item.type === "textarea"}
-            {...item}
-          />
-        )
-      )}
-    </Stack>
+    <Grid2 container spacing={2}>
+      {schema.map((item) => (
+        <Grid2 size={item.size ?? 12} key={item.name}>
+          {item.type === "image" ? (
+            <SingleUpload
+              name={item.name}
+              defaultValue={item.defaultValue as string}
+            />
+          ) : (
+            <TextField
+              rows={5}
+              fullWidth
+              multiline={item.type === "textarea"}
+              name={item.name}
+              label={item.label}
+              type={item.type}
+              error={item.error}
+              helperText={item.helperText}
+              defaultValue={item.defaultValue}
+              placeholder={item.placeholder}
+            />
+          )}
+        </Grid2>
+      ))}
+    </Grid2>
   );
 }
 

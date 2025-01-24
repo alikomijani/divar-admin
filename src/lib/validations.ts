@@ -105,7 +105,7 @@ const ImageSchemaZod = z.object({
 
 // Main Product Zod Schema
 export const ProductSchemaZod = z.object({
-  code: z.number().int().positive("Code must be a positive integer"),
+  code: z.coerce.number().int().positive("Code must be a positive integer"),
   titleFa: z.string().min(1, "Title (FA) is required").trim(),
   titleEn: z.string().min(1, "Title (EN) is required").trim(),
   status: z.enum(["marketable", "unmarketable"]).default("marketable"),
