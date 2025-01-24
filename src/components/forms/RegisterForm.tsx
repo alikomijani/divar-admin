@@ -4,7 +4,9 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useActionState } from "react";
 
 function RegisterForm() {
-  const [state, action, pending] = useActionState(register, undefined);
+  const [state, action, pending] = useActionState(register, {
+    message: "",
+  });
   return (
     <form action={action}>
       <Stack gap={3}>

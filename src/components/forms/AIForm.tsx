@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import SingleUpload from "../upload/single-upload";
 
 type FormField = {
-  type: "string" | "number" | "image" | "email" | "textarea";
+  type: "string" | "number" | "image" | "email" | "textarea" | "color";
   name: string;
   placeholder?: string;
   label?: string;

@@ -77,7 +77,7 @@ export default function PropertyForm({ defaultValue }: Props) {
         ))}
 
         <Button onClick={addOption}>اضافه کردن آپشن</Button>
-        <SubmitButton variant="contained">ایجاد ویژگی</SubmitButton>
+        <SubmitButton variant="contained">ذخیره</SubmitButton>
       </Stack>
     </form>
   );

@@ -5,6 +5,8 @@ import AITable from "../../../components/tables/AITable";
 import { ICity, PaginatedResultApi } from "@/api/server-api/types";
 import { use } from "react";
 import { deleteCityAction } from "@/actions/city";
+import DeleteAlertDialog from "@/components/DeleteAlertDialog";
+import Link from "next/link";
 
 export default function CityTable({
   cities,
@@ -17,19 +19,24 @@ export default function CityTable({
       actions={(p) => (
         <Stack direction={"row"}>
           <Tooltip title="ویرایش">
-            <IconButton color="secondary">
+            <IconButton
+              color="secondary"
+              component={Link}
+              href={"/dashboard/cities/update/" + p.id}
+            >
               <Edit />
             </IconButton>
           </Tooltip>
           <Tooltip title="حذف">
-            <IconButton
-              color="error"
-              onClick={async () => {
-                await deleteCityAction(p.id);
+            <DeleteAlertDialog
+              onConfirm={async () => {
+                deleteCityAction(p.id);
               }}
             >
-              <Delete />
-            </IconButton>
+              <IconButton color="error">
+                <Delete />
+              </IconButton>
+            </DeleteAlertDialog>
           </Tooltip>
         </Stack>
       )}

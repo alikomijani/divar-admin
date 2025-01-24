@@ -1,8 +1,11 @@
 "use client";
+import { deleteColorAction } from "@/actions/colors";
 import { IColor, PaginatedResultApi } from "@/api/server-api/types";
+import DeleteAlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
 import { Delete, Edit } from "@mui/icons-material";
 import { Box, IconButton, Stack, Tooltip } from "@mui/material";
+import Link from "next/link";
 
 export function ColorsTable({
   colors,
@@ -14,14 +17,20 @@ export function ColorsTable({
       actions={(p) => (
         <Stack direction={"row"}>
           <Tooltip title="ویرایش">
-            <IconButton color="secondary">
+            <IconButton
+              color="secondary"
+              component={Link}
+              href={"/dashboard/colors/update/" + p.id}
+            >
               <Edit />
             </IconButton>
           </Tooltip>
           <Tooltip title="حذف">
-            <IconButton color="error">
-              <Delete />
-            </IconButton>
+            <DeleteAlertDialog onConfirm={async () => deleteColorAction(p.id)}>
+              <IconButton color="error">
+                <Delete />
+              </IconButton>
+            </DeleteAlertDialog>
           </Tooltip>
         </Stack>
       )}

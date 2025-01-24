@@ -22,7 +22,7 @@ export const LoginFormSchema = z.object({
 });
 
 export type LoginType = z.infer<typeof LoginFormSchema>;
-export type LoginFormState = FormState<RegisterType>;
+export type LoginFormState = FormState<LoginType>;
 
 export const BrandSchemaZod = z.object({
   titleFa: z.string().min(1, "Title (FA) is required"), // Minimum 1 character

@@ -1,4 +1,4 @@
-import { CreateCityForm } from "@/components/forms/create-city";
+import { CreateCityForm } from "@/components/forms/city-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function CreateCity() {

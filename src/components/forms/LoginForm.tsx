@@ -1,20 +1,16 @@
 "use client";
-import { login } from "@/actions/auth/login";
+import { loginAction } from "@/actions/auth/login";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import React, { useActionState } from "react";
 
 export default function LoginForm() {
-  const [state, action, pending] = useActionState(login, undefined);
+  const [state, action, pending] = useActionState(loginAction, {
+    message: "",
+    errors: {},
+  });
   return (
     <form action={action}>
       <Stack gap={3}>
-        <Stack
-          mt={2}
-          direction={"row"}
-          justifyContent="space-between"
-          alignItems="center"
-          gap={1}
-        ></Stack>
         <TextField
           error={!!state?.errors?.email}
           helperText={state?.errors?.email}
