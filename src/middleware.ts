@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { refreshTokenAction } from "./actions/auth/refresh-token";
 
 // 1. Specify protected and public routes
 const protectedRoutes = "/dashboard";
@@ -18,6 +19,8 @@ export default async function middleware(req: NextRequest) {
   const isLogout = !accessToken && !refreshToken;
   const needToRefresh = !accessToken && refreshToken;
   if (needToRefresh) {
+    await refreshTokenAction();
+    return NextResponse.redirect(new URL(req.nextUrl, req.nextUrl));
   }
   // 4. Redirect to /login if the user is not authenticated
   if (isProtectedRoute && isLogout) {

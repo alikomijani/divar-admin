@@ -15,7 +15,6 @@ export const apiFetch = async <T>(
   options?: RequestInit
 ): Promise<T> => {
   const { accessToken } = await auth().catch(() => ({ accessToken: "" }));
-
   const headers = {
     "Content-Type": "application/json",
     ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
