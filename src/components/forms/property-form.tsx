@@ -27,6 +27,9 @@ export default function PropertyForm({ defaultValue }: Props) {
   };
   return (
     <form action={action}>
+      {defaultValue?.id && (
+        <input type="hidden" name="id" defaultValue={defaultValue?.id} />
+      )}
       <Stack spacing={2} mt={2}>
         <AIForm
           schema={[
