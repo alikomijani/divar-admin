@@ -1,12 +1,15 @@
 "use client";
+import { deletePropertyAction } from "@/actions/property";
 import {
   IProperty,
   IPropertyOption,
   PaginatedResultApi,
 } from "@/api/server-api/types";
+import DeleteAlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
 import { Delete, Edit } from "@mui/icons-material";
 import { IconButton, Stack, Tooltip } from "@mui/material";
+import Link from "next/link";
 
 export function PropertiesTable({
   properties,
@@ -18,14 +21,22 @@ export function PropertiesTable({
       actions={(p) => (
         <Stack direction={"row"}>
           <Tooltip title="ویرایش">
-            <IconButton color="secondary">
+            <IconButton
+              color="secondary"
+              component={Link}
+              href={"/dashboard/properties/update/" + p.id}
+            >
               <Edit />
             </IconButton>
           </Tooltip>
           <Tooltip title="حذف">
-            <IconButton color="error">
-              <Delete />
-            </IconButton>
+            <DeleteAlertDialog
+              onConfirm={async () => deletePropertyAction(p.id)}
+            >
+              <IconButton color="error">
+                <Delete />
+              </IconButton>
+            </DeleteAlertDialog>
           </Tooltip>
         </Stack>
       )}
