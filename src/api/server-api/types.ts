@@ -109,3 +109,40 @@ export interface ISeller extends Timestamp {
   slug: string;
   id: string;
 }
+
+export enum OrderStatus {
+  Pending = "pending",
+  Processing = "processing",
+  Shipped = "shipped",
+  Delivered = "delivered",
+  Cancelled = "cancelled",
+}
+export interface IOrder {
+  shippingAddress: {
+    street: string;
+    city: string;
+    postalCode: string;
+    location: [number, number];
+  };
+  user: IUser;
+  deliveryDate: string;
+  orderStatus: OrderStatus;
+  orderItems: [IOrderItem];
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+}
+export interface IOrderItem {
+  id: string;
+  productSeller: {
+    product: IProduct;
+    seller: string;
+    price: number;
+    count: number;
+    discount: number;
+    id: string;
+  };
+  quantity: number;
+  order: string;
+  seller: ISeller;
+}
