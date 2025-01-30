@@ -1,6 +1,7 @@
 "use client";
 import { deleteBadgeAction } from "@/actions/badges";
-import { IUser, PaginatedResultApi } from "@/api/server-api/types";
+import { deleteSellerAction } from "@/actions/sellers";
+import { ISeller, IUser, PaginatedResultApi } from "@/api/server-api/types";
 import AlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
@@ -8,12 +9,12 @@ import { Stack, Tooltip, IconButton } from "@mui/material";
 import Link from "next/link";
 import { use } from "react";
 
-export function UsersTable({
-  users,
+export function SellerTable({
+  sellers,
 }: {
-  users: Promise<PaginatedResultApi<IUser>>;
+  sellers: Promise<PaginatedResultApi<ISeller>>;
 }) {
-  const allUsers = use(users);
+  const allSeller = use(sellers);
   return (
     <>
       <AITable
@@ -23,13 +24,13 @@ export function UsersTable({
               <IconButton
                 color="secondary"
                 component={Link}
-                href={"/dashboard/badges/update/" + p.id}
+                href={"/dashboard/sellers/update/" + p.id}
               >
                 <Edit />
               </IconButton>
             </Tooltip>
             <Tooltip title="حذف">
-              <AlertDialog onConfirm={async () => deleteBadgeAction(p.id)}>
+              <AlertDialog onConfirm={async () => deleteSellerAction(p.id)}>
                 <IconButton color="error">
                   <Delete />
                 </IconButton>
@@ -37,23 +38,23 @@ export function UsersTable({
             </Tooltip>
           </Stack>
         )}
-        data={allUsers}
+        data={allSeller}
         schema={[
           {
             title: "شناسه",
             render: (row) => row.id,
           },
           {
-            title: "ایمیل",
-            render: (row) => row.email,
+            title: "نام",
+            render: (row) => row.name,
           },
           {
-            title: "وضعیت",
-            render: (row) => (row.isActive ? "فعال" : "غیرفعال"),
+            title: "نشانه",
+            render: (row) => row.slug,
           },
           {
-            title: "نقش",
-            render: (row) => RoleMap[row.role - 1],
+            title: "کاربر",
+            render: (row) => row.user.email,
           },
         ]}
       />

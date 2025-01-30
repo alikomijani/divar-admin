@@ -104,7 +104,7 @@ export interface IUser {
   id: string;
 }
 export interface ISeller extends Timestamp {
-  user: string;
+  user: IUser;
   name: string;
   slug: string;
   id: string;

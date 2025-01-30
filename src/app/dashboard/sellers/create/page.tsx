@@ -1,4 +1,4 @@
-import { CreateBadgeForm } from "@/components/forms/create-badge";
+import SellerForm from "@/components/forms/seller-from";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function CreateBadge() {
@@ -6,8 +6,8 @@ export default async function CreateBadge() {
     <Box maxWidth={500}>
       <Card>
         <CardContent>
-          <Typography variant="h5">ایجاد برچسب جدید</Typography>
-          <CreateBadgeForm />
+          <Typography variant="h5">ایجاد فروشگاه جدید</Typography>
+          <SellerForm />
         </CardContent>
       </Card>
     </Box>

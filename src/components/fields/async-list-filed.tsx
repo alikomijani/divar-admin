@@ -11,6 +11,8 @@ type Props<T extends { id: string }> = {
   getOptionLabel: (option: T) => string;
   label: string;
   setQuery: (q: string) => void;
+  error?: boolean;
+  helperText?: string;
 };
 
 export default function AsyncListField<T extends { id: string }>({
@@ -22,6 +24,8 @@ export default function AsyncListField<T extends { id: string }>({
   getOptionLabel,
   label,
   setQuery,
+  error,
+  helperText,
 }: Props<T>) {
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState<T | null>(null);
@@ -62,6 +66,8 @@ export default function AsyncListField<T extends { id: string }>({
         renderInput={(params) => (
           <TextField
             {...params}
+            error={error}
+            helperText={helperText}
             label={label}
             slotProps={{
               input: {

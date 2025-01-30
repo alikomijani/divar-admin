@@ -35,7 +35,7 @@ export const updateSeller = async (
 };
 
 // Get a paginated list of Sellers
-export const getSellers = async (
+export const getAllSellers = async (
   params?: any
 ): Promise<PaginatedResultApi<ISeller>> => {
   const search = new URLSearchParams(params as Record<string, string>);

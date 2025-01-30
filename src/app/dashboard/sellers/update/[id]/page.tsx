@@ -1,18 +1,18 @@
-import { getBadgeById } from "@/api/server-api/badges";
+import { getSellerById } from "@/api/server-api/sellers";
 import { ServerPageProps } from "@/api/server-api/types";
-import { CreateBadgeForm } from "@/components/forms/create-badge";
+import SellerForm from "@/components/forms/seller-from";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 
 export default async function UpdateBadgePage({ params }: ServerPageProps) {
-  const { badgeID } = await params;
-  const badge = await getBadgeById(badgeID);
+  const { id } = await params;
+  const seller = await getSellerById(id);
   return (
     <Box maxWidth={500}>
       <Card>
         <CardContent>
           <Typography variant="h5">ویرایش برچسب</Typography>
-          <CreateBadgeForm defaultValue={badge} />
+          <SellerForm defaultValue={seller} />
         </CardContent>
       </Card>
     </Box>
