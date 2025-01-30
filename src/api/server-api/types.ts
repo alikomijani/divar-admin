@@ -95,3 +95,17 @@ export interface IProduct extends Timestamp {
   expert_reviews: string;
   id: string;
 }
+export interface IUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: 1 | 2 | 3;
+  isActive: boolean;
+  id: string;
+}
+export interface ISeller extends Timestamp {
+  user: string;
+  name: string;
+  slug: string;
+  id: string;
+}

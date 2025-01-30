@@ -17,7 +17,7 @@ export async function createOrUpdateProductAction(
 ) {
   /// validate input
   await ensureAuthenticated();
-  const code = formData.get("code");
+  const id = formData.get("id");
   const validatedFields = ProductSchemaZod.safeParse(
     formDataToObject(formData)
   );
@@ -28,8 +28,8 @@ export async function createOrUpdateProductAction(
     };
   }
   try {
-    if (code) {
-      await updateProduct(code.toString(), validatedFields.data);
+    if (id) {
+      await updateProduct(id.toString(), validatedFields.data);
     } else {
       await createProduct(validatedFields.data);
     }

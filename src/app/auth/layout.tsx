@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import { Box, Card, CardContent } from "@mui/material";
 
-export default function Layout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -14,7 +14,15 @@ export default function Layout({
         justifyContent: "center",
       }}
     >
-      {children}
+      <Card sx={{ width: 500 }} elevation={8}>
+        <CardContent
+          sx={{
+            padding: 4,
+          }}
+        >
+          {children}
+        </CardContent>
+      </Card>
     </Box>
   );
 }

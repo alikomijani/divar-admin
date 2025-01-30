@@ -23,8 +23,8 @@ function ProductForm({ defaultValue }: ProductFormProps) {
   });
   return (
     <form action={action}>
-      {defaultValue?.code && (
-        <input hidden name="code" defaultValue={defaultValue.code} />
+      {defaultValue?.id && (
+        <input hidden name="id" defaultValue={defaultValue.id} />
       )}
       <Stack spacing={2} mt={2}>
         <Stack gap={2} direction="row">
