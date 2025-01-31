@@ -11,7 +11,10 @@ type CreateBadgeFormProps = { defaultValue?: Partial<IBadge> };
 export const CreateBadgeForm = ({ defaultValue }: CreateBadgeFormProps) => {
   const [state, action] = useActionState(
     createOrUpdateBadgeAction,
-    undefined,
+    {
+      success: false,
+      message: "",
+    },
     "/dashboard/badges"
   );
   console.log(state);
@@ -24,7 +27,7 @@ export const CreateBadgeForm = ({ defaultValue }: CreateBadgeFormProps) => {
         <Stack spacing={2}>
           <SingleUpload name="icon" defaultValue={defaultValue?.icon} />
           <TextField
-            error={state?.errors?.title}
+            error={!!state?.errors?.title}
             helperText={state?.errors?.title}
             fullWidth
             defaultValue={defaultValue?.title}

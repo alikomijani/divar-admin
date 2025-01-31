@@ -38,7 +38,7 @@ export async function createOrUpdateProductAction(
     if (e instanceof ApiError) {
       return {
         message: e.message,
-        errors: e.body?.errors,
+        errors: e.body?.errors as ProductFormState["errors"],
       };
     } else {
       return {

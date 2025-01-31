@@ -37,7 +37,7 @@ export async function createOrUpdatePropertyAction(
     if (e instanceof ApiError) {
       return {
         message: e.message,
-        errors: e.body?.errors,
+        errors: e.body?.errors as PropertyFormState["errors"],
       };
     } else {
       return {

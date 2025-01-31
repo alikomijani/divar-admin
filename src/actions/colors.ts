@@ -31,7 +31,7 @@ export async function createOrUpdateColorAction(
     if (e instanceof ApiError) {
       return {
         message: e.message,
-        errors: e.body?.errors,
+        errors: e.body?.errors as ColorFormState["errors"],
       };
     } else {
       return {

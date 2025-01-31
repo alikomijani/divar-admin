@@ -8,7 +8,7 @@ type Props = {
   name: string;
   defaultValue?: IUser;
   error?: boolean;
-  helperText?: string;
+  helperText?: string | string[];
 };
 
 export default function UserField({

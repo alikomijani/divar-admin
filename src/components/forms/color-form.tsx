@@ -27,16 +27,16 @@ export default function ColorForm({ defaultValue }: ColorFormProps) {
               type: "string",
               label: "نام رنگ",
               defaultValue: defaultValue?.title,
-              error: !!state.errors?.code,
-              helperText: state.errors?.code,
+              error: !!state.errors?.title,
+              helperText: state.errors?.title,
             },
             {
               name: "hexCode",
               label: "کد رنگ",
               type: "color",
               defaultValue: defaultValue?.hexCode,
-              error: !!state.errors?.slug,
-              helperText: state.errors?.slug,
+              error: !!state.errors?.hexCode,
+              helperText: state.errors?.hexCode,
             },
           ]}
         />

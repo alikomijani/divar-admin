@@ -8,7 +8,7 @@ type Props = {
   name: string;
   defaultValue?: ICategory;
   error?: boolean;
-  helperText?: string;
+  helperText?: string | string[];
 };
 
 export default function CategoryField({

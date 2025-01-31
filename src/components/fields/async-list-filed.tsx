@@ -12,7 +12,7 @@ type Props<T extends { id: string }> = {
   label: string;
   setQuery: (q: string) => void;
   error?: boolean;
-  helperText?: string;
+  helperText?: string | string[];
 };
 
 export default function AsyncListField<T extends { id: string }>({
