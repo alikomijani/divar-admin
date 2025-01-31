@@ -10,7 +10,7 @@ export default async function middleware(req: NextRequest) {
   // 2. Check if the current route is protected or public
   const path = req.nextUrl.pathname;
   const isProtectedRoute = path.startsWith(protectedRoutes);
-  const isPublicRoute = path.includes(publicRoutes);
+  const isPublicRoute = path.startsWith(publicRoutes);
 
   // 3. Decrypt the session from the cookie
   const accessToken = (await cookies()).get("accessToken")?.value;
