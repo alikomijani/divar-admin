@@ -38,7 +38,7 @@ export type ServerPageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export interface Column<T extends { id: string }> {
+export interface Column<T extends { id?: string; _id?: string }> {
   title: string;
   render: (row: T) => ReactNode;
 }

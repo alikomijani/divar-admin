@@ -6,7 +6,10 @@ import { Fragment, ReactNode, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-type Props<T extends { id: string }, G extends { id: string }> = {
+type Props<
+  T extends { id: string },
+  G extends { id?: string; _id?: string }
+> = {
   schema: Column<T>[];
   data: T;
   actions?: (row: T) => ReactNode;
@@ -19,7 +22,7 @@ type Props<T extends { id: string }, G extends { id: string }> = {
 
 export default function AITableRow<
   T extends { id: string },
-  G extends { id: string }
+  G extends { id?: string; _id?: string }
 >({ schema, data, subTable, actions }: Props<T, G>) {
   const [open, setOpen] = useState(false);
   return (

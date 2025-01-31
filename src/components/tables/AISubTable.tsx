@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { ReactNode } from "react";
 
-type Props<T extends { id: string; _id: string }> = {
+type Props<T extends { id?: string; _id?: string }> = {
   open: boolean;
   header: string;
   data: T[];
@@ -21,7 +21,7 @@ type Props<T extends { id: string; _id: string }> = {
   }[];
 };
 
-export default function AISubTable<T extends { id: string; _id: string }>({
+export default function AISubTable<T extends { id?: string; _id?: string }>({
   open,
   header,
   data,
