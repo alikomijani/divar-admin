@@ -11,10 +11,14 @@ import { CategoryType } from "@/lib/validations";
 export const createCategory = async (
   body: Partial<CategoryType>
 ): Promise<ICategory> => {
-  return apiFetch<ICategory>(`${BASE_URL}/categories`, {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  try {
+    return apiFetch<ICategory>(`${BASE_URL}/categories`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  } catch (e) {
+    throw e;
+  }
 };
 
 // Update an existing category

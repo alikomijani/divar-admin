@@ -43,11 +43,13 @@ export default function AsyncListField<T extends { id: string }>({
 
   return (
     <>
-      <input
-        type="hidden"
-        name={name} // This will be sent to the backend
-        defaultValue={value?.id || ""}
-      />
+      {value?.id && (
+        <input
+          type="hidden"
+          name={name} // This will be sent to the backend
+          defaultValue={value?.id}
+        />
+      )}
       <Autocomplete
         fullWidth
         disablePortal
