@@ -1,7 +1,6 @@
 "use client";
-import { useCategoriesQuery } from "@/api/client-api/categories";
 import { IBrand } from "@/api/server-api/types";
-import React, { useState } from "react";
+import React from "react";
 import AsyncListField from "./async-list-filed";
 import { useBrandsQuery } from "@/api/client-api/brand";
 
@@ -11,7 +10,6 @@ type Props = {
 };
 
 export default function BrandField({ name, defaultValue }: Props) {
-  const [query, setQuery] = useState("");
   const { data, isLoading } = useBrandsQuery("");
   return (
     <AsyncListField
@@ -20,7 +18,7 @@ export default function BrandField({ name, defaultValue }: Props) {
       isLoading={isLoading}
       label="برند"
       name={name}
-      setQuery={setQuery}
+      setQuery={() => {}}
       defaultValue={defaultValue}
     />
   );

@@ -1,5 +1,4 @@
 import {
-  Mail,
   Category,
   Label,
   People,

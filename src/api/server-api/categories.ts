@@ -36,7 +36,7 @@ export const updateCategory = async (
 
 // Get a paginated list of categories
 export const getCategories = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<ICategory>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<ICategory>>(

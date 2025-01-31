@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 export async function changeUserStatusAction(id: string, isActive: boolean) {
   await ensureAuthenticated();
   try {
-    const res = await changeUserStatus(id, { isActive });
+    await changeUserStatus(id, { isActive });
   } catch (e) {
     if (e instanceof ApiError) {
       return {

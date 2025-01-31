@@ -14,7 +14,7 @@ export const createBadge = async (body: Partial<IBadge>) => {
   return data;
 };
 
-export const updateBadge = async (id: string, body: any) => {
+export const updateBadge = async (id: string, body: unknown) => {
   const data = await apiFetch(`${BASE_URL}/badges/${id}`, {
     method: "put",
     body: JSON.stringify(body),
@@ -23,8 +23,8 @@ export const updateBadge = async (id: string, body: any) => {
   return data;
 };
 
-export const getBadges = async (params?: any) => {
-  const search = new URLSearchParams(params);
+export const getBadges = async (params?: unknown) => {
+  const search = new URLSearchParams(params as string);
   const data = await apiFetch<PaginatedResultApi<IBadge>>(
     `${BASE_URL}/badges?${search.toString()}`
   );

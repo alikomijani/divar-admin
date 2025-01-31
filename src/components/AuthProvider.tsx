@@ -1,6 +1,6 @@
 "use client";
 import Axios from "@/api/client-api/base";
-import React, { createContext, ReactNode, useContext, useEffect } from "react";
+import React, { createContext, ReactNode, useContext } from "react";
 
 type Props = {
   children: ReactNode;

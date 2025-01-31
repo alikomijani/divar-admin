@@ -52,7 +52,7 @@ export async function createOrUpdateCategoryAction(
 export async function deleteCategoryAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteCategory(id);
+    await deleteCategory(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

@@ -36,7 +36,7 @@ export const updateSeller = async (
 
 // Get a paginated list of Sellers
 export const getAllSellers = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<ISeller>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<ISeller>>(

@@ -34,6 +34,7 @@ export default function AsyncListField<T extends { id: string }>({
       setValue(defaultValue);
     }
   }, [defaultValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateQuery = useCallback(
     debounce((inputValue: string, value) => {
       setQuery(value ? "" : inputValue);
@@ -55,7 +56,7 @@ export default function AsyncListField<T extends { id: string }>({
         disablePortal
         inputValue={inputValue}
         value={value}
-        onChange={(event: any, newValue: T | null) => {
+        onChange={(event: unknown, newValue: T | null) => {
           setValue(newValue);
         }}
         onInputChange={(event, newInputValue) => {

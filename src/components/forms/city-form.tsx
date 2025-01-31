@@ -1,6 +1,6 @@
 "use client";
 import { createOrUpdateCityAction } from "@/actions/city";
-import { Stack, TextField } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useActionState } from "react";
 import SubmitButton from "../SubmitButton";
 import { ICity } from "@/api/server-api/types";
@@ -13,6 +13,7 @@ export default function CityForm({ defaultValue }: CityFormProps) {
   const [state, action] = useActionState(createOrUpdateCityAction, {
     message: "",
     success: false,
+    errors: {},
   });
   return (
     <form action={action}>

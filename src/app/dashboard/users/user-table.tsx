@@ -1,9 +1,7 @@
 "use client";
-import { deleteBadgeAction } from "@/actions/badges";
 import { IUser, PaginatedResultApi } from "@/api/server-api/types";
-import AlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/tables/AITable";
-import { Edit, Delete } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
 import Link from "next/link";
 import { use } from "react";

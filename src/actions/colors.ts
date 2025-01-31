@@ -46,7 +46,7 @@ export async function createOrUpdateColorAction(
 export async function deleteColorAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteColor(id);
+    await deleteColor(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

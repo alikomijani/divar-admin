@@ -29,7 +29,7 @@ export const updateColor = async (
 
 // Get a paginated list of colors
 export const getColors = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<IColor>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IColor>>(

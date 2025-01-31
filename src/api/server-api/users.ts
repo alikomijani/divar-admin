@@ -7,7 +7,7 @@ import { apiFetch } from "./base";
 
 // Get a paginated list of users
 export const getAllUsers = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<IUser>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IUser>>(

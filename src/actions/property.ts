@@ -52,7 +52,7 @@ export async function createOrUpdatePropertyAction(
 export async function deletePropertyAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteProperties(id);
+    await deleteProperties(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

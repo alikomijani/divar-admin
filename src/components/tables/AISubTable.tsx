@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { ReactNode } from "react";
 
-type Props<T> = {
+type Props<T extends { id: string; _id: string }> = {
   open: boolean;
   header: string;
   data: T[];
@@ -21,7 +21,7 @@ type Props<T> = {
   }[];
 };
 
-export default function AISubTable<T>({
+export default function AISubTable<T extends { id: string; _id: string }>({
   open,
   header,
   data,
@@ -55,10 +55,10 @@ export default function AISubTable<T>({
                     </TableCell>
                   </TableRow>
                 )}
-                {data.map((row) => (
-                  <TableRow key={(row as any)._id || (row as any).id}>
+                {data.map((row: T) => (
+                  <TableRow key={row._id || row.id}>
                     {subTitleSchema.map((item) => (
-                      <TableCell key={(row as any).id + item.title}>
+                      <TableCell key={(row._id || row.id) + item.title}>
                         {item.render(row)}
                       </TableCell>
                     ))}

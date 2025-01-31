@@ -50,7 +50,7 @@ export async function createOrUpdateSellerAction(
 export async function deleteSellerAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteSeller(id);
+    await deleteSeller(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

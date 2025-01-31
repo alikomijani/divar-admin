@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createOrUpdateBadgeAction(
-  state: BadgeFormState,
+  _: BadgeFormState,
   formData: FormData
 ) {
   /// validate input
@@ -46,7 +46,7 @@ export async function createOrUpdateBadgeAction(
 export async function deleteBadgeAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteBadge(id);
+    await deleteBadge(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

@@ -4,7 +4,7 @@ import { IOrder, PaginatedResultApi } from "./types";
 
 // Get a paginated list of colors
 export const getOrders = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<IOrder>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IOrder>>(

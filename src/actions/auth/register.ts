@@ -39,6 +39,7 @@ export async function register(state: RegisterFormState, formData: FormData) {
       redirect("/dashboard");
     }
   } catch (err) {
+    console.log(err);
     return {
       message: "register failed",
     };

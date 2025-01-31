@@ -28,7 +28,7 @@ export const updateBrand = async (
 
 // Get a paginated list of brands
 export const getBrands = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<IBrand>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IBrand>>(

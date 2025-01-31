@@ -36,7 +36,7 @@ export const updateProduct = async (
 
 // Get a paginated list of products
 export const getProducts = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<IProduct>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IProduct>>(

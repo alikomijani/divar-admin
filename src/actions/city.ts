@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 
 export async function createOrUpdateCityAction(
-  state: CityFormState,
+  _: CityFormState,
   formData: FormData
 ) {
   /// validate input
@@ -17,6 +17,8 @@ export async function createOrUpdateCityAction(
   const validatedFields = CitySchemaZod.safeParse(formDataToObject(formData));
   if (!validatedFields.success) {
     return {
+      success: false,
+      message: "Invalid data",
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
@@ -31,10 +33,12 @@ export async function createOrUpdateCityAction(
     if (e instanceof ApiError) {
       return {
         message: e.message,
-        errors: e.body?.errors,
+        errors: e.body?.errors as CityFormState["errors"],
+        success: false,
       };
     } else {
       return {
+        errors: {},
         message: "failed with call api",
         success: false,
       };
@@ -46,7 +50,7 @@ export async function createOrUpdateCityAction(
 export async function deleteCityAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteCity(id);
+    await deleteCity(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

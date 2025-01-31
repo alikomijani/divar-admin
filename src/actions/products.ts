@@ -53,7 +53,7 @@ export async function createOrUpdateProductAction(
 export async function deleteProductAction(id: string) {
   await ensureAuthenticated();
   try {
-    const res = await deleteProduct(id);
+    await deleteProduct(id);
   } catch (e) {
     if (e instanceof ApiError) {
       return {

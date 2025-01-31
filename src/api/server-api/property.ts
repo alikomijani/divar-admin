@@ -32,7 +32,7 @@ export const updateProperties = async (
 
 // Get a paginated list of properties
 export const getProperties = async (
-  params?: any
+  params?: unknown
 ): Promise<PaginatedResultApi<IProperty>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IProperty>>(
