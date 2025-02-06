@@ -84,17 +84,11 @@ export const CommentSchemaZod = z.object({
 export type CommentType = z.infer<typeof CommentSchemaZod>;
 export type CommentFormState = FormState<CommentType>;
 
-// Zod Schemas for subdocuments
-const ReviewSchemaZod = z.object({
-  title: z.string().min(1, "Review title is required").trim(),
-  value: z.string().min(1, "Review value is required").trim(),
-  name: z.string().min(1, "Review name is required").trim(),
-});
-
 const SpecificationSchemaZod = z.object({
   title: z.string().min(1, "Specification title is required").trim(),
-  value: z.string().min(1, "Specification value is required").trim(),
+  value: z.string().trim().optional(),
   name: z.string().min(1, "Specification name is required").trim(),
+  isDefault: z.coerce.boolean().optional().default(false),
 });
 
 const ImageSchemaZod = z.object({
@@ -115,9 +109,12 @@ export const ProductSchemaZod = z.object({
   badges: z.array(z.string()).optional(),
   category: z.string(),
   brand: z.string(),
-  review: z.array(ReviewSchemaZod).optional(),
-  specifications: z.array(SpecificationSchemaZod).optional(),
-  expert_reviews: z.string().trim().optional(),
+  review: z.string(),
+  specifications: z
+    .array(SpecificationSchemaZod)
+    .transform((specifications) => specifications.filter((i) => !!i.value))
+    .optional(),
+  expert_review: z.string().trim().optional(),
 });
 
 export type ProductType = z.infer<typeof ProductSchemaZod>;

@@ -1,9 +1,20 @@
 "use client";
 
 import { createOrUpdateProductAction } from "@/actions/products";
-import { IProduct } from "@/api/server-api/types";
-import { Stack } from "@mui/material";
-import React, { useActionState } from "react";
+import { ICategory, IProduct } from "@/api/server-api/types";
+import {
+  Alert,
+  Box,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { useActionState, useState } from "react";
 import AIForm from "./AIForm";
 import SubmitButton from "../SubmitButton";
 import CategoryField from "../fields/category-field";
@@ -21,11 +32,15 @@ function ProductForm({ defaultValue }: ProductFormProps) {
     message: "",
     success: false,
   });
+  const [category, setCategory] = useState<ICategory | null>(
+    defaultValue?.category ?? null
+  );
   return (
     <form action={action}>
       {defaultValue?.id && (
         <input hidden name="id" defaultValue={defaultValue.id} />
       )}
+      {state.message && <Alert severity="warning">{state.message}</Alert>}
       <Stack spacing={2} mt={2}>
         <Stack gap={2} direction="row">
           <SingleUpload
@@ -38,9 +53,9 @@ function ProductForm({ defaultValue }: ProductFormProps) {
             defaultValue={defaultValue?.images.list}
           />
         </Stack>
-
         <Stack direction="row" gap={2}>
           <CategoryField
+            onChange={setCategory}
             name="category"
             defaultValue={defaultValue?.category}
           />
@@ -79,15 +94,77 @@ function ProductForm({ defaultValue }: ProductFormProps) {
               helperText: state.errors?.titleEn,
             },
             {
-              name: "expert_reviews",
-              label: "توضیحات",
+              name: "review",
+              label: "بررسی",
               type: "textarea",
-              defaultValue: defaultValue?.expert_reviews,
-              error: !!state.errors?.expert_reviews,
-              helperText: state.errors?.expert_reviews,
+              defaultValue: defaultValue?.review,
+              error: !!state.errors?.review,
+              helperText: state.errors?.review,
+            },
+            {
+              name: "expert_review",
+              label: "بررسی تخصصی",
+              type: "textarea",
+              defaultValue: defaultValue?.expert_review,
+              error: !!state.errors?.expert_review,
+              helperText: state.errors?.expert_review,
             },
           ]}
         />
+        <Divider />
+        <Typography>ویژگی ها</Typography>
+        {category?.properties.map((item, i) => (
+          <Stack gap={1} key={item.id}>
+            <input
+              hidden
+              name={`specifications.${i}.name`}
+              defaultValue={item.name}
+            />
+            <input
+              hidden
+              name={`specifications.${i}.title`}
+              defaultValue={item.label}
+            />
+            <Box>
+              {item.options?.length ? (
+                <TextField
+                  select
+                  fullWidth
+                  defaultValue={
+                    defaultValue?.specifications.find(
+                      (i) => i.name === item.name
+                    )?.value ?? ""
+                  }
+                  label={item.label}
+                  name={`specifications.${i}.value`}
+                >
+                  <MenuItem value="">لطفا یک مورد را انتخاب کنید</MenuItem>
+                  {item.options.map((o) => (
+                    <MenuItem value={o.value} key={o.id}>
+                      {o.value}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              ) : (
+                <TextField
+                  fullWidth
+                  label={item.label}
+                  defaultValue={
+                    defaultValue?.specifications.find(
+                      (i) => i.name === item.name
+                    )?.value
+                  }
+                  name={`specifications.${i}.value`}
+                />
+              )}
+
+              <FormControlLabel
+                control={<Checkbox name={`specifications.${i}.isDefault`} />}
+                label={"آیا در اول صفحه نمایش داده شود؟"}
+              />
+            </Box>
+          </Stack>
+        ))}
         <SubmitButton variant="contained">ذخیره</SubmitButton>
       </Stack>
     </form>

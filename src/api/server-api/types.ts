@@ -90,9 +90,9 @@ export interface IProduct extends Timestamp {
   badges: [];
   category: ICategory;
   brand: IBrand;
-  review: IPropertyValue[];
+  review: string;
   specifications: IPropertyValue[];
-  expert_reviews: string;
+  expert_review: string;
   id: string;
 }
 export interface IUser {
