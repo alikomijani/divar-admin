@@ -40,7 +40,7 @@ export async function createOrUpdateBrandAction(
       };
     }
   }
-  redirect("/dashboard/brands");
+  redirect("/admin/dashboard/brands");
 }
 
 export async function deleteBrandAction(id: string) {

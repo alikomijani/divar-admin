@@ -46,7 +46,7 @@ export async function createOrUpdatePropertyAction(
       };
     }
   }
-  redirect("/dashboard/properties");
+  redirect("/admin/dashboard/properties");
 }
 
 export async function deletePropertyAction(id: string) {

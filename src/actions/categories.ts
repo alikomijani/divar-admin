@@ -46,7 +46,7 @@ export async function createOrUpdateCategoryAction(
       };
     }
   }
-  redirect("/dashboard/categories");
+  redirect("/admin/dashboard/categories");
 }
 
 export async function deleteCategoryAction(id: string) {

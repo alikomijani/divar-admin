@@ -47,7 +47,7 @@ export async function createOrUpdateProductAction(
       };
     }
   }
-  redirect("/dashboard/products");
+  redirect("/admin/dashboard/products");
 }
 
 export async function deleteProductAction(id: string) {

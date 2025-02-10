@@ -44,7 +44,7 @@ export async function createOrUpdateCityAction(
       };
     }
   }
-  redirect("/dashboard/cities");
+  redirect("/admin/dashboard/cities");
 }
 
 export async function deleteCityAction(id: string) {

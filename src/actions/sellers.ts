@@ -44,7 +44,7 @@ export async function createOrUpdateSellerAction(
       };
     }
   }
-  redirect("/dashboard/sellers");
+  redirect("/admin/dashboard/sellers");
 }
 
 export async function deleteSellerAction(id: string) {
