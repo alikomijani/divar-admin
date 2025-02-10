@@ -1,5 +1,5 @@
 import { ServerPageProps } from "@/api/server-api/types";
-import { TableContainer } from "@/components/tables/TableContainer";
+import { TableContainer } from "@/components/admin/tables/TableContainer";
 import { SellerTable } from "./seller-table";
 import { getAllSellers } from "@/api/server-api/sellers";
 

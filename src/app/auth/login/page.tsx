@@ -1,4 +1,4 @@
-import LoginForm from "@/components/forms/LoginForm";
+import LoginForm from "@/components/admin/forms/LoginForm";
 import { Stack, Typography, Link as MuiLink, Box } from "@mui/material";
 import Link from "next/link";
 

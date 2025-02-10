@@ -1,6 +1,6 @@
 "use client";
 import { IOrder, IOrderItem, PaginatedResultApi } from "@/api/server-api/types";
-import AITable from "@/components/tables/AITable";
+import AITable from "@/components/admin/tables/AITable";
 import { use } from "react";
 export function OrdersTable({
   orders,

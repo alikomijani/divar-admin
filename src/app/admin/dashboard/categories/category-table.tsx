@@ -6,7 +6,7 @@ import {
   PaginatedResultApi,
 } from "@/api/server-api/types";
 import DeleteAlertDialog from "@/components/DeleteAlertDialog";
-import AITable from "@/components/tables/AITable";
+import AITable from "@/components/admin/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
 import Link from "next/link";

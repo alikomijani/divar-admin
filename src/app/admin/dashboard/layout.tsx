@@ -1,8 +1,8 @@
 import AuthProvider from "@/components/AuthProvider";
-import DrawerHeader from "@/components/dashboard-layout/components/DrawerHeader";
-import DashboardHeader from "@/components/dashboard-layout/DashboardHeader";
-import DrawerProvider from "@/components/dashboard-layout/DrawerProvider";
-import MiniDrawer from "@/components/dashboard-layout/MiniDrawer";
+import DrawerHeader from "@/components/admin/dashboard-layout/components/DrawerHeader";
+import DashboardHeader from "@/components/admin/dashboard-layout/DashboardHeader";
+import DrawerProvider from "@/components/admin/dashboard-layout/DrawerProvider";
+import MiniDrawer from "@/components/admin/dashboard-layout/MiniDrawer";
 import QueryProvider from "@/components/QueryProvider";
 import { auth } from "@/lib/session";
 import { Box } from "@mui/material";

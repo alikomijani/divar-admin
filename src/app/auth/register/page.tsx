@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/forms/RegisterForm";
+import RegisterForm from "@/components/admin/forms/RegisterForm";
 import { Stack, Typography, Link as MuiLink, Box } from "@mui/material";
 import Link from "next/link";
 

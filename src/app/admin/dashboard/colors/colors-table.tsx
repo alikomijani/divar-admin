@@ -2,7 +2,7 @@
 import { deleteColorAction } from "@/actions/colors";
 import { IColor, PaginatedResultApi } from "@/api/server-api/types";
 import DeleteAlertDialog from "@/components/DeleteAlertDialog";
-import AITable from "@/components/tables/AITable";
+import AITable from "@/components/admin/tables/AITable";
 import { Delete, Edit } from "@mui/icons-material";
 import { Box, IconButton, Stack, Tooltip } from "@mui/material";
 import Link from "next/link";
