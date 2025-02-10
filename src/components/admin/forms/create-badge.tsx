@@ -1,10 +1,10 @@
 "use client";
 import { Stack, TextField } from "@mui/material";
 import { useActionState } from "react";
-import SubmitButton from "../SubmitButton";
 import { createOrUpdateBadgeAction } from "@/actions/badges";
-import SingleUpload from "../upload/single-upload";
 import { IBadge } from "@/api/server-api/types";
+import SingleUpload from "@/components/upload/single-upload";
+import SubmitButton from "@/components/SubmitButton";
 
 type CreateBadgeFormProps = { defaultValue?: Partial<IBadge> };
 

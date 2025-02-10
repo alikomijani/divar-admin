@@ -1,4 +1,4 @@
-import CreatePropertyForm from "@/components/forms/property-form";
+import CreatePropertyForm from "@/components/admin/forms/property-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 

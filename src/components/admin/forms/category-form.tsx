@@ -4,9 +4,9 @@ import { Stack } from "@mui/material";
 import React, { useActionState } from "react";
 import AIForm from "./AIForm";
 import { createOrUpdateCategoryAction } from "@/actions/categories";
-import SubmitButton from "../SubmitButton";
 import CategoryField from "../fields/category-field";
 import PropertiesField from "../fields/properties-field";
+import SubmitButton from "@/components/SubmitButton";
 
 type CategoryFormProps = {
   defaultValue?: ICategory;

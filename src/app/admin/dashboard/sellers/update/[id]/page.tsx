@@ -1,6 +1,6 @@
 import { getSellerById } from "@/api/server-api/sellers";
 import { ServerPageProps } from "@/api/server-api/types";
-import SellerForm from "@/components/forms/seller-from";
+import SellerForm from "@/components/admin/forms/seller-from";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 

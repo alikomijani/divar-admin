@@ -1,6 +1,6 @@
 import { getBadgeById } from "@/api/server-api/badges";
 import { ServerPageProps } from "@/api/server-api/types";
-import { CreateBadgeForm } from "@/components/forms/create-badge";
+import { CreateBadgeForm } from "@/components/admin/forms/create-badge";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 

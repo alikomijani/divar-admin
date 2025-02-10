@@ -1,4 +1,4 @@
-import SellerForm from "@/components/forms/seller-from";
+import SellerForm from "@/components/admin/forms/seller-from";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function CreateBadge() {

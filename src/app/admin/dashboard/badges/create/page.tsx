@@ -1,4 +1,4 @@
-import { CreateBadgeForm } from "@/components/forms/create-badge";
+import { CreateBadgeForm } from "@/components/admin/forms/create-badge";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function CreateBadge() {

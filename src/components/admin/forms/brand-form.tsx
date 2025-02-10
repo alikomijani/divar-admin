@@ -2,9 +2,9 @@
 import { createOrUpdateBrandAction } from "@/actions/brands";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
-import SubmitButton from "../SubmitButton";
 import AIForm from "./AIForm";
 import { IBrand } from "@/api/server-api/types";
+import SubmitButton from "@/components/SubmitButton";
 
 type BrandFormType = {
   brand?: IBrand;

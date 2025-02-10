@@ -1,6 +1,6 @@
 import { getCityById } from "@/api/server-api/city";
 import { ServerPageProps } from "@/api/server-api/types";
-import CityForm from "@/components/forms/city-form";
+import CityForm from "@/components/admin/forms/city-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function UpdateCity({ params }: ServerPageProps) {

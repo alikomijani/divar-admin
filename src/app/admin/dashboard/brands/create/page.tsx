@@ -1,4 +1,4 @@
-import { BrandForm } from "@/components/forms/brand-form";
+import { BrandForm } from "@/components/admin/forms/brand-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function CreateCity() {

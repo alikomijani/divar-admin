@@ -2,9 +2,9 @@
 import { createOrUpdateCityAction } from "@/actions/city";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
-import SubmitButton from "../SubmitButton";
 import { ICity } from "@/api/server-api/types";
 import AIForm from "./AIForm";
+import SubmitButton from "@/components/SubmitButton";
 
 type CityFormProps = {
   defaultValue?: ICity;

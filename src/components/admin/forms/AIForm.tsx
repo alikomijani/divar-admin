@@ -1,6 +1,6 @@
+import SingleUpload from "@/components/upload/single-upload";
 import { Grid2, TextField } from "@mui/material";
 import React, { ReactNode } from "react";
-import SingleUpload from "../upload/single-upload";
 
 type FormField = {
   type: "string" | "number" | "image" | "email" | "textarea" | "color";

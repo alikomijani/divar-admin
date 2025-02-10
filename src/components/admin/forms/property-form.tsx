@@ -1,7 +1,7 @@
 "use client";
 import { Button, IconButton, Stack, TextField } from "@mui/material";
 import React, { useActionState, useState } from "react";
-import SubmitButton from "../SubmitButton";
+import SubmitButton from "@/components/SubmitButton";
 import { createOrUpdatePropertyAction } from "@/actions/property";
 import { Remove } from "@mui/icons-material";
 import { IProperty, IPropertyOption } from "@/api/server-api/types";
