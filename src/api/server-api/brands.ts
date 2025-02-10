@@ -1,13 +1,13 @@
 "use server";
 import "server-only";
 
-import { BASE_URL } from "@/config.server";
+import { ADMIN_BASE_URL } from "@/config.server";
 import { IBrand, PaginatedResultApi } from "./types";
 import { apiFetch } from "./base";
 import { revalidateTag } from "next/cache";
 
 export const createBrand = async (body: Partial<IBrand>): Promise<IBrand> => {
-  return apiFetch<IBrand>(`${BASE_URL}/brands`, {
+  return apiFetch<IBrand>(`${ADMIN_BASE_URL}/brands`, {
     method: "POST",
     body: JSON.stringify(body),
   });
@@ -18,7 +18,7 @@ export const updateBrand = async (
   id: string,
   body: Partial<IBrand>
 ): Promise<IBrand> => {
-  const data = await apiFetch<IBrand>(`${BASE_URL}/brands/${id}`, {
+  const data = await apiFetch<IBrand>(`${ADMIN_BASE_URL}/brands/${id}`, {
     method: "PUT",
     body: JSON.stringify(body),
   });
@@ -32,7 +32,7 @@ export const getBrands = async (
 ): Promise<PaginatedResultApi<IBrand>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IBrand>>(
-    `${BASE_URL}/brands?${search.toString()}`,
+    `${ADMIN_BASE_URL}/brands?${search.toString()}`,
     {
       cache: "no-store",
     }
@@ -41,14 +41,14 @@ export const getBrands = async (
 
 // Delete a brand
 export const deleteBrand = async (id: string): Promise<{ message: string }> => {
-  return apiFetch<{ message: string }>(`${BASE_URL}/brands/${id}`, {
+  return apiFetch<{ message: string }>(`${ADMIN_BASE_URL}/brands/${id}`, {
     method: "DELETE",
   });
 };
 
 // Get a brand by its ID
 export const getBrandById = async (id: string): Promise<IBrand> => {
-  return apiFetch<IBrand>(`${BASE_URL}/brands/${id}`, {
+  return apiFetch<IBrand>(`${ADMIN_BASE_URL}/brands/${id}`, {
     cache: "force-cache",
     next: {
       tags: ["allSingleBrand", `brands-${id}`],

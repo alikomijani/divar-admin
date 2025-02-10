@@ -1,7 +1,7 @@
 "use server";
 import "server-only";
 
-import { BASE_URL } from "@/config.server";
+import { ADMIN_BASE_URL } from "@/config.server";
 import { IProduct, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
@@ -11,7 +11,7 @@ import { ProductType } from "@/lib/validations";
 export const createProduct = async (
   body: Partial<ProductType>
 ): Promise<IProduct> => {
-  return apiFetch<IProduct>(`${BASE_URL}/products`, {
+  return apiFetch<IProduct>(`${ADMIN_BASE_URL}/products`, {
     method: "POST",
     body: JSON.stringify(body),
   });
@@ -23,7 +23,7 @@ export const updateProduct = async (
   body: Partial<ProductType>
 ): Promise<IProduct> => {
   try {
-    const data = await apiFetch<IProduct>(`${BASE_URL}/products/${id}`, {
+    const data = await apiFetch<IProduct>(`${ADMIN_BASE_URL}/products/${id}`, {
       method: "PUT",
       body: JSON.stringify(body),
     });
@@ -40,28 +40,28 @@ export const getProducts = async (
 ): Promise<PaginatedResultApi<IProduct>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IProduct>>(
-    `${BASE_URL}/products?${search.toString()}`,
+    `${ADMIN_BASE_URL}/products?${search.toString()}`,
     {
       cache: "no-store",
     }
   );
 };
 
-// Delete a Product
-export const deleteProduct = async (
-  id: string
-): Promise<{ message: string }> => {
-  return apiFetch<{ message: string }>(`${BASE_URL}/products/${id}`, {
-    method: "DELETE",
-  });
-};
-
 // Get a Product by its ID
 export const getProductById = async (id: string): Promise<IProduct> => {
-  return apiFetch<IProduct>(`${BASE_URL}/products/${id}`, {
+  return apiFetch<IProduct>(`${ADMIN_BASE_URL}/products/${id}`, {
     cache: "force-cache",
     next: {
       tags: ["allSingleProduct", `products-${id}`],
     },
+  });
+};
+
+// Delete a Product
+export const deleteProduct = async (
+  id: string
+): Promise<{ message: string }> => {
+  return apiFetch<{ message: string }>(`${ADMIN_BASE_URL}/products/${id}`, {
+    method: "DELETE",
   });
 };
