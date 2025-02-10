@@ -12,7 +12,7 @@ async function Register() {
         </MuiLink>
       </Stack>
       <RegisterForm>
-        <input hidden name="role" defaultValue={1} />
+        <input hidden name="role" defaultValue={3} />
       </RegisterForm>
     </Box>
   );

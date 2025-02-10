@@ -1,15 +1,26 @@
 "use client";
-import { register } from "@/actions/auth/register";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import React, { useActionState } from "react";
-
-function RegisterForm() {
-  const [state, action, pending] = useActionState(register, {
+import { registerAction } from "@/actions/auth/register";
+import {
+  Alert,
+  Box,
+  Button,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { PropsWithChildren, useActionState } from "react";
+interface RegisterFormProps extends PropsWithChildren {
+  isShop?: boolean;
+}
+function RegisterForm({ children, isShop = false }: RegisterFormProps) {
+  const [state, action, pending] = useActionState(registerAction, {
     message: "",
+    errors: {},
   });
   return (
     <form action={action}>
       <Stack gap={3}>
+        {state.message && <Alert severity="warning">{state.message}</Alert>}
         <Stack
           mt={2}
           direction={"row"}
@@ -60,6 +71,31 @@ function RegisterForm() {
           label="کلمه عبور"
           variant="outlined"
         />
+        {isShop && (
+          <>
+            <TextField
+              error={!!state?.errors?.shopName}
+              helperText={state?.errors?.shopName}
+              size="small"
+              fullWidth
+              name="shopName"
+              label="نام فروشگاه"
+              variant="outlined"
+              type="text"
+            />
+            <TextField
+              error={!!state?.errors?.shopSlug}
+              helperText={state?.errors?.shopSlug}
+              size="small"
+              fullWidth
+              name="shopSlug"
+              label="نشانک"
+              variant="outlined"
+              type="text"
+            />
+          </>
+        )}
+        {children}
         <Typography variant="caption">
           با ثبت نام در سرویس ما شما با همه قوانین سرویس موافقت خود را اعلام
           میدارید.

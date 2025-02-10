@@ -11,7 +11,6 @@ export default function LoginForm() {
   return (
     <>
       <form action={action}>
-        <input type="text" name="role" hidden defaultValue={3} />
         <Stack gap={2}>
           {state.message && <Alert severity="warning">{state.message}</Alert>}
           <TextField

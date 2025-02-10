@@ -11,8 +11,8 @@ async function Register() {
           قبلا ثبت نام کرده‌اید؟
         </MuiLink>
       </Stack>
-      <RegisterForm>
-        <input hidden name="role" defaultValue={1} />
+      <RegisterForm isShop>
+        <input hidden name="role" defaultValue={2} />
       </RegisterForm>
     </Box>
   );

@@ -103,12 +103,35 @@ export interface IUser {
   isActive: boolean;
   id: string;
 }
+export interface IAddress {
+  location: [number, number];
+  street: string;
+  city: string;
+  postalCode: string;
+}
+export interface IProfile {
+  user: string;
+  addressList: IAddress[];
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+}
 export interface ISeller extends Timestamp {
   user: IUser;
   name: string;
   slug: string;
   id: string;
 }
+
+export type RegisterResponse = {
+  tokens: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  user: IUser;
+  profile: IProfile;
+};
+export type LoginResponse = Omit<RegisterResponse, "profile">;
 
 export enum OrderStatus {
   Pending = "pending",
