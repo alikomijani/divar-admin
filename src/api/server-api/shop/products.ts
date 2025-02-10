@@ -1,4 +1,4 @@
-import { ADMIN_BASE_URL } from "@/config.server";
+import { SHOP_BASE_URL } from "@/config.server";
 import { IProduct, PaginatedResultApi } from "../types";
 import { apiFetch } from "../base";
 
@@ -8,7 +8,7 @@ export const getProducts = async (
 ): Promise<PaginatedResultApi<IProduct>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<IProduct>>(
-    `${ADMIN_BASE_URL}/products?${search.toString()}`,
+    `${SHOP_BASE_URL}/products?${search.toString()}`,
     {
       cache: "no-store",
     }
@@ -17,7 +17,7 @@ export const getProducts = async (
 
 // Get a Product by its ID
 export const getProductById = async (id: string): Promise<IProduct> => {
-  return apiFetch<IProduct>(`${ADMIN_BASE_URL}/products/${id}`, {
+  return apiFetch<IProduct>(`${SHOP_BASE_URL}/products/${id}`, {
     cache: "force-cache",
     next: {
       tags: ["allSingleProduct", `products-${id}`],

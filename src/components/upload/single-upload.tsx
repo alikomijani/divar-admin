@@ -17,7 +17,6 @@ export default function SingleUpload({
 }: Props) {
   const accessToken = useAuth();
   const [urls, setUrls] = useState<string[]>([]);
-
   const [progress, setProgress] = useState(0);
   const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {

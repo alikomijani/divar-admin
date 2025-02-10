@@ -77,6 +77,14 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
+interface SellerInfo {
+  lastPrice: number;
+  createdAt: string;
+  discount: number;
+  count: number;
+  id: string;
+  seller: ISeller;
+}
 export interface IProduct extends Timestamp {
   images: {
     main: string;
@@ -94,6 +102,7 @@ export interface IProduct extends Timestamp {
   specifications: IPropertyValue[];
   expert_review: string;
   id: string;
+  bestSeller?: SellerInfo;
 }
 export interface IUser {
   firstName: string;
@@ -121,6 +130,7 @@ export interface ISeller extends Timestamp {
   name: string;
   slug: string;
   id: string;
+  _id: string;
 }
 
 export type RegisterResponse = {

@@ -7,6 +7,7 @@ import { createOrUpdateCategoryAction } from "@/actions/categories";
 import CategoryField from "../fields/category-field";
 import PropertiesField from "../fields/properties-field";
 import SubmitButton from "@/components/SubmitButton";
+import SingleUpload from "@/components/upload/single-upload";
 
 type CategoryFormProps = {
   defaultValue?: ICategory;
@@ -33,6 +34,7 @@ export default function CategoryForm({ defaultValue }: CategoryFormProps) {
           name="properties"
           defaultValue={defaultValue?.properties}
         />
+        <SingleUpload name="icon" defaultValue={defaultValue?.icon} />
         <AIForm
           schema={[
             {
