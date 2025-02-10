@@ -9,7 +9,10 @@ export default async function Properties({ searchParams }: ServerPageProps) {
   const params = await searchParams;
   const properties = await getProperties(params);
   return (
-    <TableContainer title="مشخصات" createLink="/dashboard/properties/create">
+    <TableContainer
+      title="مشخصات"
+      createLink="/admin/dashboard/properties/create"
+    >
       <PropertiesTable properties={properties} />
     </TableContainer>
   );

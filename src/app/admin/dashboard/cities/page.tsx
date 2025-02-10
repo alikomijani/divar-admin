@@ -8,7 +8,7 @@ export default async function Cities({ searchParams }: ServerPageProps) {
   const params = await searchParams;
   const cities = getCities(params);
   return (
-    <TableContainer title="شهر" createLink="/dashboard/cities/create">
+    <TableContainer title="شهر" createLink="/admin/dashboard/cities/create">
       <CityTable cities={cities} />
     </TableContainer>
   );

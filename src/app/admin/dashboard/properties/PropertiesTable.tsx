@@ -24,7 +24,7 @@ export function PropertiesTable({
             <IconButton
               color="secondary"
               component={Link}
-              href={"/dashboard/properties/update/" + p.id}
+              href={"/admin/dashboard/properties/update/" + p.id}
             >
               <Edit />
             </IconButton>

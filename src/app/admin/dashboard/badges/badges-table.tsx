@@ -23,7 +23,7 @@ export function BadgesTable({
               <IconButton
                 color="secondary"
                 component={Link}
-                href={"/dashboard/badges/update/" + p.id}
+                href={"/admin/dashboard/badges/update/" + p.id}
               >
                 <Edit />
               </IconButton>

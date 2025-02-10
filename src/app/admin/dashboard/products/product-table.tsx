@@ -20,7 +20,7 @@ export function ProductTable({
             <IconButton
               color="secondary"
               component={Link}
-              href={"/dashboard/products/update/" + p.code}
+              href={"/admin/dashboard/products/update/" + p.code}
             >
               <Edit />
             </IconButton>

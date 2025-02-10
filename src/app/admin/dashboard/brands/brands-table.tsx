@@ -22,7 +22,7 @@ export function BrandsTable({
             <IconButton
               color="secondary"
               component={Link}
-              href={"/dashboard/brands/update/" + p.id}
+              href={"/admin/dashboard/brands/update/" + p.id}
             >
               <Edit />
             </IconButton>

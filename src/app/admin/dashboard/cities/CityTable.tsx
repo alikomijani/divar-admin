@@ -22,7 +22,7 @@ export default function CityTable({
             <IconButton
               color="secondary"
               component={Link}
-              href={"/dashboard/cities/update/" + p.id}
+              href={"/admin/dashboard/cities/update/" + p.id}
             >
               <Edit />
             </IconButton>

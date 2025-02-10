@@ -23,7 +23,7 @@ export function SellerTable({
               <IconButton
                 color="secondary"
                 component={Link}
-                href={"/dashboard/sellers/update/" + p.id}
+                href={"/admin/dashboard/sellers/update/" + p.id}
               >
                 <Edit />
               </IconButton>

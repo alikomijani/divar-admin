@@ -7,7 +7,7 @@ export default async function ColorsPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;
   const colors = await getColors(params);
   return (
-    <TableContainer title="رنگ" createLink="/dashboard/colors/create">
+    <TableContainer title="رنگ" createLink="/admin/dashboard/colors/create">
       <ColorsTable colors={colors} />
     </TableContainer>
   );

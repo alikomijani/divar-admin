@@ -7,7 +7,10 @@ export default async function BadgesPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;
   const badges = getBadges(params);
   return (
-    <TableContainer title="برچسب ها" createLink="/dashboard/badges/create">
+    <TableContainer
+      title="برچسب ها"
+      createLink="/admin/dashboard/badges/create"
+    >
       <BadgesTable badges={badges} />
     </TableContainer>
   );

@@ -7,7 +7,7 @@ export default async function BrandsPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;
   const brands = getBrands(params);
   return (
-    <TableContainer title="برند" createLink="/dashboard/brands/create">
+    <TableContainer title="برند" createLink="/admin/dashboard/brands/create">
       <BrandsTable brands={brands} />
     </TableContainer>
   );

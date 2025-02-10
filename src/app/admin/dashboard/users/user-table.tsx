@@ -21,7 +21,7 @@ export function UsersTable({
               <IconButton
                 color="secondary"
                 component={Link}
-                href={"/dashboard/users/update/" + p.id}
+                href={"/admin/dashboard/users/update/" + p.id}
               >
                 <Edit />
               </IconButton>

@@ -7,7 +7,10 @@ export default async function UsersPage({ searchParams }: ServerPageProps) {
   const params = await searchParams;
   const sellers = getAllSellers(params);
   return (
-    <TableContainer title="فروشگاه ها" createLink="/dashboard/sellers/create">
+    <TableContainer
+      title="فروشگاه ها"
+      createLink="/admin/dashboard/sellers/create"
+    >
       <SellerTable sellers={sellers} />
     </TableContainer>
   );
