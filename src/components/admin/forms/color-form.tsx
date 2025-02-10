@@ -2,9 +2,9 @@
 import { createOrUpdateColorAction } from "@/actions/colors";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
-import SubmitButton from "../SubmitButton";
 import { IColor } from "@/api/server-api/types";
 import AIForm from "./AIForm";
+import SubmitButton from "@/components/SubmitButton";
 
 type ColorFormProps = {
   defaultValue?: IColor;

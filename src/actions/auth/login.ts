@@ -1,6 +1,11 @@
 "use server";
 import "server-only";
-import { LoginFormSchema, LoginFormState } from "@/lib/validations";
+import {
+  FormState,
+  LoginFormSchema,
+  LoginFormState,
+  LoginType,
+} from "@/lib/validations";
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
@@ -28,7 +33,7 @@ export async function loginAction(state: LoginFormState, formData: FormData) {
     if (e instanceof ApiError) {
       return {
         message: e.message,
-        errors: e.body as any,
+        errors: e.body as FormState<LoginType>["errors"],
       };
     }
   }

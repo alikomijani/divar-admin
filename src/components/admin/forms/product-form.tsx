@@ -9,19 +9,18 @@ import {
   Divider,
   FormControlLabel,
   MenuItem,
-  Select,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import React, { useActionState, useState } from "react";
 import AIForm from "./AIForm";
-import SubmitButton from "../SubmitButton";
 import CategoryField from "../fields/category-field";
-import SingleUpload from "../upload/single-upload";
 import BrandField from "../fields/brand-field";
 import BadgeField from "../fields/badges-fields";
 import ColorsField from "../fields/colors-field";
+import SingleUpload from "@/components/upload/single-upload";
+import SubmitButton from "@/components/SubmitButton";
 
 type ProductFormProps = {
   defaultValue?: IProduct;

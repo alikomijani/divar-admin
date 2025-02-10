@@ -1,7 +1,12 @@
 "use server";
 import "server-only";
 
-import { RegisterFormState, RegisterFormSchema } from "@/lib/validations";
+import {
+  RegisterFormState,
+  RegisterFormSchema,
+  RegisterType,
+  FormState,
+} from "@/lib/validations";
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
@@ -45,7 +50,7 @@ export async function registerAction(
     if (e instanceof ApiError) {
       return {
         message: e.message,
-        errors: e.body as any,
+        errors: e.body as FormState<RegisterType>["errors"],
       };
     }
   }

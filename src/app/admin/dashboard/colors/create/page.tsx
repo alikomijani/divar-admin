@@ -1,4 +1,4 @@
-import ColorForm from "@/components/forms/color-form";
+import ColorForm from "@/components/admin/forms/color-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default async function CreateCity() {
