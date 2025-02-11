@@ -1,21 +1,21 @@
-import { colors, createTheme } from "@mui/material";
+import { colors, createTheme } from '@mui/material';
 
 const commonSizes = {
   small: {
-    height: 48,
+    height: 44,
   },
   medium: {
-    height: 56,
+    height: 48,
   },
   large: {
-    height: 64,
+    height: 56,
   },
 };
 
 const theme = createTheme({
-  direction: "rtl",
+  direction: 'rtl',
   typography: {
-    fontFamily: "Vazir",
+    fontFamily: 'Vazir',
   },
   palette: {
     background: {
@@ -39,15 +39,15 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          "& .MuiInputLabel-sizeSmall": {
-            lineHeight: "30px",
+          '& .MuiInputLabel-sizeSmall': {
+            lineHeight: '26px',
           },
-          "& .MuiInputBase-root": {
-            "& .MuiInputBase-inputSizeSmall": {
-              height: commonSizes.small.height - 16 + "px",
+          '& .MuiInputBase-root': {
+            '& .MuiInputBase-inputSizeSmall': {
+              height: commonSizes.small.height - 16 + 'px',
             },
-            "& .MuiInputBase-inputSizeMedium": {
-              height: commonSizes.medium.height - 16 + "px",
+            '& .MuiInputBase-inputSizeMedium': {
+              height: commonSizes.medium.height - 16 + 'px',
             },
           },
         },

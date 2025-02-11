@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import ScrollTriggerCollapse from "./scroll-trigger-collapse";
+import { Box } from '@mui/material';
+import ScrollTriggerCollapse from './scroll-trigger-collapse';
 
 export default async function Navbar() {
   return (
@@ -10,12 +10,13 @@ export default async function Navbar() {
           sx={{
             p: 0,
             m: 0,
-            display: "flex",
-            listStyleType: "none",
+            display: 'flex',
+            listStyleType: 'none',
             gap: 1,
-            "&>*": {
-              cursor: "pointer",
+            '&>*': {
+              cursor: 'pointer',
               p: 1,
+              typography: 'body2',
             },
           }}
         >

@@ -1,7 +1,7 @@
-"use client";
-import { Collapse, useScrollTrigger } from "@mui/material";
-import type { ReactNode } from "react";
-import React from "react";
+'use client';
+import { Collapse, useScrollTrigger } from '@mui/material';
+import type { ReactNode } from 'react';
+import React from 'react';
 
 type Props = {
   threshold?: number;
@@ -9,13 +9,12 @@ type Props = {
 };
 
 export default function ScrollTriggerCollapse({
-  threshold = 40,
+  threshold = 100,
   children,
 }: Props) {
   const trigger = useScrollTrigger({
     disableHysteresis: false,
     threshold,
-    target: window,
   });
   return <Collapse in={!trigger}>{children}</Collapse>;
 }

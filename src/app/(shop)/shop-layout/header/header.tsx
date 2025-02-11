@@ -1,31 +1,31 @@
-import { Box, Button, Container, IconButton, TextField } from "@mui/material";
-import Image from "next/image";
-import React from "react";
-import Navbar from "./navbar";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
+import { Box, Button, Container, IconButton, TextField } from '@mui/material';
+import Image from 'next/image';
+import React from 'react';
+import Navbar from './navbar';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 
 export default async function Header() {
   return (
     <Box
       component="header"
       sx={{
-        bgcolor: "background.paper",
+        bgcolor: 'background.paper',
         boxShadow: 1,
         m: 0,
-        position: "fixed",
+        position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
-        zIndex: "appBar",
+        zIndex: 'appBar',
       }}
     >
       <Container>
         <Box
           sx={{
-            bgcolor: "background.paper",
-            display: "flex",
-            alignItems: "center",
+            bgcolor: 'background.paper',
+            display: 'flex',
+            alignItems: 'center',
             gap: 2,
             py: 2,
             m: 0,
@@ -47,7 +47,7 @@ export default async function Header() {
               variant="outlined"
               sx={{
                 flexShrink: 0,
-                borderColor: "divider",
+                borderColor: 'divider',
               }}
             >
               ورود | ثبت‌نام
