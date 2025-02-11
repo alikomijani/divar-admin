@@ -1,9 +1,10 @@
-import { Box, Button, Container, IconButton, TextField } from '@mui/material';
+import { Box, Container, IconButton, TextField } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import Navbar from './navbar';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+
+import UserIcon from './user-icon';
 
 export default async function Header() {
   return (
@@ -40,18 +41,7 @@ export default async function Header() {
             size="small"
           />
           <Box alignItems="center" display="flex" gap={1}>
-            <Button
-              color="inherit"
-              size="small"
-              startIcon={<LoginOutlinedIcon />}
-              variant="outlined"
-              sx={{
-                flexShrink: 0,
-                borderColor: 'divider',
-              }}
-            >
-              ورود | ثبت‌نام
-            </Button>
+            <UserIcon />
             <IconButton>
               <ShoppingCartOutlinedIcon />
             </IconButton>
