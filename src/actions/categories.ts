@@ -6,7 +6,8 @@ import {
 } from "@/api/server-api/categories";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { CategoryFormState, CategorySchemaZod } from "@/lib/validations";
+import type { CategoryFormState} from "@/lib/validations";
+import { CategorySchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";

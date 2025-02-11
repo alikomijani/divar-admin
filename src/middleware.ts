@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest} from "next/server";
+import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { refreshTokenAction } from "./actions/auth/refresh-token";
 
@@ -23,6 +24,7 @@ export default async function middleware(req: NextRequest) {
   const refreshToken = (await cookies()).get("refreshToken")?.value;
   const isLogin = accessToken && refreshToken;
   const isLogout = !accessToken && !refreshToken;
+
   const needToRefresh = !accessToken && refreshToken;
   if (needToRefresh) {
     await refreshTokenAction();

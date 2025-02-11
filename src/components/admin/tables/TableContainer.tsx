@@ -1,6 +1,7 @@
 import { Box, Button, Paper, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
-import { ReactNode, Suspense } from "react";
+import type { ReactNode} from "react";
+import { Suspense } from "react";
 import TableLoading from "./TableLoading";
 
 export type TableContainerProps = {
@@ -28,10 +29,10 @@ export async function TableContainer({
           <Button
             component={Link}
             href={createLink}
+            variant="contained"
             sx={{
               flexShrink: 0,
             }}
-            variant="contained"
           >
             {title} جدید
           </Button>

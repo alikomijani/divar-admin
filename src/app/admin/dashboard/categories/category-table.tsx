@@ -1,6 +1,6 @@
 "use client";
 import { deleteCategoryAction } from "@/actions/categories";
-import {
+import type {
   ICategory,
   IProperty,
   PaginatedResultApi,
@@ -18,8 +18,9 @@ export function CategoriesTable({
 }) {
   return (
     <AITable
+      data={categories}
       actions={(p) => (
-        <Stack direction={"row"}>
+        <Stack direction="row">
           <Tooltip title="ویرایش">
             <IconButton
               color="secondary"
@@ -40,29 +41,6 @@ export function CategoriesTable({
           </Tooltip>
         </Stack>
       )}
-      subTable={{
-        header: "ویژگی ها",
-        key: "properties",
-        schema: [
-          {
-            title: "شماره",
-            render: (row: IProperty) => row.id,
-          },
-          {
-            title: "برچسب",
-            render: (row) => row.label,
-          },
-          {
-            title: "نام",
-            render: (row) => row.name,
-          },
-          {
-            title: "نوع داده",
-            render: (row) => row.type,
-          },
-        ],
-      }}
-      data={categories}
       schema={[
         {
           title: "نشانک",
@@ -85,6 +63,28 @@ export function CategoriesTable({
           render: (row) => new Date(row.updatedAt).toLocaleDateString("fa"),
         },
       ]}
+      subTable={{
+        header: "ویژگی ها",
+        key: "properties",
+        schema: [
+          {
+            title: "شماره",
+            render: (row: IProperty) => row.id,
+          },
+          {
+            title: "برچسب",
+            render: (row) => row.label,
+          },
+          {
+            title: "نام",
+            render: (row) => row.name,
+          },
+          {
+            title: "نوع داده",
+            render: (row) => row.type,
+          },
+        ],
+      }}
     />
   );
 }

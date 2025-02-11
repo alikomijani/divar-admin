@@ -8,7 +8,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { PropsWithChildren, useActionState } from "react";
+import type { PropsWithChildren} from "react";
+import React, { useActionState } from "react";
+
 interface RegisterFormProps extends PropsWithChildren {
   isShop?: boolean;
 }
@@ -22,76 +24,76 @@ function RegisterForm({ children, isShop = false }: RegisterFormProps) {
       <Stack gap={3}>
         {state.message && <Alert severity="warning">{state.message}</Alert>}
         <Stack
-          mt={2}
-          direction={"row"}
-          justifyContent="space-between"
           alignItems="center"
+          direction="row"
           gap={1}
+          justifyContent="space-between"
+          mt={2}
         >
           <TextField
+            fullWidth
             error={!!state?.errors?.firstName}
             helperText={state?.errors?.firstName}
-            size="small"
-            fullWidth
-            name="firstName"
             label="نام"
+            name="firstName"
+            size="small"
             variant="outlined"
           />
           <TextField
+            fullWidth
             error={!!state?.errors?.lastName}
             helperText={state?.errors?.lastName}
-            size="small"
-            fullWidth
-            name="lastName"
             label="نام خانوادگی"
+            name="lastName"
+            size="small"
             variant="outlined"
           />
         </Stack>
         <TextField
+          fullWidth
           error={!!state?.errors?.email}
           helperText={state?.errors?.email}
-          size="small"
-          fullWidth
-          name="email"
           label="رایانامه"
-          variant="outlined"
+          name="email"
+          size="small"
           type="email"
+          variant="outlined"
         />
         <TextField
+          fullWidth
           error={!!state?.errors?.password}
+          label="کلمه عبور"
+          name="password"
+          size="small"
+          type="password"
+          variant="outlined"
           helperText={state?.errors?.password?.map((e: string) => (
-            <Box component="span" display="block" key={e}>
+            <Box key={e} component="span" display="block">
               {e}
             </Box>
           ))}
-          size="small"
-          fullWidth
-          name="password"
-          type="password"
-          label="کلمه عبور"
-          variant="outlined"
         />
         {isShop && (
           <>
             <TextField
+              fullWidth
               error={!!state?.errors?.shopName}
               helperText={state?.errors?.shopName}
-              size="small"
-              fullWidth
-              name="shopName"
               label="نام فروشگاه"
-              variant="outlined"
+              name="shopName"
+              size="small"
               type="text"
+              variant="outlined"
             />
             <TextField
+              fullWidth
               error={!!state?.errors?.shopSlug}
               helperText={state?.errors?.shopSlug}
-              size="small"
-              fullWidth
-              name="shopSlug"
               label="نشانک"
-              variant="outlined"
+              name="shopSlug"
+              size="small"
               type="text"
+              variant="outlined"
             />
           </>
         )}
@@ -101,9 +103,9 @@ function RegisterForm({ children, isShop = false }: RegisterFormProps) {
           میدارید.
         </Typography>
         <Button
-          type="submit"
-          disabled={pending}
           disableElevation
+          disabled={pending}
+          type="submit"
           variant="contained"
         >
           ثبت نام

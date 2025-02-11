@@ -1,4 +1,4 @@
-import { IColor } from "@/api/server-api/types";
+import type { IColor } from "@/api/server-api/types";
 import React, { useState } from "react";
 import MultiAsyncListField from "./multi-async-list-field";
 import { useColorsQuery } from "@/api/client-api/colors";
@@ -13,13 +13,13 @@ export default function ColorsField({ defaultValue, name }: ColorFieldProps) {
   const { data, isLoading } = useColorsQuery(query);
   return (
     <MultiAsyncListField
-      options={data?.results ?? []}
+      defaultValue={defaultValue}
       getOptionLabel={(o) => o.title}
       isLoading={isLoading}
       label="رنگ ها"
       name={name}
+      options={data?.results ?? []}
       setQuery={setQuery}
-      defaultValue={defaultValue}
     />
   );
 }

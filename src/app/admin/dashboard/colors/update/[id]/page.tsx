@@ -1,5 +1,5 @@
 import { getColorById } from "@/api/server-api/colors";
-import { ServerPageProps } from "@/api/server-api/types";
+import type { ServerPageProps } from "@/api/server-api/types";
 import ColorForm from "@/components/admin/forms/color-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 

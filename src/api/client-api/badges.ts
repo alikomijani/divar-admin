@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Axios from "./base";
-import { IBadge, PaginatedResultApi } from "../server-api/types";
+import type { IBadge, PaginatedResultApi } from "../server-api/types";
 
 async function getAllBadges(params: { q?: string }) {
   const res = await Axios.get<PaginatedResultApi<IBadge>>("/admin/badges", {

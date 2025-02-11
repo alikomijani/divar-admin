@@ -2,7 +2,7 @@
 import { createOrUpdateColorAction } from "@/actions/colors";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
-import { IColor } from "@/api/server-api/types";
+import type { IColor } from "@/api/server-api/types";
 import AIForm from "./AIForm";
 import SubmitButton from "@/components/SubmitButton";
 
@@ -17,9 +17,9 @@ export default function ColorForm({ defaultValue }: ColorFormProps) {
   return (
     <form action={action}>
       {defaultValue?.id && (
-        <input hidden name="id" defaultValue={defaultValue.id} />
+        <input hidden defaultValue={defaultValue.id} name="id" />
       )}
-      <Stack spacing={2} mt={2}>
+      <Stack mt={2} spacing={2}>
         <AIForm
           schema={[
             {

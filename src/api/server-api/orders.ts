@@ -1,6 +1,6 @@
 import { ADMIN_BASE_URL } from "@/config.server";
 import { apiFetch } from "./base";
-import { IOrder, PaginatedResultApi } from "./types";
+import type { IOrder, PaginatedResultApi } from "./types";
 
 // Get a paginated list of colors
 export const getOrders = async (

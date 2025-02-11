@@ -1,9 +1,10 @@
-"use client";
-import { Box, CircularProgress, IconButton, Paper, Stack } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { upload } from "@/api/client-api/upload";
-import { useAuth } from "../AuthProvider";
+'use client';
+import { Box, CircularProgress, IconButton, Paper, Stack } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { upload } from '@/api/client-api/upload';
+import { useAuth } from '../AuthProvider';
+
 type Props = {
   name: string;
   defaultValue?: string | string[];
@@ -13,7 +14,7 @@ type Props = {
 export default function SingleUpload({
   name,
   multi = false,
-  defaultValue = "",
+  defaultValue = '',
 }: Props) {
   const accessToken = useAuth();
   const [urls, setUrls] = useState<string[]>([]);
@@ -25,13 +26,13 @@ export default function SingleUpload({
     const images = Array.from(e.target.files);
     images.forEach(async (image) => {
       const formData = new FormData();
-      formData.set("image", image);
+      formData.set('image', image);
       setProgress(0);
       const res = await upload(formData, {
         onUploadProgress: (event) =>
           setProgress(Math.round((event.loaded / (event.total || 1)) * 100)),
         headers: {
-          Authorization: "bearer " + accessToken,
+          Authorization: 'bearer ' + accessToken,
         },
       });
       if (multi) {
@@ -53,33 +54,33 @@ export default function SingleUpload({
       variant="outlined"
       sx={{
         p: 1,
-        width: "100%",
-        display: "block",
+        width: '100%',
+        display: 'block',
       }}
     >
       {urls.map((url, index) => (
         <input
-          key={"field" + url}
-          type="hidden"
-          name={multi ? `${name}.${index}` : name}
+          key={'field' + url}
           defaultValue={url}
+          name={multi ? `${name}.${index}` : name}
+          type="hidden"
         />
       ))}
-      <Stack gap={1} direction="row" flexWrap={"wrap"}>
+      <Stack direction="row" flexWrap="wrap" gap={1}>
         {urls.map((url) => (
           <Box
             key={url}
             sx={{
-              width: multi ? 80 : "100%",
+              width: multi ? 80 : '100%',
               height: multi ? 80 : 200,
               border: (theme) => `1px solid ${theme.palette.divider}`,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               backgroundImage: `url(${url})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
             }}
           />
         ))}
@@ -88,28 +89,28 @@ export default function SingleUpload({
             minHeight: 80,
             width: 80,
             border: (theme) => `1px solid ${theme.palette.divider}`,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          <Box sx={{ position: "relative", display: "inline-flex" }}>
+          <Box sx={{ position: 'relative', display: 'inline-flex' }}>
             <Box
               sx={{
                 top: 0,
                 left: 0,
                 bottom: 0,
                 right: 0,
-                position: "absolute",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                position: 'absolute',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               <IconButton
-                size="large"
-                component="label"
                 color="primary"
+                component="label"
+                size="large"
                 tabIndex={-1}
                 sx={{
                   zIndex: 10,
@@ -117,11 +118,11 @@ export default function SingleUpload({
               >
                 <CloudUploadIcon />
                 <input
+                  hidden
+                  accept="image/png, image/gif, image/jpeg"
                   multiple={multi}
                   type="file"
                   onChange={handleFileSelected}
-                  hidden
-                  accept="image/png, image/gif, image/jpeg"
                 />
               </IconButton>
             </Box>

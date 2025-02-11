@@ -1,5 +1,5 @@
 import { getBadgeById } from "@/api/server-api/badges";
-import { ServerPageProps } from "@/api/server-api/types";
+import type { ServerPageProps } from "@/api/server-api/types";
 import { CreateBadgeForm } from "@/components/admin/forms/create-badge";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 

@@ -1,6 +1,6 @@
 "use client";
 import { deleteProductAction } from "@/actions/products";
-import { IProduct, PaginatedResultApi } from "@/api/server-api/types";
+import type { IProduct, PaginatedResultApi } from "@/api/server-api/types";
 import DeleteAlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/admin/tables/AITable";
 import { Delete, Edit } from "@mui/icons-material";
@@ -14,8 +14,9 @@ export function ProductTable({
 }) {
   return (
     <AITable
+      data={products}
       actions={(p) => (
-        <Stack direction={"row"}>
+        <Stack direction="row">
           <Tooltip title="ویرایش">
             <IconButton
               color="secondary"
@@ -36,7 +37,6 @@ export function ProductTable({
           </Tooltip>
         </Stack>
       )}
-      data={products}
       schema={[
         {
           title: "کد",

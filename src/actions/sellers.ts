@@ -6,7 +6,8 @@ import {
 } from "@/api/server-api/sellers";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { SellerFormState, SellerSchemaZod } from "@/lib/validations";
+import type { SellerFormState} from "@/lib/validations";
+import { SellerSchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";

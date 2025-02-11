@@ -1,7 +1,7 @@
 import { AUTH_BASE_URL } from "@/config.server";
-import { LoginType, RegisterType } from "@/lib/validations";
+import type { LoginType, RegisterType } from "@/lib/validations";
 import { apiFetch } from "./base";
-import { LoginResponse, RegisterResponse } from "./types";
+import type { LoginResponse, RegisterResponse } from "./types";
 
 export async function loginRequest(params: LoginType) {
   const data = await apiFetch<LoginResponse>(`${AUTH_BASE_URL}/login`, {

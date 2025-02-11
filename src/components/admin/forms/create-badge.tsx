@@ -2,7 +2,7 @@
 import { Stack, TextField } from "@mui/material";
 import { useActionState } from "react";
 import { createOrUpdateBadgeAction } from "@/actions/badges";
-import { IBadge } from "@/api/server-api/types";
+import type { IBadge } from "@/api/server-api/types";
 import SingleUpload from "@/components/upload/single-upload";
 import SubmitButton from "@/components/SubmitButton";
 
@@ -22,17 +22,17 @@ export const CreateBadgeForm = ({ defaultValue }: CreateBadgeFormProps) => {
     <Stack spacing={2}>
       <form action={action}>
         {defaultValue?.id && (
-          <input type="hidden" name="id" defaultValue={defaultValue?.id} />
+          <input defaultValue={defaultValue?.id} name="id" type="hidden" />
         )}
         <Stack spacing={2}>
-          <SingleUpload name="icon" defaultValue={defaultValue?.icon} />
+          <SingleUpload defaultValue={defaultValue?.icon} name="icon" />
           <TextField
-            error={!!state?.errors?.title}
-            helperText={state?.errors?.title}
             fullWidth
             defaultValue={defaultValue?.title}
-            name="title"
+            error={!!state?.errors?.title}
+            helperText={state?.errors?.title}
             label="عنوان"
+            name="title"
           />
           <SubmitButton variant="contained">ذخیره</SubmitButton>
         </Stack>

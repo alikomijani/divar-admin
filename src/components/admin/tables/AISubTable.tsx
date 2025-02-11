@@ -8,7 +8,8 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 
 type Props<T extends { id?: string; _id?: string }> = {
   open: boolean;
@@ -30,13 +31,13 @@ export default function AISubTable<T extends { id?: string; _id?: string }>({
 }: Props<T>) {
   return (
     <TableRow>
-      <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={colSpan}>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+      <TableCell colSpan={colSpan} style={{ paddingBottom: 0, paddingTop: 0 }}>
+        <Collapse unmountOnExit in={open} timeout="auto">
           <Box sx={{ margin: 1 }}>
-            <Typography variant="h6" gutterBottom component="div">
+            <Typography gutterBottom component="div" variant="h6">
               {header}
             </Typography>
-            <Table size="small" aria-label="purchases">
+            <Table aria-label="purchases" size="small">
               <TableHead>
                 <TableRow>
                   {subTitleSchema.map((item) => (
@@ -48,8 +49,8 @@ export default function AISubTable<T extends { id?: string; _id?: string }>({
                 {data.length === 0 && (
                   <TableRow>
                     <TableCell
-                      sx={{ textAlign: "center", p: 2 }}
                       colSpan={subTitleSchema.length}
+                      sx={{ textAlign: "center", p: 2 }}
                     >
                       <Typography variant="h5">اینجا چیزی نیست</Typography>
                     </TableCell>

@@ -1,5 +1,5 @@
 "use client";
-import { IUser, PaginatedResultApi } from "@/api/server-api/types";
+import type { IUser, PaginatedResultApi } from "@/api/server-api/types";
 import AITable from "@/components/admin/tables/AITable";
 import { Edit } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
@@ -15,8 +15,9 @@ export function UsersTable({
   return (
     <>
       <AITable
+        data={allUsers}
         actions={(p) => (
-          <Stack direction={"row"}>
+          <Stack direction="row">
             <Tooltip title="ویرایش">
               <IconButton
                 color="secondary"
@@ -28,7 +29,6 @@ export function UsersTable({
             </Tooltip>
           </Stack>
         )}
-        data={allUsers}
         schema={[
           {
             title: "شناسه",

@@ -2,7 +2,8 @@
 import { createCity, deleteCity, updateCity } from "@/api/server-api/city";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { CityFormState, CitySchemaZod } from "@/lib/validations";
+import type { CityFormState} from "@/lib/validations";
+import { CitySchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";

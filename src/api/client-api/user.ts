@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Axios from "./base";
-import { IUser, PaginatedResultApi } from "../server-api/types";
+import type { IUser, PaginatedResultApi } from "../server-api/types";
 
 async function getAllUsers(params: { q?: string }) {
   const res = await Axios.get<PaginatedResultApi<IUser>>("/admin/auth/users", {

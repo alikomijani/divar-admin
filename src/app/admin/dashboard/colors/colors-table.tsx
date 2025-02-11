@@ -1,6 +1,6 @@
 "use client";
 import { deleteColorAction } from "@/actions/colors";
-import { IColor, PaginatedResultApi } from "@/api/server-api/types";
+import type { IColor, PaginatedResultApi } from "@/api/server-api/types";
 import DeleteAlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/admin/tables/AITable";
 import { Delete, Edit } from "@mui/icons-material";
@@ -14,8 +14,9 @@ export function ColorsTable({
 }) {
   return (
     <AITable
+      data={colors}
       actions={(p) => (
-        <Stack direction={"row"}>
+        <Stack direction="row">
           <Tooltip title="ویرایش">
             <IconButton
               color="secondary"
@@ -34,7 +35,6 @@ export function ColorsTable({
           </Tooltip>
         </Stack>
       )}
-      data={colors}
       schema={[
         {
           title: "شناسه",

@@ -1,4 +1,4 @@
-import { IProduct } from "@/api/server-api/types";
+import type { IProduct } from "@/api/server-api/types";
 import {
   Box,
   Button,
@@ -16,21 +16,21 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Card sx={{ width: 345 }}>
+    <Card sx={{ width: 345 }} variant="outlined">
       <CardMedia
-        sx={{ height: 140 }}
         image={product.images.main}
+        sx={{ height: 140 }}
         title={product.titleFa}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h3">
+        <Typography gutterBottom component="h3" variant="h5">
           {product.code}
         </Typography>
         {product.bestSeller && (
-          <Box display="flex" justifyContent="space-between" alignItems="start">
+          <Box alignItems="start" display="flex" justifyContent="space-between">
             <Box
               sx={{
-                bgcolor: "error.dark",
+                bgcolor: "error.main",
                 color: "error.contrastText",
                 padding: 0.5,
                 paddingX: 1,
@@ -43,7 +43,7 @@ export default function ProductCard({ product }: Props) {
               }}
             >
               <Typography
-                variant="body2"
+                variant="overline"
                 sx={{
                   fontWeight: 500,
                   lineHeight: 1,

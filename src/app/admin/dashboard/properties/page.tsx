@@ -1,5 +1,5 @@
 "use server";
-import { ServerPageProps } from "@/api/server-api/types";
+import type { ServerPageProps } from "@/api/server-api/types";
 import { TableContainer } from "@/components/admin/tables/TableContainer";
 import React from "react";
 import { PropertiesTable } from "./PropertiesTable";
@@ -10,8 +10,8 @@ export default async function Properties({ searchParams }: ServerPageProps) {
   const properties = await getProperties(params);
   return (
     <TableContainer
-      title="مشخصات"
       createLink="/admin/dashboard/properties/create"
+      title="مشخصات"
     >
       <PropertiesTable properties={properties} />
     </TableContainer>

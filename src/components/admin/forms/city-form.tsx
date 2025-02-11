@@ -2,7 +2,7 @@
 import { createOrUpdateCityAction } from "@/actions/city";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
-import { ICity } from "@/api/server-api/types";
+import type { ICity } from "@/api/server-api/types";
 import AIForm from "./AIForm";
 import SubmitButton from "@/components/SubmitButton";
 
@@ -17,8 +17,8 @@ export default function CityForm({ defaultValue }: CityFormProps) {
   });
   return (
     <form action={action}>
-      {defaultValue?.id && <input name="id" defaultValue={defaultValue.id} />}
-      <Stack spacing={2} mt={2}>
+      {defaultValue?.id && <input defaultValue={defaultValue.id} name="id" />}
+      <Stack mt={2} spacing={2}>
         <AIForm
           schema={[
             {

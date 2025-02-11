@@ -4,8 +4,9 @@ import React, { useActionState, useState } from "react";
 import SubmitButton from "@/components/SubmitButton";
 import { createOrUpdatePropertyAction } from "@/actions/property";
 import { Remove } from "@mui/icons-material";
-import { IProperty, IPropertyOption } from "@/api/server-api/types";
+import type { IProperty, IPropertyOption } from "@/api/server-api/types";
 import AIForm from "./AIForm";
+
 type Props = {
   defaultValue?: IProperty;
 };
@@ -28,9 +29,9 @@ export default function PropertyForm({ defaultValue }: Props) {
   return (
     <form action={action}>
       {defaultValue?.id && (
-        <input type="hidden" name="id" defaultValue={defaultValue?.id} />
+        <input defaultValue={defaultValue?.id} name="id" type="hidden" />
       )}
-      <Stack spacing={2} mt={2}>
+      <Stack mt={2} spacing={2}>
         <AIForm
           schema={[
             {
@@ -60,18 +61,18 @@ export default function PropertyForm({ defaultValue }: Props) {
           ]}
         />
         {options.map((item, index) => (
-          <Stack direction={"row"} spacing={2} key={item.id}>
+          <Stack key={item.id} direction="row" spacing={2}>
             <TextField
               fullWidth
-              name={`options.${index}.label`}
-              label="برچسب"
               defaultValue={defaultValue?.options?.[index]?.label}
+              label="برچسب"
+              name={`options.${index}.label`}
             />
             <TextField
               fullWidth
-              name={`options.${index}.value`}
-              label="مقدار"
               defaultValue={defaultValue?.options?.[index]?.value}
+              label="مقدار"
+              name={`options.${index}.value`}
             />
             <IconButton onClick={() => removeOption(item.id)}>
               <Remove />

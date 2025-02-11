@@ -6,7 +6,8 @@ import {
 } from "@/api/server-api/property";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { PropertyFormState, PropertySchemaZod } from "@/lib/validations";
+import type { PropertyFormState} from "@/lib/validations";
+import { PropertySchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";

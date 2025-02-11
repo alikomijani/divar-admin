@@ -27,16 +27,15 @@ const ImageSlider = () => {
         width: "100%",
         maxWidth: 1920,
         mx: "auto",
-        my: 4,
       }}
     >
       <Box ref={sliderRef} className="keen-slider">
         {images.map((src, index) => (
           <Box key={index} className="keen-slider__slide">
             <Box
+              alt={`Slide ${index + 1}`}
               component="img"
               src={src}
-              alt={`Slide ${index + 1}`}
               sx={{
                 width: "100%",
                 height: 400,

@@ -1,5 +1,5 @@
 import { getCategoryById } from "@/api/server-api/categories";
-import { ServerPageProps } from "@/api/server-api/types";
+import type { ServerPageProps } from "@/api/server-api/types";
 import CategoryForm from "@/components/admin/forms/category-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 

@@ -35,10 +35,10 @@ export default function DeleteAlertDialog({
     <>
       <Box onClick={handleClickOpen}>{children}</Box>
       <Dialog
+        aria-describedby="alert-dialog-description"
+        aria-labelledby="alert-dialog-title"
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
           آیا از حذف این مدل مطمئن هستید؟
@@ -52,14 +52,14 @@ export default function DeleteAlertDialog({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" onClick={handleClose} autoFocus>
+          <Button autoFocus variant="contained" onClick={handleClose}>
             بازگشت
           </Button>
 
           <Button
+            color="error"
             disabled={isLoading}
             variant="outlined"
-            color="error"
             onClick={handleConfirm}
           >
             حذف

@@ -1,5 +1,5 @@
 import { getPropertiesById } from "@/api/server-api/property";
-import { ServerPageProps } from "@/api/server-api/types";
+import type { ServerPageProps } from "@/api/server-api/types";
 import PropertyForm from "@/components/admin/forms/property-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 

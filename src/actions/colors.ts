@@ -2,7 +2,8 @@
 import { createColor, updateColor, deleteColor } from "@/api/server-api/colors";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { ColorFormState, ColorSchemaZod } from "@/lib/validations";
+import type { ColorFormState} from "@/lib/validations";
+import { ColorSchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";

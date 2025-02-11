@@ -1,6 +1,7 @@
 import SingleUpload from "@/components/upload/single-upload";
 import { Grid2, TextField } from "@mui/material";
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 
 type FormField = {
   type: "string" | "number" | "image" | "email" | "textarea" | "color";
@@ -21,24 +22,24 @@ export default function AIForm({ schema }: AIFormProps) {
   return (
     <Grid2 container spacing={2}>
       {schema.map((item) => (
-        <Grid2 size={item.size ?? 12} key={item.name}>
+        <Grid2 key={item.name} size={item.size ?? 12}>
           {item.type === "image" ? (
             <SingleUpload
-              name={item.name}
               defaultValue={item.defaultValue as string}
+              name={item.name}
             />
           ) : (
             <TextField
-              rows={5}
               fullWidth
-              multiline={item.type === "textarea"}
-              name={item.name}
-              label={item.label}
-              type={item.type}
+              defaultValue={item.defaultValue}
               error={item.error}
               helperText={item.helperText}
-              defaultValue={item.defaultValue}
+              label={item.label}
+              multiline={item.type === "textarea"}
+              name={item.name}
               placeholder={item.placeholder}
+              rows={5}
+              type={item.type}
             />
           )}
         </Grid2>

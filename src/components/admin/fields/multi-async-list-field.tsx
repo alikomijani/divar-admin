@@ -40,28 +40,21 @@ export default function MultiAsyncListField<T extends { id: string }>({
     <>
       {values?.map((v, index) => (
         <input
-          type="hidden"
           key={v.id}
-          name={`${name}.${index}`} // This will be sent to the backend
           defaultValue={v.id}
+          name={`${name}.${index}`} // This will be sent to the backend
+          type="hidden"
         />
       ))}
       <Autocomplete
+        disablePortal
         fullWidth
         multiple
-        disablePortal
-        inputValue={inputValue}
-        value={values}
-        onChange={(event: unknown, newValue: T[] | undefined) => {
-          setValues(newValue ?? []);
-        }}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-          updateQuery(newInputValue);
-        }}
-        options={options}
-        groupBy={groupBy}
         getOptionLabel={getOptionLabel}
+        groupBy={groupBy}
+        inputValue={inputValue}
+        options={options}
+        value={values}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -81,6 +74,13 @@ export default function MultiAsyncListField<T extends { id: string }>({
             }}
           />
         )}
+        onChange={(event: unknown, newValue: T[] | undefined) => {
+          setValues(newValue ?? []);
+        }}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+          updateQuery(newInputValue);
+        }}
       />
     </>
   );

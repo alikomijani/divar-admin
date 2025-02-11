@@ -1,4 +1,4 @@
-import { IUser } from "@/api/server-api/types";
+import type { IUser } from "@/api/server-api/types";
 import React from "react";
 import AIForm from "../forms/AIForm";
 

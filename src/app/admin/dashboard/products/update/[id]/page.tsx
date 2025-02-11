@@ -1,5 +1,5 @@
 import { getProductById } from "@/api/server-api/products";
-import { ServerPageProps } from "@/api/server-api/types";
+import type { ServerPageProps } from "@/api/server-api/types";
 import ProductForm from "@/components/admin/forms/product-form";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 

@@ -2,29 +2,25 @@
 import "server-only";
 
 import { ADMIN_BASE_URL } from "@/config.server";
-import { ICategory, PaginatedResultApi } from "./types";
+import type { ICategory, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
-import { CategoryType } from "@/lib/validations";
+import type { CategoryType } from "@/lib/validations";
 
 // Create a new category
 export const createCategory = async (
-  body: Partial<CategoryType>
+  body: Partial<CategoryType>,
 ): Promise<ICategory> => {
-  try {
-    return apiFetch<ICategory>(`${ADMIN_BASE_URL}/categories`, {
-      method: "POST",
-      body: JSON.stringify(body),
-    });
-  } catch (e) {
-    throw e;
-  }
+  return apiFetch<ICategory>(`${ADMIN_BASE_URL}/categories`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
 };
 
 // Update an existing category
 export const updateCategory = async (
   id: string,
-  body: Partial<CategoryType>
+  body: Partial<CategoryType>,
 ): Promise<ICategory> => {
   const data = await apiFetch<ICategory>(`${ADMIN_BASE_URL}/categories/${id}`, {
     method: "PUT",
@@ -36,20 +32,20 @@ export const updateCategory = async (
 
 // Get a paginated list of categories
 export const getCategories = async (
-  params?: unknown
+  params?: unknown,
 ): Promise<PaginatedResultApi<ICategory>> => {
   const search = new URLSearchParams(params as Record<string, string>);
   return apiFetch<PaginatedResultApi<ICategory>>(
     `${ADMIN_BASE_URL}/categories?${search.toString()}`,
     {
       cache: "no-store",
-    }
+    },
   );
 };
 
 // Delete a category
 export const deleteCategory = async (
-  id: string
+  id: string,
 ): Promise<{ message: string }> => {
   return apiFetch<{ message: string }>(`${ADMIN_BASE_URL}/categories/${id}`, {
     method: "DELETE",

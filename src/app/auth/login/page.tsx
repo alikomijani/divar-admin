@@ -6,9 +6,9 @@ export default async function Login() {
   return (
     <Box>
       <Stack
+        alignItems="center"
         direction="row"
         justifyContent="space-between"
-        alignItems="center"
         my={3}
       >
         <Typography variant="h5">ورود</Typography>

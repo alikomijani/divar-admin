@@ -1,17 +1,18 @@
 "use server";
 import "server-only";
-import {
+import type {
   FormState,
-  LoginFormSchema,
   LoginFormState,
-  LoginType,
+  LoginType} from "@/lib/validations";
+import {
+  LoginFormSchema
 } from "@/lib/validations";
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import { loginRequest } from "@/api/server-api/auth";
 import { ApiError } from "@/api/server-api/base";
-import { LoginResponse } from "@/api/server-api/types";
+import type { LoginResponse } from "@/api/server-api/types";
 import { chooseAuthRedirectPath } from "./helper";
 
 export async function loginAction(state: LoginFormState, formData: FormData) {

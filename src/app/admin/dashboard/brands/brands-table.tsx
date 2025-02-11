@@ -1,6 +1,6 @@
 "use client";
 import { deleteBrandAction } from "@/actions/brands";
-import { IBrand, PaginatedResultApi } from "@/api/server-api/types";
+import type { IBrand, PaginatedResultApi } from "@/api/server-api/types";
 import DeleteAlertDialog from "@/components/DeleteAlertDialog";
 import AITable from "@/components/admin/tables/AITable";
 import { Edit, Delete } from "@mui/icons-material";
@@ -16,8 +16,9 @@ export function BrandsTable({
   const brandsList = use(brands);
   return (
     <AITable
+      data={brandsList}
       actions={(p) => (
-        <Stack direction={"row"}>
+        <Stack direction="row">
           <Tooltip title="ویرایش">
             <IconButton
               color="secondary"
@@ -37,7 +38,6 @@ export function BrandsTable({
           </Tooltip>
         </Stack>
       )}
-      data={brandsList}
       schema={[
         {
           title: "نشانک",

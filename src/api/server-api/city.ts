@@ -2,10 +2,10 @@
 import "server-only";
 
 import { ADMIN_BASE_URL } from "@/config.server";
-import { ICity, PaginatedResultApi } from "./types";
+import type { ICity, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
-import { CityType } from "@/lib/validations";
+import type { CityType } from "@/lib/validations";
 
 // Create a new city
 export const createCity = async (body: Partial<CityType>): Promise<ICity> => {

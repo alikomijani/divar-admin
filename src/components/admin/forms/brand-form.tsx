@@ -3,7 +3,7 @@ import { createOrUpdateBrandAction } from "@/actions/brands";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
 import AIForm from "./AIForm";
-import { IBrand } from "@/api/server-api/types";
+import type { IBrand } from "@/api/server-api/types";
 import SubmitButton from "@/components/SubmitButton";
 
 type BrandFormType = {
@@ -16,8 +16,8 @@ export const BrandForm = ({ brand }: BrandFormType) => {
   });
   return (
     <form action={action}>
-      <Stack spacing={2} mt={2}>
-        {brand?.id && <input hidden name="id" defaultValue={brand.id} />}
+      <Stack mt={2} spacing={2}>
+        {brand?.id && <input hidden defaultValue={brand.id} name="id" />}
         <AIForm
           schema={[
             {

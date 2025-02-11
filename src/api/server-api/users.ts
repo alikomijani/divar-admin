@@ -2,7 +2,7 @@
 import "server-only";
 
 import { ADMIN_BASE_URL } from "@/config.server";
-import { IUser, PaginatedResultApi } from "./types";
+import type { IUser, PaginatedResultApi } from "./types";
 import { apiFetch } from "./base";
 
 // Get a paginated list of users

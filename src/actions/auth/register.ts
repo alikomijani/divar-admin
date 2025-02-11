@@ -1,18 +1,19 @@
 "use server";
 import "server-only";
 
-import {
+import type {
   RegisterFormState,
-  RegisterFormSchema,
   RegisterType,
-  FormState,
+  FormState} from "@/lib/validations";
+import {
+  RegisterFormSchema
 } from "@/lib/validations";
 import { createSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";
 import { ApiError } from "@/api/server-api/base";
 import { chooseAuthRedirectPath } from "./helper";
-import { LoginResponse } from "@/api/server-api/types";
+import type { LoginResponse } from "@/api/server-api/types";
 import {
   registerAdminRequest,
   registerShopRequest,

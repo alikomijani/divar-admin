@@ -2,10 +2,10 @@
 import "server-only";
 
 import { ADMIN_BASE_URL } from "@/config.server";
-import { IProperty, PaginatedResultApi } from "./types";
+import type { IProperty, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
-import { PropertyType } from "@/lib/validations";
+import type { PropertyType } from "@/lib/validations";
 
 // Create a new Properties
 export const createProperties = async (

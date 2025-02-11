@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Axios from "./base";
-import { ICategory, PaginatedResultApi } from "../server-api/types";
+import type { ICategory, PaginatedResultApi } from "../server-api/types";
 
 async function getAllCategories(params: { q?: string }) {
   const res = await Axios.get<PaginatedResultApi<ICategory>>(

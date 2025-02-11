@@ -44,27 +44,19 @@ export default function AsyncListField<T extends { id: string }>({
     <>
       {value?.id && (
         <input
-          type="hidden"
-          name={name} // This will be sent to the backend
           defaultValue={value?.id}
+          name={name} // This will be sent to the backend
+          type="hidden"
         />
       )}
       <Autocomplete
-        fullWidth
         disablePortal
-        inputValue={inputValue}
-        value={value}
-        onChange={(event: unknown, newValue: T | null) => {
-          setValue(newValue);
-          onChange?.(newValue);
-        }}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-          updateQuery(newInputValue, value);
-        }}
-        options={options}
-        groupBy={groupBy}
+        fullWidth
         getOptionLabel={getOptionLabel}
+        groupBy={groupBy}
+        inputValue={inputValue}
+        options={options}
+        value={value}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -86,6 +78,14 @@ export default function AsyncListField<T extends { id: string }>({
             }}
           />
         )}
+        onChange={(event: unknown, newValue: T | null) => {
+          setValue(newValue);
+          onChange?.(newValue);
+        }}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+          updateQuery(newInputValue, value);
+        }}
       />
     </>
   );

@@ -2,7 +2,8 @@
 import { createBrand, deleteBrand, updateBrand } from "@/api/server-api/brands";
 import { ApiError } from "@/api/server-api/base";
 import { ensureAuthenticated } from "@/lib/session";
-import { BrandFormState, BrandSchemaZod } from "@/lib/validations";
+import type { BrandFormState} from "@/lib/validations";
+import { BrandSchemaZod } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { formDataToObject } from "@/lib/utils";

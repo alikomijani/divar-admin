@@ -19,7 +19,7 @@ export default function MiniDrawer() {
   const pathname = usePathname();
   const { isOpen, handleClose } = React.useContext(DrawerContext);
   return (
-    <Drawer variant="permanent" open={isOpen}>
+    <Drawer open={isOpen} variant="permanent">
       <DrawerHeader>
         <IconButton onClick={handleClose}>
           <ChevronRightIcon />
@@ -30,9 +30,9 @@ export default function MiniDrawer() {
         {SIDEBAR_ITEMS.map(({ text, href, Icon }) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <ListItemButton
-              selected={pathname === href}
               component={Link}
               href={href}
+              selected={pathname === href}
               sx={{
                 minHeight: 48,
                 px: 2.5,

@@ -1,5 +1,5 @@
 import { SHOP_BASE_URL } from "@/config.server";
-import { IProduct, PaginatedResultApi } from "../types";
+import type { IProduct, PaginatedResultApi } from "../types";
 import { apiFetch } from "../base";
 
 // Get a paginated list of products

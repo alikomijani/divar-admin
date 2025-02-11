@@ -1,4 +1,4 @@
-import { IUser } from "@/api/server-api/types";
+import type { IUser } from "@/api/server-api/types";
 
 export function chooseAuthRedirectPath(role: IUser["role"] | undefined) {
   switch (role) {

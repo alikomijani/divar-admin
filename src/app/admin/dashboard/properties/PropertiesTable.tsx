@@ -1,6 +1,6 @@
 "use client";
 import { deletePropertyAction } from "@/actions/property";
-import {
+import type {
   IProperty,
   IPropertyOption,
   PaginatedResultApi,
@@ -18,8 +18,9 @@ export function PropertiesTable({
 }) {
   return (
     <AITable
+      data={properties}
       actions={(p) => (
-        <Stack direction={"row"}>
+        <Stack direction="row">
           <Tooltip title="ویرایش">
             <IconButton
               color="secondary"
@@ -40,25 +41,6 @@ export function PropertiesTable({
           </Tooltip>
         </Stack>
       )}
-      subTable={{
-        header: "مقادیر پیشنهادی",
-        key: "options",
-        schema: [
-          {
-            title: "شماره",
-            render: (row: IPropertyOption) => row.id,
-          },
-          {
-            title: "برچسب",
-            render: (row) => row.label,
-          },
-          {
-            title: "مقدار",
-            render: (row) => row.value,
-          },
-        ],
-      }}
-      data={properties}
       schema={[
         {
           title: "شماره",
@@ -77,6 +59,24 @@ export function PropertiesTable({
           render: (row) => row.type,
         },
       ]}
+      subTable={{
+        header: "مقادیر پیشنهادی",
+        key: "options",
+        schema: [
+          {
+            title: "شماره",
+            render: (row: IPropertyOption) => row.id,
+          },
+          {
+            title: "برچسب",
+            render: (row) => row.label,
+          },
+          {
+            title: "مقدار",
+            render: (row) => row.value,
+          },
+        ],
+      }}
     />
   );
 }

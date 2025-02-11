@@ -1,6 +1,6 @@
 "use client";
 import { useUserQuery } from "@/api/client-api/user";
-import { IUser } from "@/api/server-api/types";
+import type { IUser } from "@/api/server-api/types";
 import React, { useState } from "react";
 import AsyncListField from "./async-list-filed";
 
@@ -21,15 +21,15 @@ export default function UserField({
   const { data, isLoading } = useUserQuery(query);
   return (
     <AsyncListField
+      defaultValue={defaultValue}
       error={error}
-      helperText={helperText}
-      options={data?.results ?? []}
       getOptionLabel={(o) => o.email}
+      helperText={helperText}
       isLoading={isLoading}
       label="کاربر"
       name={name}
+      options={data?.results ?? []}
       setQuery={setQuery}
-      defaultValue={defaultValue}
     />
   );
 }

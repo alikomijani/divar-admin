@@ -1,7 +1,7 @@
 "use client";
 
 import { createOrUpdateProductAction } from "@/actions/products";
-import { ICategory, IProduct } from "@/api/server-api/types";
+import type { ICategory, IProduct } from "@/api/server-api/types";
 import {
   Alert,
   Box,
@@ -37,32 +37,32 @@ function ProductForm({ defaultValue }: ProductFormProps) {
   return (
     <form action={action}>
       {defaultValue?.id && (
-        <input hidden name="id" defaultValue={defaultValue.id} />
+        <input hidden defaultValue={defaultValue.id} name="id" />
       )}
       {state.message && <Alert severity="warning">{state.message}</Alert>}
-      <Stack spacing={2} mt={2}>
-        <Stack gap={2} direction="row">
+      <Stack mt={2} spacing={2}>
+        <Stack direction="row" gap={2}>
           <SingleUpload
-            name="images.main"
             defaultValue={defaultValue?.images.main}
+            name="images.main"
           />
           <SingleUpload
             multi
-            name="images.list"
             defaultValue={defaultValue?.images.list}
+            name="images.list"
           />
         </Stack>
         <Stack direction="row" gap={2}>
           <CategoryField
-            onChange={setCategory}
-            name="category"
             defaultValue={defaultValue?.category}
+            name="category"
+            onChange={setCategory}
           />
-          <BrandField name="brand" defaultValue={defaultValue?.brand} />
+          <BrandField defaultValue={defaultValue?.brand} name="brand" />
         </Stack>
         <Stack direction="row" gap={2}>
-          <BadgeField name="badges" defaultValue={defaultValue?.badges} />
-          <ColorsField name="colors" defaultValue={defaultValue?.colors} />
+          <BadgeField defaultValue={defaultValue?.badges} name="badges" />
+          <ColorsField defaultValue={defaultValue?.colors} name="colors" />
         </Stack>
         <AIForm
           schema={[
@@ -113,33 +113,33 @@ function ProductForm({ defaultValue }: ProductFormProps) {
         <Divider />
         <Typography>ویژگی ها</Typography>
         {category?.properties.map((item, i) => (
-          <Stack gap={1} key={item.id}>
+          <Stack key={item.id} gap={1}>
             <input
               hidden
-              name={`specifications.${i}.name`}
               defaultValue={item.name}
+              name={`specifications.${i}.name`}
             />
             <input
               hidden
-              name={`specifications.${i}.title`}
               defaultValue={item.label}
+              name={`specifications.${i}.title`}
             />
             <Box>
               {item.options?.length ? (
                 <TextField
-                  select
                   fullWidth
+                  select
+                  label={item.label}
+                  name={`specifications.${i}.value`}
                   defaultValue={
                     defaultValue?.specifications.find(
                       (i) => i.name === item.name
                     )?.value ?? ""
                   }
-                  label={item.label}
-                  name={`specifications.${i}.value`}
                 >
                   <MenuItem value="">لطفا یک مورد را انتخاب کنید</MenuItem>
                   {item.options.map((o) => (
-                    <MenuItem value={o.value} key={o.id}>
+                    <MenuItem key={o.id} value={o.value}>
                       {o.value}
                     </MenuItem>
                   ))}
@@ -148,18 +148,18 @@ function ProductForm({ defaultValue }: ProductFormProps) {
                 <TextField
                   fullWidth
                   label={item.label}
+                  name={`specifications.${i}.value`}
                   defaultValue={
                     defaultValue?.specifications.find(
                       (i) => i.name === item.name
                     )?.value
                   }
-                  name={`specifications.${i}.value`}
                 />
               )}
 
               <FormControlLabel
                 control={<Checkbox name={`specifications.${i}.isDefault`} />}
-                label={"آیا در اول صفحه نمایش داده شود؟"}
+                label="آیا در اول صفحه نمایش داده شود؟"
               />
             </Box>
           </Stack>

@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, PropsWithChildren, useState } from "react";
+import type { PropsWithChildren} from "react";
+import { createContext, useState } from "react";
 
 export const DrawerContext = createContext({
   isOpen: true,

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Axios from "./base";
-import { IProperty, PaginatedResultApi } from "../server-api/types";
+import type { IProperty, PaginatedResultApi } from "../server-api/types";
 
 async function getAllProperties(params: { q?: string }) {
   const res = await Axios.get<PaginatedResultApi<IProperty>>(

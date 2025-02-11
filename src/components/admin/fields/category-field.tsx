@@ -1,6 +1,6 @@
 "use client";
 import { useCategoriesQuery } from "@/api/client-api/categories";
-import { ICategory } from "@/api/server-api/types";
+import type { ICategory } from "@/api/server-api/types";
 import React, { useState } from "react";
 import AsyncListField from "./async-list-filed";
 
@@ -23,17 +23,17 @@ export default function CategoryField({
   const { data, isLoading } = useCategoriesQuery(query);
   return (
     <AsyncListField
+      defaultValue={defaultValue}
       error={error}
-      onChange={onChange}
-      helperText={helperText}
-      options={data?.results ?? []}
       getOptionLabel={(o) => o.titleFa}
       groupBy={(o) => o.parent?.titleFa ?? "root"}
+      helperText={helperText}
       isLoading={isLoading}
       label="دسته بندی"
       name={name}
+      options={data?.results ?? []}
       setQuery={setQuery}
-      defaultValue={defaultValue}
+      onChange={onChange}
     />
   );
 }

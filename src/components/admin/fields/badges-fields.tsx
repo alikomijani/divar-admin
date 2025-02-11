@@ -1,4 +1,4 @@
-import { IBadge } from "@/api/server-api/types";
+import type { IBadge } from "@/api/server-api/types";
 import React, { useState } from "react";
 import MultiAsyncListField from "./multi-async-list-field";
 import { useBadgesQuery } from "@/api/client-api/badges";
@@ -13,13 +13,13 @@ export default function BadgeField({ defaultValue, name }: BadgeFieldProps) {
   const { data, isLoading } = useBadgesQuery(query);
   return (
     <MultiAsyncListField
-      options={data?.results ?? []}
+      defaultValue={defaultValue}
       getOptionLabel={(o) => o.title}
       isLoading={isLoading}
       label="برچسب ها"
       name={name}
+      options={data?.results ?? []}
       setQuery={setQuery}
-      defaultValue={defaultValue}
     />
   );
 }

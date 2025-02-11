@@ -1,6 +1,8 @@
 {
+  "eslint.useFlatConfig": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
-  "eslint.validate": ["javascript"]
+  "eslint.validate": ["javascript"],
+  "cSpell.language": "en,fa"
 }

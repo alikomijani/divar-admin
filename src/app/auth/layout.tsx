@@ -14,7 +14,7 @@ export default async function Layout({
         justifyContent: "center",
       }}
     >
-      <Card sx={{ width: 500 }} elevation={8}>
+      <Card elevation={8} sx={{ width: 500 }}>
         <CardContent
           sx={{
             padding: 4,

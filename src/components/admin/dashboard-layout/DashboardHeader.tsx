@@ -50,18 +50,18 @@ export default function DashboardHeader() {
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
+      keepMounted
       anchorEl={anchorEl}
+      id={menuId}
+      open={isMenuOpen}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
       }}
-      id={menuId}
-      keepMounted
       transformOrigin={{
         vertical: "top",
         horizontal: "right",
       }}
-      open={isMenuOpen}
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>پروفایل</MenuItem>
@@ -74,22 +74,22 @@ export default function DashboardHeader() {
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
+      keepMounted
       anchorEl={mobileMoreAnchorEl}
+      id={mobileMenuId}
+      open={isMobileMenuOpen}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",
       }}
-      id={mobileMenuId}
-      keepMounted
       transformOrigin={{
         vertical: "top",
         horizontal: "right",
       }}
-      open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton aria-label="show 4 new mails" color="inherit" size="large">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -98,9 +98,9 @@ export default function DashboardHeader() {
       </MenuItem>
       <MenuItem>
         <IconButton
-          size="large"
           aria-label="show 17 new notifications"
           color="inherit"
+          size="large"
         >
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
@@ -110,11 +110,11 @@ export default function DashboardHeader() {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
-          aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
+          aria-label="account of current user"
           color="inherit"
+          size="large"
         >
           <AccountCircle />
         </IconButton>
@@ -125,23 +125,23 @@ export default function DashboardHeader() {
 
   return (
     <>
-      <AppBar position="fixed" open={isOpen}>
+      <AppBar open={isOpen} position="fixed">
         <Toolbar>
           <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
             aria-label="open drawer"
+            color="inherit"
+            edge="start"
+            size="large"
             sx={{ mr: 2 }}
             onClick={handleOpen}
           >
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
+            variant="h6"
           >
             MUI
           </Typography>
@@ -150,50 +150,50 @@ export default function DashboardHeader() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              placeholder="Search…"
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
-              size="large"
               aria-label="show 4 new mails"
               color="inherit"
+              size="large"
             >
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
             <IconButton
-              size="large"
               aria-label="show 17 new notifications"
               color="inherit"
+              size="large"
             >
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
             <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              aria-label="account of current user"
               color="inherit"
+              edge="end"
+              size="large"
+              onClick={handleProfileMenuOpen}
             >
               <AccountCircle />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
-              aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              aria-label="show more"
               color="inherit"
+              size="large"
+              onClick={handleMobileMenuOpen}
             >
               <MoreIcon />
             </IconButton>

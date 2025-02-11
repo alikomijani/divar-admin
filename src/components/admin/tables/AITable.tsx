@@ -9,8 +9,9 @@ import {
   TableRow,
 } from "@mui/material";
 import TablePagination from "./TablePagination";
-import React, { ReactNode } from "react";
-import { Column, PaginatedResultApi } from "@/api/server-api/types";
+import type { ReactNode } from "react";
+import React from "react";
+import type { Column, PaginatedResultApi } from "@/api/server-api/types";
 import AITableRow from "./AITableRow";
 
 interface AITableProps<T extends { id: string }, G extends { id: string }> {
@@ -29,19 +30,19 @@ export default function AITable<
       <Table size="small">
         <TableHead>
           <TableRow>
-            {!!subTable && <TableCell></TableCell>}
+            {!!subTable && <TableCell />}
             {schema.map((item) => (
               <TableCell key={item.title}>{item.title}</TableCell>
             ))}
-            {!!actions && <TableCell key={"actions"}>عملیات</TableCell>}
+            {!!actions && <TableCell key="actions">عملیات</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
           {data.results.length === 0 && (
             <TableRow>
               <TableCell
-                sx={{ textAlign: "center" }}
                 colSpan={schema.length + +!!actions + +!!subTable}
+                sx={{ textAlign: "center" }}
               >
                 دیتایی وجود ندارد
               </TableCell>
@@ -50,10 +51,10 @@ export default function AITable<
           {data.results.map((row) => (
             <AITableRow
               key={row.id}
-              schema={schema}
-              data={row}
-              subTable={subTable}
               actions={actions}
+              data={row}
+              schema={schema}
+              subTable={subTable}
             />
           ))}
         </TableBody>

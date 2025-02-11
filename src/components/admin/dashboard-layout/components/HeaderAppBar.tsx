@@ -1,5 +1,6 @@
 import { styled } from "@mui/material";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import type { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import MuiAppBar from "@mui/material/AppBar";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;

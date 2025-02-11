@@ -1,5 +1,5 @@
 import { usePropertiesQuery } from "@/api/client-api/properties";
-import { IProperty } from "@/api/server-api/types";
+import type { IProperty } from "@/api/server-api/types";
 import React, { useState } from "react";
 import MultiAsyncListField from "./multi-async-list-field";
 
@@ -16,14 +16,14 @@ export default function PropertiesField({
   const { data, isLoading } = usePropertiesQuery(query);
   return (
     <MultiAsyncListField
-      options={data?.results ?? []}
+      defaultValue={defaultValue}
       getOptionLabel={(o) => o.label}
       groupBy={(o) => o.type}
       isLoading={isLoading}
       label="ویژگی ها"
       name={name}
+      options={data?.results ?? []}
       setQuery={setQuery}
-      defaultValue={defaultValue}
     />
   );
 }

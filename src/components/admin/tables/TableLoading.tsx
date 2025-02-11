@@ -13,7 +13,7 @@ export default async function TableLoading({ colCount }: Props) {
         <TableRow>
           {array.map((k, i) => (
             <TableCell key={i} sx={{ minHeight: 10 }}>
-              <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+              <Skeleton sx={{ fontSize: "1rem" }} variant="text" />
             </TableCell>
           ))}
         </TableRow>

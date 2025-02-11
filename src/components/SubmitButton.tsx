@@ -1,8 +1,9 @@
 "use client";
 
+import type {
+  ButtonProps} from "@mui/material";
 import {
   Button,
-  ButtonProps,
   CircularProgress,
   Stack,
   Typography,
@@ -16,9 +17,9 @@ export default function SubmitButton({
 }: ButtonProps) {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={disabled || pending} {...rest}>
+    <Button disabled={disabled || pending} type="submit" {...rest}>
       {pending ? (
-        <Stack direction={"row"} gap={1} alignItems={"center"}>
+        <Stack alignItems="center" direction="row" gap={1}>
           <CircularProgress size={12} />
           <Typography>در حال ثبت</Typography>
         </Stack>

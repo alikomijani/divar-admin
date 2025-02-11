@@ -2,7 +2,7 @@
 import "server-only";
 
 import { ADMIN_BASE_URL } from "@/config.server";
-import { IColor, PaginatedResultApi } from "./types";
+import type { IColor, PaginatedResultApi } from "./types";
 import { revalidateTag } from "next/cache";
 import { apiFetch } from "./base";
 

@@ -1,6 +1,6 @@
 import { SHOP_BASE_URL } from "@/config.server";
 import { apiFetch } from "../base";
-import { ICategory, PaginatedResultApi } from "../types";
+import type { ICategory, PaginatedResultApi } from "../types";
 
 // Get a paginated list of categories
 export const getCategories = async (

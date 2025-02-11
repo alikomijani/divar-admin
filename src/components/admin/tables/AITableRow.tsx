@@ -1,8 +1,9 @@
 "use client";
-import { Column } from "@/api/server-api/types";
+import type { Column } from "@/api/server-api/types";
 import { IconButton, TableRow as MuiTableRow, TableCell } from "@mui/material";
 import AISubTable from "./AISubTable";
-import { Fragment, ReactNode, useState } from "react";
+import type { ReactNode} from "react";
+import { Fragment, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
@@ -53,8 +54,8 @@ export default function AITableRow<
       {!!subTable && (
         <AISubTable
           colSpan={schema.length + 2}
-          header={subTable.header}
           data={data[subTable.key] as G[]}
+          header={subTable.header}
           open={open}
           subTitleSchema={subTable.schema}
         />

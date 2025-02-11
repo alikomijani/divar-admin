@@ -14,33 +14,33 @@ export default function LoginForm() {
         <Stack gap={2}>
           {state.message && <Alert severity="warning">{state.message}</Alert>}
           <TextField
+            fullWidth
             error={!!state?.errors?.email}
             helperText={state?.errors?.email}
-            size="small"
-            fullWidth
-            name="email"
             label="رایانامه"
-            variant="outlined"
+            name="email"
+            size="small"
             type="email"
+            variant="outlined"
           />
           <TextField
+            fullWidth
             error={!!state?.errors?.password}
+            label="کلمه عبور"
+            name="password"
+            size="small"
+            type="password"
+            variant="outlined"
             helperText={state?.errors?.password?.map((e: string) => (
-              <Box component="span" display="block" key={e}>
+              <Box key={e} component="span" display="block">
                 {e}
               </Box>
             ))}
-            size="small"
-            fullWidth
-            name="password"
-            type="password"
-            label="کلمه عبور"
-            variant="outlined"
           />
           <Button
-            type="submit"
-            disabled={pending}
             disableElevation
+            disabled={pending}
+            type="submit"
             variant="contained"
           >
             ورود

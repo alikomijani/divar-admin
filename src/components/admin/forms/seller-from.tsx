@@ -3,7 +3,7 @@ import { createOrUpdateSellerAction } from "@/actions/sellers";
 import { Stack } from "@mui/material";
 import { useActionState } from "react";
 import SubmitButton from "@/components/SubmitButton";
-import { ISeller } from "@/api/server-api/types";
+import type { ISeller } from "@/api/server-api/types";
 import AIForm from "./AIForm";
 import UserField from "../fields/user-field";
 
@@ -18,14 +18,14 @@ export default function SellerForm({ defaultValue }: SellerFormProps) {
   return (
     <form action={action}>
       {defaultValue?.id && (
-        <input hidden name="id" defaultValue={defaultValue.id} />
+        <input hidden defaultValue={defaultValue.id} name="id" />
       )}
-      <Stack spacing={2} mt={2}>
+      <Stack mt={2} spacing={2}>
         <UserField
           defaultValue={defaultValue?.user}
-          name="user"
           error={!!state?.errors?.user}
           helperText={state?.errors?.user}
+          name="user"
         />
         <AIForm
           schema={[

@@ -1,4 +1,4 @@
-import { ServerPageProps } from "@/api/server-api/types";
+import type { ServerPageProps } from "@/api/server-api/types";
 import { TableContainer } from "@/components/admin/tables/TableContainer";
 import { BadgesTable } from "./badges-table";
 import { getBadges } from "@/api/server-api/badges";
@@ -8,8 +8,8 @@ export default async function BadgesPage({ searchParams }: ServerPageProps) {
   const badges = getBadges(params);
   return (
     <TableContainer
-      title="برچسب ها"
       createLink="/admin/dashboard/badges/create"
+      title="برچسب ها"
     >
       <BadgesTable badges={badges} />
     </TableContainer>

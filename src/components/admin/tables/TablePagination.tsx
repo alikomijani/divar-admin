@@ -28,15 +28,15 @@ export default function TablePagination({ count }: Props) {
   );
   return (
     <MuiTablePagination
-      rowsPerPageOptions={[5, 10, 25]}
       component="div"
       count={count}
-      rowsPerPage={pageSize}
+      labelRowsPerPage="تعداد آیتم های هر صفحه"
       page={page}
+      rowsPerPage={pageSize}
+      rowsPerPageOptions={[5, 10, 25]}
       labelDisplayedRows={({ count, from, to }) =>
         `نمایش ${from} تا ${to} از ${count} آیتم`
       }
-      labelRowsPerPage={"تعداد آیتم های هر صفحه"}
       onPageChange={(event, newPage) => {
         router.push(
           pathname + "?" + createQueryString({ page: `${newPage + 1}` })

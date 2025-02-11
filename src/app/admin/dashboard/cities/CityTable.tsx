@@ -1,7 +1,7 @@
 "use client";
 import { Edit, Delete } from "@mui/icons-material";
 import { Stack, Tooltip, IconButton } from "@mui/material";
-import { ICity, PaginatedResultApi } from "@/api/server-api/types";
+import type { ICity, PaginatedResultApi } from "@/api/server-api/types";
 import { use } from "react";
 import { deleteCityAction } from "@/actions/city";
 import DeleteAlertDialog from "@/components/DeleteAlertDialog";
@@ -16,8 +16,9 @@ export default function CityTable({
   const allCity = use(cities);
   return (
     <AITable
+      data={allCity}
       actions={(p) => (
-        <Stack direction={"row"}>
+        <Stack direction="row">
           <Tooltip title="ویرایش">
             <IconButton
               color="secondary"
@@ -40,7 +41,6 @@ export default function CityTable({
           </Tooltip>
         </Stack>
       )}
-      data={allCity}
       schema={[
         {
           title: "شناسه",
