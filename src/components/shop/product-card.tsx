@@ -8,6 +8,7 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import Link from 'next/link';
 import React from 'react';
 
 type Props = {
@@ -16,7 +17,17 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Card sx={{ width: 254 }} variant="outlined">
+    <Card
+      component={Link}
+      href={'/product/' + product.code}
+      variant="outlined"
+      sx={{
+        width: 254,
+        textDecoration: 'none',
+        color: 'unset',
+        display: 'block',
+      }}
+    >
       <CardMedia
         image={product.images.main}
         sx={{ height: 140 }}

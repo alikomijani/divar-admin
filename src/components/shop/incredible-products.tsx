@@ -24,9 +24,6 @@ export default async function IncredibleProducts() {
         {products.results.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-        {products.results.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
       </Slider>
     </Box>
   );

@@ -12,12 +12,11 @@ type Props = {
 };
 
 export default function Slider({ children }: Props) {
-  console.log(children);
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: false,
-    slides: { spacing: 14, perView: 6 },
     mode: 'free',
     rtl: true,
+    slides: { perView: 'auto', spacing: 10 },
   });
   return (
     <Box
@@ -30,7 +29,11 @@ export default function Slider({ children }: Props) {
     >
       <Box ref={sliderRef} className="keen-slider">
         {children?.flat().map((child, index) => (
-          <Box key={index} className="keen-slider__slide">
+          <Box
+            key={index}
+            className="keen-slider__slide"
+            style={{ maxWidth: 254, minWidth: 254 }}
+          >
             {child}
           </Box>
         ))}
