@@ -1,9 +1,8 @@
 import { getProductById } from '@/api/server-api/products';
 import type { ServerPageProps } from '@/api/server-api/types';
-import { ShoppingCart, Favorite, Share } from '@mui/icons-material';
+import { Favorite, Share } from '@mui/icons-material';
 import {
   Box,
-  Button,
   Chip,
   Container,
   Divider,
@@ -16,6 +15,7 @@ import {
   Typography,
 } from '@mui/material';
 import ProductImage from './product-image';
+import { AddToCart } from './add-to-cart';
 
 export default async function Page({ params }: ServerPageProps) {
   const { code } = await params;
@@ -117,14 +117,10 @@ export default async function Page({ params }: ServerPageProps) {
             </Stack>
 
             <Stack direction="row" spacing={2}>
-              <Button
-                fullWidth
-                size="large"
-                startIcon={<ShoppingCart />}
-                variant="contained"
-              >
-                Add to Cart
-              </Button>
+              {product.bestSeller && (
+                <AddToCart product={product} seller={product.bestSeller} />
+              )}
+
               <IconButton color="primary">
                 <Favorite />
               </IconButton>

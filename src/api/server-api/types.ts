@@ -77,7 +77,7 @@ interface IPropertyValue {
   value: string;
   id: string;
 }
-interface SellerInfo {
+export interface SellerInfo {
   lastPrice: number;
   createdAt: string;
   discount: number;

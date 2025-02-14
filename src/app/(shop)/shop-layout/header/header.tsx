@@ -2,17 +2,17 @@ import {
   Box,
   Container,
   Divider,
-  IconButton,
   InputAdornment,
   TextField,
 } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import Navbar from './navbar';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import UserIcon from './user-icon';
 import { Search } from '@mui/icons-material';
+import ShopIcon from './shopIcon';
+import Link from 'next/link';
 
 export default async function Header() {
   return (
@@ -41,7 +41,10 @@ export default async function Header() {
           }}
         >
           <Box alignItems="center" display="flex" flexGrow={1} gap={2}>
-            <Image alt="logo" height={30} src="/logo.svg" width={195} />
+            <Link href="/">
+              <Image alt="logo" height={30} src="/logo.svg" width={195} />
+            </Link>
+
             <TextField
               name="search"
               placeholder="جست و جو در بیش از ۲۰ ملیون کالا"
@@ -64,9 +67,7 @@ export default async function Header() {
           <Box alignItems="center" display="flex" gap={1}>
             <UserIcon />
             <Divider flexItem orientation="vertical" variant="middle" />
-            <IconButton>
-              <ShoppingCartOutlinedIcon />
-            </IconButton>
+            <ShopIcon />
           </Box>
         </Box>
         <Navbar />
