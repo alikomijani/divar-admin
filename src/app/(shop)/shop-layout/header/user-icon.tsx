@@ -1,9 +1,9 @@
 import React from 'react';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { auth } from '@/lib/session';
 import { Button, IconButton } from '@mui/material';
 import { LoginOutlined } from '@mui/icons-material';
 import Link from 'next/link';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 export default async function UserIcon() {
   const { isLogin } = await auth();

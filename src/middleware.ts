@@ -33,7 +33,6 @@ export default async function middleware(req: NextRequest) {
   }
 
   // 5. Redirect to /dashboard if the user is authenticated
-  // ToDo: redirect base on user role
   if (path.startsWith('/auth') && isLogin) {
     if (role === '3') {
       return NextResponse.redirect(new URL('/admin/dashboard', req.nextUrl));
@@ -43,6 +42,12 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.nextUrl));
   }
 
+  if (path.startsWith(protectedRoutes[0]) && role !== '3') {
+    // ToDo: redirect to 403
+  }
+  if (path.startsWith(protectedRoutes[1]) && role !== '2') {
+    // ToDo: redirect to 403
+  }
   return NextResponse.next();
 }
 

@@ -1,4 +1,4 @@
-import type { IProduct } from "@/api/server-api/types";
+import type { IProduct } from '@/api/server-api/types';
 import {
   Box,
   Button,
@@ -7,8 +7,8 @@ import {
   CardContent,
   CardMedia,
   Typography,
-} from "@mui/material";
-import React from "react";
+} from '@mui/material';
+import React from 'react';
 
 type Props = {
   product: IProduct;
@@ -16,7 +16,7 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Card sx={{ width: 345 }} variant="outlined">
+    <Card sx={{ width: 254 }} variant="outlined">
       <CardMedia
         image={product.images.main}
         sx={{ height: 140 }}
@@ -30,16 +30,16 @@ export default function ProductCard({ product }: Props) {
           <Box alignItems="start" display="flex" justifyContent="space-between">
             <Box
               sx={{
-                bgcolor: "error.main",
-                color: "error.contrastText",
+                bgcolor: 'error.main',
+                color: 'error.contrastText',
                 padding: 0.5,
                 paddingX: 1,
                 borderRadius: 2,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 visibility:
-                  product.bestSeller.discount > 0 ? "visible" : "hidden",
+                  product.bestSeller.discount > 0 ? 'visible' : 'hidden',
               }}
             >
               <Typography
@@ -54,13 +54,13 @@ export default function ProductCard({ product }: Props) {
             </Box>
             <Box>
               <Typography gutterBottom>
-                {product.bestSeller.lastPrice.toLocaleString("fa")} تومان
+                {product.bestSeller.lastPrice.toLocaleString('fa')} تومان
               </Typography>
               <Typography
                 gutterBottom
                 sx={{
                   visibility:
-                    product.bestSeller.discount > 0 ? "visible" : "hidden",
+                    product.bestSeller.discount > 0 ? 'visible' : 'hidden',
                 }}
               >
                 {product.bestSeller.lastPrice}

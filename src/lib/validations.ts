@@ -27,7 +27,7 @@ export const RegisterFormSchema = z
     shopSlug: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.role === 3) {
+    if (data.role === 2) {
       if (!data.shopName) {
         ctx.addIssue({
           path: ['shopName'],

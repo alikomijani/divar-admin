@@ -7,9 +7,7 @@ export async function createSession(token: {
   refreshToken: string;
   role?: number;
 }) {
-  // const accessExpiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-  // const refreshExpiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
-  const accessExpiresAt = new Date(Date.now() + 10 * 1000);
+  const accessExpiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
   const refreshExpiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
   const cookieStore = await cookies();
 
